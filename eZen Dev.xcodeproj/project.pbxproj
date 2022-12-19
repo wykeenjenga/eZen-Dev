@@ -57,6 +57,7 @@
 		0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE822950590D00976E55 /* APDynamicType.swift */; };
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
 		0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE8929505C7200976E55 /* APHomeViewModel.swift */; };
+		0B76DE8D2950633700976E55 /* APButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE8C2950633700976E55 /* APButton.swift */; };
 		41C8E6358B1725F842771A77 /* Pods_eZen_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4437B90A8D53959911F7A6 /* Pods_eZen_Dev.framework */; };
 		46983E979F5BA7B0575B2566 /* Pods_eZen_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F2BE35F8ABAB5335A65EF /* Pods_eZen_DevTests.framework */; };
 		D16AE8D2D52ECA84E98C012E /* Pods_eZen_Dev_eZen_DevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */; };
@@ -134,6 +135,7 @@
 		0B76DE822950590D00976E55 /* APDynamicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDynamicType.swift; sourceTree = "<group>"; };
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
 		0B76DE8929505C7200976E55 /* APHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APHomeViewModel.swift; sourceTree = "<group>"; };
+		0B76DE8C2950633700976E55 /* APButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APButton.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A823D223CBF11B8905DB38 /* Pods-eZen DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.debug.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 		0B76DE7E295058FD00976E55 /* CutomType */ = {
 			isa = PBXGroup;
 			children = (
+				0B76DE8B2950633700976E55 /* CustomButton */,
 				0B76DE7F2950590D00976E55 /* APError */,
 				0B76DE812950590D00976E55 /* DynamicType */,
 			);
@@ -497,6 +500,14 @@
 				0B76DE8929505C7200976E55 /* APHomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B76DE8B2950633700976E55 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				0B76DE8C2950633700976E55 /* APButton.swift */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		DBC02030C8A86A76A7588C37 /* Frameworks */ = {
@@ -790,6 +801,7 @@
 				0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */,
 				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
 				0B32C54829504EFE00028D5D /* HomeDIContainer.swift in Sources */,
+				0B76DE8D2950633700976E55 /* APButton.swift in Sources */,
 				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
 				0B32C53C2950466400028D5D /* APAPIGateway.swift in Sources */,
 				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,

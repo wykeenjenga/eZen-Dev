@@ -21,6 +21,7 @@ protocol APHomeViewModelInput {
 
 protocol APHomeViewModelOutput {
     var route: Dynamic<APHomeViewModelRoute> { get set }
+    var initFile: Dynamic<URL?> {get set}
 }
 
 protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput {
@@ -28,6 +29,8 @@ protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput {
 
 final class DefaultAPHomeViewModel: APHomeViewModel {
     var route: Dynamic<APHomeViewModelRoute> = Dynamic(.initial)
+    var initFile: Dynamic<URL?> = Dynamic(nil)
+    
     init() {
     }
 }
@@ -37,6 +40,8 @@ extension APHomeViewModel{
     //MARK: upload file and do the enhancement
     //return type: job id download file..
     func startProcessing() {
+        self.route.value = .activity(loading: true)
+        print("THE URL IS ...\(self.initFile.value)")
         
     }
     

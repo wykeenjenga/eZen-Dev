@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
+import MobileCoreServices
+import UniformTypeIdentifiers
 
-class APHomeViewController: BaseViewController {
+class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
     
     var viewModel: APHomeViewModel!
 
@@ -48,6 +51,13 @@ class APHomeViewController: BaseViewController {
         }
     }
     
+    @IBAction func importVoiceOver(_ sender: Any) {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeAudio)], in: .import)
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true)
+    }
+    
+    
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         
         var documentsUrl = urls[0]
@@ -83,6 +93,8 @@ class APHomeViewController: BaseViewController {
     
     func uploadAudio(filePath: URL?){
         print("We are uploading")
+        self.viewModel.initFile.value = filePath
+        self.viewModel.startProcessing()
     }
     
 }
