@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APHomeViewController: UIViewController {
+class APHomeViewController: BaseViewController {
     
     var viewModel: APHomeViewModel!
 
@@ -25,6 +25,27 @@ class APHomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.bindViewModel()
+    }
+    
+    func bindViewModel(){
+        self.viewModel.route.bind = { [weak self] route in
+            DispatchQueue.main.async {
+                switch route{
+                case .activity(let isLoading):
+                    if isLoading{
+                        self?.showHUD()
+                    }else{
+                        self?.hideHUD()
+                    }
+                case .error:
+                    self?.showAlert(title: "Error", message: "We are experiencing technical difficulties. Please try again later")
+                    break
+                default:
+                    break
+                }
+            }
+        }
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -48,15 +69,20 @@ class APHomeViewController: UIViewController {
             if fileManager.fileExists(atPath: "\(destinationPath.path)") {
                 try fileManager.removeItem(atPath: destinationPath.path)
             }else{
-                //self.viewModel.route.value = .error
+                self.viewModel.route.value = .error
             }
             try fileManager.moveItem(at: originPath, to: destinationPath)
             
             //use destination file path... to upload
+            self.uploadAudio(filePath: destinationPath)
             
         } catch {
-            //self.viewModel.route.value = .error
+            self.viewModel.route.value = .error
         }
+    }
+    
+    func uploadAudio(filePath: URL?){
+        print("We are uploading")
     }
     
 }
