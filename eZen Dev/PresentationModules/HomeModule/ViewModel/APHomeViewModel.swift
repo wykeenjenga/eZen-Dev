@@ -43,6 +43,33 @@ extension APHomeViewModel{
         self.route.value = .activity(loading: true)
         print("THE URL IS ...\(self.initFile.value)")
         
+        let headers = [
+          "accept": "application/json",
+          "content-type": "application/json",
+          "authorization": ""
+        ]
+        
+        let parameters = ["url": "dlb://input/file.wav"] as [String : Any]
+
+        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.dolby.com/media/input")! as URL,cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData! as Data
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+          if (error != nil) {
+            print(error as Any)
+          } else {
+            let httpResponse = response as? HTTPURLResponse
+            print(httpResponse)
+          }
+        })
+
+        dataTask.resume()
+        
     }
     
     func equalizeAudio(){
