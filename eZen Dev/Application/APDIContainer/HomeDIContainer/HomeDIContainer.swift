@@ -19,11 +19,11 @@ final class APHomeDIContainer {
     }
     
     func makeHomeViewController() -> APHomeViewController {
-        return APHomeViewController.create()
+        return APHomeViewController.create(with: viewModel())
     }
     
-//    private func viewModel() -> APHomeViewModel{
-//        return DefaultAPHomeViewModel()
-//    }
+    private func viewModel() -> APHomeViewModel{
+        return DefaultAPHomeViewModel()
+    }
     
 }

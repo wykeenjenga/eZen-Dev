@@ -56,6 +56,7 @@
 		0B76DE832950590D00976E55 /* APError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE802950590D00976E55 /* APError.swift */; };
 		0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE822950590D00976E55 /* APDynamicType.swift */; };
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
+		0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE8929505C7200976E55 /* APHomeViewModel.swift */; };
 		41C8E6358B1725F842771A77 /* Pods_eZen_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4437B90A8D53959911F7A6 /* Pods_eZen_Dev.framework */; };
 		46983E979F5BA7B0575B2566 /* Pods_eZen_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F2BE35F8ABAB5335A65EF /* Pods_eZen_DevTests.framework */; };
 		D16AE8D2D52ECA84E98C012E /* Pods_eZen_Dev_eZen_DevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */; };
@@ -132,6 +133,7 @@
 		0B76DE802950590D00976E55 /* APError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APError.swift; sourceTree = "<group>"; };
 		0B76DE822950590D00976E55 /* APDynamicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDynamicType.swift; sourceTree = "<group>"; };
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
+		0B76DE8929505C7200976E55 /* APHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APHomeViewModel.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A823D223CBF11B8905DB38 /* Pods-eZen DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.debug.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		0B32C53F295048E800028D5D /* HomeModule */ = {
 			isa = PBXGroup;
 			children = (
+				0B76DE8829505C7200976E55 /* ViewModel */,
 				0B32C54929504F3700028D5D /* ViewController */,
 			);
 			path = HomeModule;
@@ -486,6 +489,14 @@
 				0B76DE862950595000976E55 /* APBaseViewController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		0B76DE8829505C7200976E55 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B76DE8929505C7200976E55 /* APHomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DBC02030C8A86A76A7588C37 /* Frameworks */ = {
@@ -790,6 +801,7 @@
 				0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
 				0B76DE832950590D00976E55 /* APError.swift in Sources */,
+				0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */,
 				0B32C54C29504F4E00028D5D /* APHomeViewController.swift in Sources */,
 				0B32C54529504DF800028D5D /* APHardWallViewController.swift in Sources */,
 				0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */,
