@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0B32C4E0294D933E00028D5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C4DF294D933E00028D5D /* AppDelegate.swift */; };
-		0B32C4E2294D933E00028D5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C4E1294D933E00028D5D /* SceneDelegate.swift */; };
 		0B32C4E4294D933E00028D5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C4E3294D933E00028D5D /* ViewController.swift */; };
 		0B32C4E7294D933E00028D5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C4E5294D933E00028D5D /* Main.storyboard */; };
 		0B32C4E9294D934000028D5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C4E8294D934000028D5D /* Assets.xcassets */; };
@@ -16,6 +15,18 @@
 		0B32C4F7294D934100028D5D /* eZen_DevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C4F6294D934100028D5D /* eZen_DevTests.swift */; };
 		0B32C501294D934100028D5D /* eZen_DevUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C500294D934100028D5D /* eZen_DevUITests.swift */; };
 		0B32C503294D934100028D5D /* eZen_DevUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C502294D934100028D5D /* eZen_DevUITestsLaunchTests.swift */; };
+		0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C512294D956F00028D5D /* APDIContainer.swift */; };
+		0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C515294D95CE00028D5D /* APAppConfigurations.swift */; };
+		0B32C51A295044C800028D5D /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C519295044C800028D5D /* APIEndPoints.swift */; };
+		0B32C5212950454F00028D5D /* APProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C51D2950454F00028D5D /* APProtocols.swift */; };
+		0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C51E2950454F00028D5D /* HUDLoaderProtocol.swift */; };
+		0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C51F2950454F00028D5D /* StoryboardInstantiable.swift */; };
+		0B32C5242950454F00028D5D /* APConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5202950454F00028D5D /* APConstants.swift */; };
+		0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5272950459100028D5D /* APExtension+UITableViewCell.swift */; };
+		0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5282950459100028D5D /* APExtension+UIViewController.swift */; };
+		0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5292950459100028D5D /* APExtension+Window.swift */; };
+		0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C52A2950459100028D5D /* APExtension+UIImage.swift */; };
+		0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C52B2950459100028D5D /* APExtension+UITableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +49,6 @@
 /* Begin PBXFileReference section */
 		0B32C4DC294D933E00028D5D /* eZen Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eZen Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B32C4DF294D933E00028D5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B32C4E1294D933E00028D5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0B32C4E3294D933E00028D5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0B32C4E6294D933E00028D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B32C4E8294D934000028D5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +59,18 @@
 		0B32C4FC294D934100028D5D /* eZen DevUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eZen DevUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B32C500294D934100028D5D /* eZen_DevUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eZen_DevUITests.swift; sourceTree = "<group>"; };
 		0B32C502294D934100028D5D /* eZen_DevUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eZen_DevUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0B32C512294D956F00028D5D /* APDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDIContainer.swift; sourceTree = "<group>"; };
+		0B32C515294D95CE00028D5D /* APAppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAppConfigurations.swift; sourceTree = "<group>"; };
+		0B32C519295044C800028D5D /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
+		0B32C51D2950454F00028D5D /* APProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APProtocols.swift; sourceTree = "<group>"; };
+		0B32C51E2950454F00028D5D /* HUDLoaderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDLoaderProtocol.swift; sourceTree = "<group>"; };
+		0B32C51F2950454F00028D5D /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		0B32C5202950454F00028D5D /* APConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APConstants.swift; sourceTree = "<group>"; };
+		0B32C5272950459100028D5D /* APExtension+UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UITableViewCell.swift"; sourceTree = "<group>"; };
+		0B32C5282950459100028D5D /* APExtension+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UIViewController.swift"; sourceTree = "<group>"; };
+		0B32C5292950459100028D5D /* APExtension+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+Window.swift"; sourceTree = "<group>"; };
+		0B32C52A2950459100028D5D /* APExtension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UIImage.swift"; sourceTree = "<group>"; };
+		0B32C52B2950459100028D5D /* APExtension+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UITableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +121,10 @@
 		0B32C4DE294D933E00028D5D /* eZen Dev */ = {
 			isa = PBXGroup;
 			children = (
-				0B32C4DF294D933E00028D5D /* AppDelegate.swift */,
-				0B32C4E1294D933E00028D5D /* SceneDelegate.swift */,
+				0B32C5252950459100028D5D /* Common */,
+				0B32C51B2950454F00028D5D /* Utils */,
+				0B32C517295044A300028D5D /* Data */,
+				0B32C50F294D946F00028D5D /* Application */,
 				0B32C4E3294D933E00028D5D /* ViewController.swift */,
 				0B32C4E5294D933E00028D5D /* Main.storyboard */,
 				0B32C4E8294D934000028D5D /* Assets.xcassets */,
@@ -125,6 +149,95 @@
 				0B32C502294D934100028D5D /* eZen_DevUITestsLaunchTests.swift */,
 			);
 			path = "eZen DevUITests";
+			sourceTree = "<group>";
+		};
+		0B32C50F294D946F00028D5D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C510294D948B00028D5D /* AppDelegate */,
+				0B32C514294D95BD00028D5D /* AppConfiguration */,
+				0B32C511294D955200028D5D /* APDIContainer */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0B32C510294D948B00028D5D /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C4DF294D933E00028D5D /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0B32C511294D955200028D5D /* APDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+			);
+			path = APDIContainer;
+			sourceTree = "<group>";
+		};
+		0B32C514294D95BD00028D5D /* AppConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C515294D95CE00028D5D /* APAppConfigurations.swift */,
+			);
+			path = AppConfiguration;
+			sourceTree = "<group>";
+		};
+		0B32C517295044A300028D5D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C518295044B000028D5D /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0B32C518295044B000028D5D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C519295044C800028D5D /* APIEndPoints.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0B32C51B2950454F00028D5D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5202950454F00028D5D /* APConstants.swift */,
+				0B32C51C2950454F00028D5D /* Protocols */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0B32C51C2950454F00028D5D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C51D2950454F00028D5D /* APProtocols.swift */,
+				0B32C51E2950454F00028D5D /* HUDLoaderProtocol.swift */,
+				0B32C51F2950454F00028D5D /* StoryboardInstantiable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0B32C5252950459100028D5D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5262950459100028D5D /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0B32C5262950459100028D5D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5272950459100028D5D /* APExtension+UITableViewCell.swift */,
+				0B32C5282950459100028D5D /* APExtension+UIViewController.swift */,
+				0B32C5292950459100028D5D /* APExtension+Window.swift */,
+				0B32C52A2950459100028D5D /* APExtension+UIImage.swift */,
+				0B32C52B2950459100028D5D /* APExtension+UITableView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,8 +303,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = AP;
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
+				ORGANIZATIONNAME = "Music of Wisdom";
 				TargetAttributes = {
 					0B32C4DB294D933E00028D5D = {
 						CreatedOnToolsVersion = 14.1;
@@ -258,9 +373,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */,
+				0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */,
+				0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */,
+				0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */,
+				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
+				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
+				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,
 				0B32C4E4294D933E00028D5D /* ViewController.swift in Sources */,
+				0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */,
+				0B32C51A295044C800028D5D /* APIEndPoints.swift in Sources */,
+				0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */,
+				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
+				0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */,
 				0B32C4E0294D933E00028D5D /* AppDelegate.swift in Sources */,
-				0B32C4E2294D933E00028D5D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +559,7 @@
 		0B32C507294D934100028D5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_ENHANCE = "https://api.dolby.com/media/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,6 +572,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +589,7 @@
 		0B32C508294D934100028D5D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_ENHANCE = "https://api.dolby.com/media/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -473,6 +602,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
