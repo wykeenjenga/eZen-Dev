@@ -4,5 +4,15 @@
 <dict>
 	<key>DolbyAPI</key>
 	<string>$(API_ENHANCE)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ArimaMadurai-Bold.ttf</string>
+		<string>ArimaMadurai-ExtraBold.ttf</string>
+		<string>Mulish-Regular.ttf</string>
+		<string>Mulish-Bold.ttf</string>
+		<string>ArimaMadurai-Black.ttf</string>
+		<string>ArimaMadurai-Regular.ttf</string>
+		<string>Mulish-Medium.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -19,13 +19,7 @@ class APAPIGateway {
     private init() {
     }
     
-    var currentToken: String? {
-        get {
-            return firebase.currentToken
-        }
-    }
-    
-    func getProductDetail(barCode: String, completion: @escaping (APProductsModel, Error?) -> Void){
+    func getProductDetail(barCode: String, completion: @escaping (String, Error?) -> Void){
         //firebase.getProductDetail(barCode: barCode, completion: completion)
     }
 }

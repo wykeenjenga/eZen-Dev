@@ -11,11 +11,11 @@ import Foundation
 struct APAPIEndPoints {
     struct Requests {
         static func enhanceEndPoint() -> URL {
-            return URL(string: APAppConfigurations.apiBaseURL)?.append(path: "enhance")!
+            return (URL(string: APAppConfigurations.apiBaseURL)?.appendingPathComponent("enhance"))!
         }
         
         static func analyzeEndPoint() -> URL {
-            return URL(string: APAppConfigurations.apiBaseURL)?.append(path: "analyze")!
+            return (URL(string: APAppConfigurations.apiBaseURL)?.appendingPathComponent("analyze"))!
         }
     }
 }

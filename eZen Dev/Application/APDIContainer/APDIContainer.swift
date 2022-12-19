@@ -16,8 +16,8 @@ extension APDIContainer {
     // MARK: DIContainers of scenes
     
     /// Creates Hardwall DIContainer.
-//    func makeHardWallDIContainer() -> APHardwallDIContainer {
-//        let dependencies = APHardwallDIContainer.Dependencies()
-//        return APHardwallDIContainer(dependencies: dependencies)
-//    }
+    func makeHomeDIContainer() -> APHomeDIContainer {
+        let dependencies = APHomeDIContainer.Dependencies()
+        return APHomeDIContainer(dependencies: dependencies)
+    }
 }
