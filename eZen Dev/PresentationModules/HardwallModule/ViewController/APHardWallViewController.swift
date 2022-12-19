@@ -57,8 +57,8 @@ class APHardWallViewController: UIViewController {
     func navigateHome(){
         UserDefaults.standard.set(true, forKey: "isOnboarding")
         let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
-//        homeVC.modalPresentationStyle = .fullScreen
-//        homeVC.modalTransitionStyle = .coverVertical
+        homeVC.modalPresentationStyle = .fullScreen
+        homeVC.modalTransitionStyle = .coverVertical
         self.present(homeVC, animated: true)
     }
     

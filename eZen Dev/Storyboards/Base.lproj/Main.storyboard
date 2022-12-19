@@ -20,7 +20,7 @@
         <!--Hard Wall View Controller-->
         <scene sceneID="5Kn-cO-9xO">
             <objects>
-                <viewController id="Jj7-ov-wCj" customClass="APHardWallViewController" customModule="eZen_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jj7-ov-wCj" customClass="APHardWallViewController" customModule="eZen_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LYJ-BP-Y03">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +115,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yII-OY-uv2">
-                                <rect key="frame" x="20" y="571.33333333333337" width="353" height="90.666666666666629"/>
+                                <rect key="frame" x="20" y="578" width="353" height="84"/>
                                 <string key="text">Attracting the best talent is now
 everyone's responsibility. Hallo helps
 teams and passionate employees
@@ -125,15 +125,15 @@ connect with students in natura wavs</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan Items" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iq5-ey-KA3">
-                                <rect key="frame" x="20" y="505.99999999999994" width="353" height="57.333333333333314"/>
+                                <rect key="frame" x="20" y="529" width="353" height="41"/>
                                 <fontDescription key="fontDescription" name="ArimaMadurai-Bold" family="Arima Madurai" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic" translatesAutoresizingMaskIntoConstraints="NO" id="OFW-0I-Nzc">
-                                <rect key="frame" x="0.0" y="175" width="393" height="235"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFW-0I-Nzc">
+                                <rect key="frame" x="0.0" y="80" width="393" height="246"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="235" id="rxJ-jB-kBM"/>
+                                    <constraint firstAttribute="height" constant="246" id="rxJ-jB-kBM"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -147,7 +147,7 @@ connect with students in natura wavs</string>
                             <constraint firstItem="fWr-KJ-D4g" firstAttribute="trailing" secondItem="OFW-0I-Nzc" secondAttribute="trailing" id="Z0B-zP-whQ"/>
                             <constraint firstItem="fWr-KJ-D4g" firstAttribute="trailing" secondItem="jTR-bT-2Uq" secondAttribute="trailing" constant="20" id="bog-U9-uTS"/>
                             <constraint firstItem="OFW-0I-Nzc" firstAttribute="leading" secondItem="fWr-KJ-D4g" secondAttribute="leading" id="eTr-iY-3bm"/>
-                            <constraint firstItem="OFW-0I-Nzc" firstAttribute="top" secondItem="fWr-KJ-D4g" secondAttribute="top" constant="116" id="iIS-VC-TKV"/>
+                            <constraint firstItem="OFW-0I-Nzc" firstAttribute="top" secondItem="fWr-KJ-D4g" secondAttribute="top" constant="21" id="iIS-VC-TKV"/>
                             <constraint firstItem="fWr-KJ-D4g" firstAttribute="trailing" secondItem="yII-OY-uv2" secondAttribute="trailing" constant="20" id="iXB-cZ-TTM"/>
                             <constraint firstItem="yII-OY-uv2" firstAttribute="leading" secondItem="fWr-KJ-D4g" secondAttribute="leading" constant="20" id="ros-B5-9hI"/>
                             <constraint firstItem="yII-OY-uv2" firstAttribute="top" secondItem="iq5-ey-KA3" secondAttribute="bottom" constant="8" symbolic="YES" id="sNU-Z7-dk1"/>
@@ -182,7 +182,7 @@ connect with students in natura wavs</string>
             <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="yellow">
-            <color red="1" green="0.92941176470588238" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.93725490196078431" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

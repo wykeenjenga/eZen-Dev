@@ -204,10 +204,10 @@
 				0B32C4E3294D933E00028D5D /* ViewController.swift */,
 				0B32C53E295048D800028D5D /* PresentationModules */,
 				0B32C4E8294D934000028D5D /* Assets.xcassets */,
+				0B32C53D2950489A00028D5D /* Storyboards */,
 				0B76DE7E295058FD00976E55 /* CutomType */,
 				0B32C54E29504FEC00028D5D /* Resources */,
 				0B32C4ED294D934000028D5D /* Info.plist */,
-				0B32C53D2950489A00028D5D /* Storyboards */,
 			);
 			path = "eZen Dev";
 			sourceTree = "<group>";
