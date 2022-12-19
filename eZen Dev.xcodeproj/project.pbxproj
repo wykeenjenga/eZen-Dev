@@ -27,6 +27,8 @@
 		0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5292950459100028D5D /* APExtension+Window.swift */; };
 		0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C52A2950459100028D5D /* APExtension+UIImage.swift */; };
 		0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C52B2950459100028D5D /* APExtension+UITableView.swift */; };
+		0B32C5392950466400028D5D /* Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5332950466400028D5D /* Accessors.swift */; };
+		0B32C53C2950466400028D5D /* APAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32C5382950466400028D5D /* APAPIGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		0B32C5292950459100028D5D /* APExtension+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+Window.swift"; sourceTree = "<group>"; };
 		0B32C52A2950459100028D5D /* APExtension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UIImage.swift"; sourceTree = "<group>"; };
 		0B32C52B2950459100028D5D /* APExtension+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APExtension+UITableView.swift"; sourceTree = "<group>"; };
+		0B32C5332950466400028D5D /* Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessors.swift; sourceTree = "<group>"; };
+		0B32C5382950466400028D5D /* APAPIGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAPIGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		0B32C4DE294D933E00028D5D /* eZen Dev */ = {
 			isa = PBXGroup;
 			children = (
+				0B32C5312950466400028D5D /* Business */,
 				0B32C5252950459100028D5D /* Common */,
 				0B32C51B2950454F00028D5D /* Utils */,
 				0B32C517295044A300028D5D /* Data */,
@@ -238,6 +243,31 @@
 				0B32C52B2950459100028D5D /* APExtension+UITableView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0B32C5312950466400028D5D /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5322950466400028D5D /* Accessors */,
+				0B32C5372950466400028D5D /* API Gateway */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		0B32C5322950466400028D5D /* Accessors */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5332950466400028D5D /* Accessors.swift */,
+			);
+			path = Accessors;
+			sourceTree = "<group>";
+		};
+		0B32C5372950466400028D5D /* API Gateway */ = {
+			isa = PBXGroup;
+			children = (
+				0B32C5382950466400028D5D /* APAPIGateway.swift */,
+			);
+			path = "API Gateway";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,9 +409,11 @@
 				0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */,
 				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
 				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
+				0B32C53C2950466400028D5D /* APAPIGateway.swift in Sources */,
 				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,
 				0B32C4E4294D933E00028D5D /* ViewController.swift in Sources */,
 				0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */,
+				0B32C5392950466400028D5D /* Accessors.swift in Sources */,
 				0B32C51A295044C800028D5D /* APIEndPoints.swift in Sources */,
 				0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
