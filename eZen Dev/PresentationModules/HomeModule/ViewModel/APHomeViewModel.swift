@@ -50,7 +50,7 @@ extension APHomeViewModel{
             if error != nil{
                 self.route.value = .error
             }else{
-                self.route.value = .isPreview
+                //
                 file_url.address = url
                 print("File status is....\(url)")
                 self.equalizeAudio()
@@ -59,15 +59,16 @@ extension APHomeViewModel{
     }
     
     
-    
-    
     func equalizeAudio(){
-        APAPIGateway.door().uploadVoiceOver(voiceOverUrl: file_url.address!) { url, error in
+        self.route.value = .activity(loading: true)
+        APAPIGateway.door().uploadToEzen(voiceOverUrl: file_url.address!) { url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
             }else{
+                file_url.address = url
                 print("File status is....\(url)")
+                self.route.value = .isPreview
             }
         }
     }
@@ -76,7 +77,4 @@ extension APHomeViewModel{
         
     }
     
-    func downloadFinalAudio(){
-        
-    }
 }

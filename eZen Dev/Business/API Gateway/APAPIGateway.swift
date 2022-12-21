@@ -96,26 +96,59 @@ class APAPIGateway {
         dataTask.resume()
     }
     
-    func downloadVoice(voiceUrl: String, completion: @escaping(URL, Error?) -> Void){
-        let destination: DownloadRequest.Destination = { _, _ in
-            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            documentsURL.appendPathComponent("Guided_Meditation.mp3")
-            return (documentsURL, [.removePreviousFile])
-        }
-        AlamofireManager!.download(voiceUrl, to: destination)
-            .downloadProgress(queue: .main) { progress in
-                print("Download Progress: \(progress.fractionCompleted)")
-            }.responseData { response in
-                if response.value != nil{
-                    print("Done with the download of \(String(describing: response.fileURL))")
-                    completion(response.fileURL!, nil)
-                }else{
-                    completion(URL(string: "")!, nil)
-                }
-            }
+    func analyzeAudio(fileURL: String, completion: @escaping (String, Error?) -> Void){
+        let headers = [
+          "accept": "application/json",
+          "content-type": "application/json",
+          "authorization": "Bearer \(self.token!)"
+        ]
+        
+        let parameterss = ["content": ["silence": [
+              "threshold": -60,
+              "duration": 2
+            ]]] as [String : Any]
+
+        let parameters = [
+          "input": "\(fileURL)",
+          "output": "dlb://ezen/analyzed_adminSample.mp3",
+          "loudness": ["profile": "standard_a85"],
+          "content": [
+            "type": "podcast",
+            "tags": ["announcer", "football", "real madrid"],
+            "silence": [
+              "threshold": -60,
+              "duration": 3
+            ]
+          ],
+          "validation": ["loudness": [
+              "true_peak_max": -1,
+              "loudness_max": -20,
+              "loudness_min": -23
+            ]]
+        ] as [String : Any]
+
+        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.dolby.com/media/analyze")! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData! as Data
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+          if (error != nil) {
+            print(error as Any)
+          } else {
+            let httpResponse = response as? HTTPURLResponse
+            print(httpResponse)
+          }
+        })
+
+        dataTask.resume()
+        
     }
-    
-    
     
     func enhanceAudio(fileURL: String, completion: @escaping (String, Error?) -> Void){
         print("fucking string is ....\(fileURL)")
@@ -242,6 +275,7 @@ class APAPIGateway {
     }
 
     
+    //Upload audio to Dolby APIs
     func uploadAudiox(fileURL: URL, endPoint: String, completion: @escaping (String, Error?) -> Void){
         
         let params: HTTPHeaders = [
@@ -328,7 +362,7 @@ class APAPIGateway {
     
     
     ///Upload  your Voice Over -API Request
-    func uploadVoiceOver(voiceOverUrl: URL, completion: @escaping(Bool, Error?) -> Void){
+    func uploadToEzen(voiceOverUrl: URL, completion: @escaping(URL?, Error?) -> Void){
         let params : HTTPHeaders = [
             "directoryName": "ezenAdmin",
             "fileName": "ezenAdmin"
@@ -347,6 +381,7 @@ class APAPIGateway {
             
             self.AlamofireManager!.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(voiceOverUrl, withName: "file" , fileName: voiceOverUrl.description, mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
+                print("Progress...\(progress.fractionCompleted * 100)% uploaded to eZen")
             }).response { response in
                     switch(response.result) {
                     case .success(_):
@@ -358,16 +393,23 @@ class APAPIGateway {
                                 if error == nil{
                                     //download file
                                     print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
+                                    self.downloadVoice(voiceUrl: "http://45.61.56.80/\(file_dir)") { url, error in
+                                        if error == nil{
+                                            completion(url, nil)
+                                        }else{
+                                            completion(nil, error)
+                                        }
+                                    }
                                 }else{
-                                    completion(false, nil)
+                                    completion(nil, error)
                                 }
                             }
                         }else{
-                            completion(false, nil)
+                            completion(nil, nil)
                         }
                        break
                    case .failure(let encodingError):
-                        completion(false, encodingError)
+                        completion(nil, encodingError)
                        break
                     }
                 self.endBGTask()
@@ -376,10 +418,8 @@ class APAPIGateway {
     }
     
     func setFilter(completion: @escaping(String, Error?) -> Void){
-        let url =  "http://45.61.56.80/api/Silence"
+        let url =  "http://45.61.56.80/api/setBellFilter"
         let parameters = ["id_file": "","hight": 0,"low": 0, "fileName": "ezenAdmin"] as [String : Any]
-        
-        var errorMessage = "Oops! Sorry your connection with the server was interrupted. Please retry to continue."
         
         DispatchQueue.global().async {
             self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
@@ -407,6 +447,26 @@ class APAPIGateway {
                 self.endBGTask()
             }
         }
+    }
+    
+    
+    func downloadVoice(voiceUrl: String, completion: @escaping(URL, Error?) -> Void){
+        let destination: DownloadRequest.Destination = { _, _ in
+            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            documentsURL.appendPathComponent("Guided_Meditation.mp3")
+            return (documentsURL, [.removePreviousFile])
+        }
+        AlamofireManager!.download(voiceUrl, to: destination)
+            .downloadProgress(queue: .main) { progress in
+                print("Download Progress: \(progress.fractionCompleted * 100)%")
+            }.responseData { response in
+                if response.value != nil{
+                    print("Done with the download of \(String(describing: response.fileURL))")
+                    completion(response.fileURL!, nil)
+                }else{
+                    completion(URL(string: "")!, nil)
+                }
+            }
     }
 
 }
