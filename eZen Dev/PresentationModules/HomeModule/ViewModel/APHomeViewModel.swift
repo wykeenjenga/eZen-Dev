@@ -53,6 +53,7 @@ extension APHomeViewModel{
                 self.route.value = .isPreview
                 file_url.address = url
                 print("File status is....\(url)")
+                self.equalizeAudio()
             }
         }
     }

@@ -39,7 +39,7 @@ class APAPIGateway {
           "authorization": "Bearer \(self.token!)"
         ]
         
-        let parameters = ["url": "dlb://Wykee19N/\(fileURL.lastPathComponent)"] as [String : Any]
+        let parameters = ["url": "dlb://ezen/\(fileURL.lastPathComponent)"] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -127,7 +127,7 @@ class APAPIGateway {
         
         let parameters = [
           "input": "\(fileURL)",
-          "output": "dlb://Wykee19N/enhanced_adminSample.mp3",
+          "output": "dlb://ezen/enhanced_adminSample.mp3",
           "content": ["type": "podcast"],
           "audio": [
             "loudness": [
@@ -211,7 +211,7 @@ class APAPIGateway {
           "content-type": "application/json",
           "authorization": "Bearer \(self.token!)"
         ]
-        let parameters = ["url": "dlb://Wykee19N/enhanced_adminSample.mp3"] as [String : Any]
+        let parameters = ["url": "dlb://ezen/enhanced_adminSample.mp3"] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -354,7 +354,14 @@ class APAPIGateway {
                             let json = JSON(response.value! as Any)
                             let play_file = json["play_file"]
                             print(".........RESPONSE AFTER Silince silence.....\(play_file)......\(json)")
-                            completion(true, nil)
+                            self.setFilter { file_dir, error in
+                                if error == nil{
+                                    //download file
+                                    print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
+                                }else{
+                                    completion(false, nil)
+                                }
+                            }
                         }else{
                             completion(false, nil)
                         }
@@ -365,6 +372,40 @@ class APAPIGateway {
                     }
                 self.endBGTask()
                 }
+        }
+    }
+    
+    func setFilter(completion: @escaping(String, Error?) -> Void){
+        let url =  "http://45.61.56.80/api/Silence"
+        let parameters = ["id_file": "","hight": 0,"low": 0, "fileName": "ezenAdmin"] as [String : Any]
+        
+        var errorMessage = "Oops! Sorry your connection with the server was interrupted. Please retry to continue."
+        
+        DispatchQueue.global().async {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+                self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+            }
+            
+            self.AlamofireManager!.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON{response in
+                switch(response.result) {
+                case .success(_):
+                    if response.value != nil{
+                        let json = JSON(response.value!)
+                        print("Request response for set Friter=>", json)
+                        if json["IsSucces"].boolValue {
+                            let id_file = json["id_file"]
+                            completion("\(id_file)", nil)
+                        }
+                    }
+                    break
+                case .failure(let error):
+                    completion("", error.asAFError)
+                    break
+                }
+                self.endBGTask()
+            }
         }
     }
 
