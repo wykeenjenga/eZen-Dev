@@ -36,12 +36,7 @@ class APHardWallViewController: UIViewController {
         self.image.image = images[0]
         self.footTitle.text = titles[0]
         self.footNote.text = footNotes[0]
-        
-        let isOnboardingShown = UserDefaults.standard.bool(forKey: "isOnboarding")
-        print(".......\(isOnboardingShown)")
-        if isOnboardingShown{
-            navigateHome()
-        }
+    
     }
     
     @IBAction func getStarted(_ sender: Any) {
@@ -52,6 +47,17 @@ class APHardWallViewController: UIViewController {
         self.animateViews()
         self.initSwipe()
         self.getStartedBtn.isEnabled = false
+        
+        let isOnboardingShown = UserDefaults.standard.bool(forKey: "isOnboarding")
+        
+        if isOnboardingShown{
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                self.navigateHome()
+            })
+            print("..IS.....\(isOnboardingShown)")
+        }else{
+            print("..IS.NOT....\(isOnboardingShown)")
+        }
     }
     
     func navigateHome(){

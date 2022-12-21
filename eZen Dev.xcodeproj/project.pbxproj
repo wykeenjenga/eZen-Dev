@@ -58,6 +58,9 @@
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
 		0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE8929505C7200976E55 /* APHomeViewModel.swift */; };
 		0B76DE8D2950633700976E55 /* APButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE8C2950633700976E55 /* APButton.swift */; };
+		0B76DE922952495200976E55 /* APPreviewAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE902952495200976E55 /* APPreviewAudioViewController.swift */; };
+		0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */; };
+		0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */; };
 		41C8E6358B1725F842771A77 /* Pods_eZen_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4437B90A8D53959911F7A6 /* Pods_eZen_Dev.framework */; };
 		46983E979F5BA7B0575B2566 /* Pods_eZen_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F2BE35F8ABAB5335A65EF /* Pods_eZen_DevTests.framework */; };
 		D16AE8D2D52ECA84E98C012E /* Pods_eZen_Dev_eZen_DevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */; };
@@ -136,6 +139,9 @@
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
 		0B76DE8929505C7200976E55 /* APHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APHomeViewModel.swift; sourceTree = "<group>"; };
 		0B76DE8C2950633700976E55 /* APButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APButton.swift; sourceTree = "<group>"; };
+		0B76DE902952495200976E55 /* APPreviewAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPreviewAudioViewController.swift; sourceTree = "<group>"; };
+		0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APPreviewAudioViewController.xib; sourceTree = "<group>"; };
+		0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewVoiceOverDIContainer.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A823D223CBF11B8905DB38 /* Pods-eZen DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.debug.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+				0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */,
 				0B32C54629504EFE00028D5D /* HomeDIContainer */,
 			);
 			path = APDIContainer;
@@ -360,6 +367,7 @@
 		0B32C53E295048D800028D5D /* PresentationModules */ = {
 			isa = PBXGroup;
 			children = (
+				0B76DE8E2952490F00976E55 /* PreviewAudio */,
 				0B76DE852950595000976E55 /* BaseViewController */,
 				0B32C54029504D9400028D5D /* HardwallModule */,
 				0B32C53F295048E800028D5D /* HomeModule */,
@@ -510,6 +518,31 @@
 			path = CustomButton;
 			sourceTree = "<group>";
 		};
+		0B76DE8E2952490F00976E55 /* PreviewAudio */ = {
+			isa = PBXGroup;
+			children = (
+				0B76DE8F2952491800976E55 /* ViewController */,
+			);
+			path = PreviewAudio;
+			sourceTree = "<group>";
+		};
+		0B76DE8F2952491800976E55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B76DE902952495200976E55 /* APPreviewAudioViewController.swift */,
+				0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */,
+			);
+			path = PreviewVoiceOverDIContainer;
+			sourceTree = "<group>";
+		};
 		DBC02030C8A86A76A7588C37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +684,7 @@
 				0B32C5722950500D00028D5D /* Mulish-SemiBoldItalic.ttf in Resources */,
 				0B32C56E2950500D00028D5D /* Mulish-ExtraBoldItalic.ttf in Resources */,
 				0B32C5742950500D00028D5D /* Mulish-Bold.ttf in Resources */,
+				0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */,
 				0B32C5732950500D00028D5D /* Mulish-ExtraLightItalic.ttf in Resources */,
 				0B32C56A2950500D00028D5D /* ArimaMadurai-Thin.ttf in Resources */,
 				0B32C5712950500D00028D5D /* Mulish-BlackItalic.ttf in Resources */,
@@ -795,6 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */,
 				0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */,
 				0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */,
 				0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */,
@@ -817,6 +852,7 @@
 				0B32C54C29504F4E00028D5D /* APHomeViewController.swift in Sources */,
 				0B32C54529504DF800028D5D /* APHardWallViewController.swift in Sources */,
 				0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */,
+				0B76DE922952495200976E55 /* APPreviewAudioViewController.swift in Sources */,
 				0B32C4E0294D933E00028D5D /* APAppDelegate.swift in Sources */,
 				0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */,
 			);

@@ -44,6 +44,12 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
                 case .error:
                     self?.showAlert(title: "Error", message: "We are experiencing technical difficulties. Please try again later")
                     break
+                case .isPreview:
+                    let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+                    homeVC.modalPresentationStyle = .fullScreen
+                    homeVC.modalTransitionStyle = .coverVertical
+                    self?.present(homeVC, animated: true, completion: nil)
+                    break
                 default:
                     break
                 }
@@ -60,7 +66,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         
-        var documentsUrl = urls[0]
+        let documentsUrl = urls[0]
         
         let ext = documentsUrl.pathExtension
         
@@ -84,7 +90,9 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
             try fileManager.moveItem(at: originPath, to: destinationPath)
             
             //use destination file path... to upload
+            //file_url.address = destinationPath
             self.uploadAudio(filePath: destinationPath)
+            //self.viewModel.route.value = .isPreview
             
         } catch {
             self.viewModel.route.value = .error

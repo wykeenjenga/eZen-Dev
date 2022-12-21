@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import Alamofire
 
 enum APHomeViewModelRoute {
     case initial
     case error
     case activity(loading: Bool)
     case isUploadFile
+    case isPreview
+    case isEnhanced
 }
 
 protocol APHomeViewModelInput {
@@ -38,42 +41,34 @@ final class DefaultAPHomeViewModel: APHomeViewModel {
 extension APHomeViewModel{
     
     //MARK: upload file and do the enhancement
-    //return type: job id download file..
     func startProcessing() {
         self.route.value = .activity(loading: true)
-        print("THE URL IS ...\(self.initFile.value)")
+        print("THE URL IS ...\(String(describing: self.initFile.value))")
         
-        let headers = [
-          "accept": "application/json",
-          "content-type": "application/json",
-          "authorization": ""
-        ]
-        
-        let parameters = ["url": "dlb://input/file.wav"] as [String : Any]
-
-        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
-
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.dolby.com/media/input")! as URL,cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
-        request.httpBody = postData! as Data
-
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-          if (error != nil) {
-            print(error as Any)
-          } else {
-            let httpResponse = response as? HTTPURLResponse
-            print(httpResponse)
-          }
-        })
-
-        dataTask.resume()
-        
+        APAPIGateway.door().uploadVoiceOver(fileURL: self.initFile.value!!) { url, error in
+            self.route.value = .activity(loading: false)
+            if error != nil{
+                self.route.value = .error
+            }else{
+                self.route.value = .isPreview
+                file_url.address = url
+                print("File status is....\(url)")
+            }
+        }
     }
     
+    
+    
+    
     func equalizeAudio(){
-        
+        APAPIGateway.door().uploadVoiceOver(voiceOverUrl: file_url.address!) { url, error in
+            self.route.value = .activity(loading: false)
+            if error != nil{
+                self.route.value = .error
+            }else{
+                print("File status is....\(url)")
+            }
+        }
     }
     
     func getSilentParts(){

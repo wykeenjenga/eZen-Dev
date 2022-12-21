@@ -15,9 +15,15 @@ final class APDIContainer {
 extension APDIContainer {
     // MARK: DIContainers of scenes
     
-    /// Creates Hardwall DIContainer.
+    /// Creates Home DIContainer.
     func makeHomeDIContainer() -> APHomeDIContainer {
         let dependencies = APHomeDIContainer.Dependencies()
         return APHomeDIContainer(dependencies: dependencies)
+    }
+    
+    /// Creates Home DIContainer.
+    func makePreviewDIContainer() -> APPreviewVoiceOverDIContainer {
+        let dependencies = APPreviewVoiceOverDIContainer.Dependencies()
+        return APPreviewVoiceOverDIContainer(dependencies: dependencies)
     }
 }
