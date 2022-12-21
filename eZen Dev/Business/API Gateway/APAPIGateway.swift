@@ -79,12 +79,8 @@ class APAPIGateway {
                                           self.getEnhancedAudioURL(isAnalyze: true) { status, error in
                                               if error == nil{
                                                   //start download
-                                                  print("TO DOWNLOAD ANALYZED URL.....\(status)")
-                                                  self.downloadVoice(voiceUrl: status) { url, error in
-                                                      if error == nil{
-                                                          completion(url, error)
-                                                      }
-                                                  }
+                                                  print("ANALYZED JSON DATA .....\(status)")
+                                                  
                                               }else{
                                                   //show error
                                               }
@@ -178,8 +174,14 @@ class APAPIGateway {
           if (error != nil) {
             print(error as Any)
           } else {
-            let httpResponse = response as? HTTPURLResponse
-            print(httpResponse)
+              let jsonData = try? JSONSerialization.jsonObject(with: data!, options: [])
+              if(jsonData == nil) {
+                  print("Could not parse data")
+              }else{
+                  let json = JSON(jsonData as Any)
+                  let job_id = json["job_id"]
+                  completion("\(job_id)", nil)
+              }
           }
         })
 
@@ -264,9 +266,7 @@ class APAPIGateway {
               }else{
                   let json = JSON(jsonData as Any)
                   let job_id = json["job_id"]
-                  
                   completion("\(job_id)", nil)
-                  print("THE JOB ID IS.....\(data)...jobID...\(job_id)")
               }
           }
         })
@@ -308,8 +308,12 @@ class APAPIGateway {
                   print("Could not parse data")
               }else{
                   let json = JSON(jsonData as Any)
-                  let job_id = json["url"]
-                  completion(job_id.rawValue as! String, nil)
+                  if isAnalyze{
+                      completion("\(json)", nil)
+                  }else{
+                      let job_id = json["url"]
+                      completion("\(job_id)", nil)
+                  }
               }
           }
         })
@@ -356,7 +360,7 @@ class APAPIGateway {
     
     
     var time = 0
-    func checkJobStatus(job_id: String, completion: @escaping(String, Error?) -> Void){
+    func checkJobStatus(job_id: String, isAnalyze: Bool, completion: @escaping(String, Error?) -> Void){
 
         let getURL = "https://api.dolby.com/media/enhance"
         

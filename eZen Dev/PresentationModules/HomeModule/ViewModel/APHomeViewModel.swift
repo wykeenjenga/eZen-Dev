@@ -67,17 +67,18 @@ extension APHomeViewModel{
                 self.route.value = .error
             }else{
                 file_url.address = url
-                print("File status is....\(url)")
+                print("File status is..AFTER BELL Curve filter EQ..\(url)")
                 //self.route.value = .isPreview
+                self.getSilentParts()
             }
         }
     }
     
     func getSilentParts(){
         self.route.value = .activity(loading: true)
-        print("THE URL IS ...\(String(describing: self.initFile.value))")
+        print("THE URL IS ...\(String(describing: file_url.address!))")
         
-        APAPIGateway.door().uploadVoiceOver(fileURL: self.initFile.value!!, isAnalyze: true) { url, error in
+        APAPIGateway.door().uploadVoiceOver(fileURL: file_url.address!, isAnalyze: true) { url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
