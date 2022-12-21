@@ -72,7 +72,7 @@ class APAPIGateway {
                               let source_input = "dlb://ezen/analyze/\(fileURL.lastPathComponent)"
                               self.analyzeAudio(fileURL: source_input) { job_id, error in
                                   if error == nil{
-                                      self.checkJobStatus(job_id: "\(job_id)") { data, error in
+                                      self.checkJobStatus(job_id: "\(job_id)", isAnalyze: true) { _, _ in
                                       }
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
                                           print("AFTER ANALYZING....\(job_id)")
@@ -97,8 +97,7 @@ class APAPIGateway {
                               print("IS FILE UPLOADED?....\(stats)")
                               self.enhanceAudio(fileURL: source_input) { job_id, error in
                                   if error == nil{
-                                      self.checkJobStatus(job_id: "\(job_id)") { data, error in
-                                      }
+                                      self.checkJobStatus(job_id: "\(job_id)", isAnalyze: false) { _, _ in}
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
                                           print("AFTER ENHANCING....\(job_id)")
                                           self.getEnhancedAudioURL(isAnalyze: false) { status, error in
@@ -362,7 +361,13 @@ class APAPIGateway {
     var time = 0
     func checkJobStatus(job_id: String, isAnalyze: Bool, completion: @escaping(String, Error?) -> Void){
 
-        let getURL = "https://api.dolby.com/media/enhance"
+        var getURL = ""
+        
+        if isAnalyze{
+            getURL = "https://api.dolby.com/media/analyze"
+        }else{
+            getURL = "https://api.dolby.com/media/enhance"
+        }
         
         let headers: HTTPHeaders = [
           "accept": "application/json",
@@ -383,7 +388,7 @@ class APAPIGateway {
                     if status != "Success"{
                         print("Checking JOb Status.......\(status).....\(self.time)")
                         self.time = self.time + 1
-                        self.checkJobStatus(job_id: job_id, completion: {_,_ in })
+                        self.checkJobStatus(job_id: job_id, isAnalyze: isAnalyze, completion: {_,_ in })
                     }else{
                         print("JO IS DONE YOU CAN DOWNLOAD.....\(json)")
                         completion(job_id, nil)
