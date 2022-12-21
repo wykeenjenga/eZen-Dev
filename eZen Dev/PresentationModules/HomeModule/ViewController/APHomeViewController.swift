@@ -102,7 +102,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
     func uploadAudio(filePath: URL?){
         print("We are uploading")
         self.viewModel.initFile.value = filePath
-        self.viewModel.startProcessing()
+        self.viewModel.enhanceAudio()
     }
     
 }

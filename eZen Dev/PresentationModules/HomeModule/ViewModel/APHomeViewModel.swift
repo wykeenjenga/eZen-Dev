@@ -19,7 +19,7 @@ enum APHomeViewModelRoute {
 }
 
 protocol APHomeViewModelInput {
-    func startProcessing()
+    func enhanceAudio()
 }
 
 protocol APHomeViewModelOutput {
@@ -41,11 +41,11 @@ final class DefaultAPHomeViewModel: APHomeViewModel {
 extension APHomeViewModel{
     
     //MARK: upload file and do the enhancement
-    func startProcessing() {
+    func enhanceAudio() {
         self.route.value = .activity(loading: true)
         print("THE URL IS ...\(String(describing: self.initFile.value))")
         
-        APAPIGateway.door().uploadVoiceOver(fileURL: self.initFile.value!!) { url, error in
+        APAPIGateway.door().uploadVoiceOver(fileURL: self.initFile.value!!, isAnalyze: false) { url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
@@ -68,13 +68,25 @@ extension APHomeViewModel{
             }else{
                 file_url.address = url
                 print("File status is....\(url)")
-                self.route.value = .isPreview
+                //self.route.value = .isPreview
             }
         }
     }
     
     func getSilentParts(){
+        self.route.value = .activity(loading: true)
+        print("THE URL IS ...\(String(describing: self.initFile.value))")
         
+        APAPIGateway.door().uploadVoiceOver(fileURL: self.initFile.value!!, isAnalyze: true) { url, error in
+            self.route.value = .activity(loading: false)
+            if error != nil{
+                self.route.value = .error
+            }else{
+                //
+                file_url.address = url
+                print("File status is....\(url)")
+            }
+        }
     }
     
 }

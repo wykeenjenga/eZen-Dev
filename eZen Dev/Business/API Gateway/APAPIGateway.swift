@@ -31,7 +31,7 @@ class APAPIGateway {
         return alamofireManager
     }()
     
-    func uploadVoiceOver(fileURL: URL, completion: @escaping (URL, Error?) -> Void){
+    func uploadVoiceOver(fileURL: URL, isAnalyze: Bool, completion: @escaping (URL, Error?) -> Void){
 
         let headers = [
           "accept": "application/json",
@@ -39,7 +39,13 @@ class APAPIGateway {
           "authorization": "Bearer \(self.token!)"
         ]
         
-        let parameters = ["url": "dlb://ezen/\(fileURL.lastPathComponent)"] as [String : Any]
+        var param_string = ""
+        if isAnalyze{
+            param_string = "dlb://ezen/analyze/\(fileURL.lastPathComponent)"
+        }else{
+            param_string = "dlb://ezen/enhance/\(fileURL.lastPathComponent)"
+        }
+        let parameters = ["url": param_string] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -62,32 +68,63 @@ class APAPIGateway {
                   
                   self.uploadAudiox(fileURL: fileURL, endPoint: "\(url)") { stats, error in
                       if error == nil{
-                          let source_input = "dlb://Wykee19N/\(fileURL.lastPathComponent)"
-                          print("IS FILE UPLOADED?....\(stats)")
-                          self.enhanceAudio(fileURL: source_input) { job_id, error in
-                              if error == nil{
-                                  self.checkJobStatus(job_id: "\(job_id)") { data, error in
-                                  }
-                                  DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
-                                      print("AFTER ENHANCING....\(job_id)")
-                                      self.getEnhancedAudioURL { status, error in
-                                          if error == nil{
-                                              //start download
-                                              print("TO DOWNLOAD URL.....\(status)")
-                                              self.downloadVoice(voiceUrl: status) { url, error in
-                                                  if error == nil{
-                                                      completion(url, error)
-                                                  }
-                                              }
-                                          }else{
-                                              //show error
-                                          }
+                          if isAnalyze{
+                              let source_input = "dlb://ezen/analyze/\(fileURL.lastPathComponent)"
+                              self.analyzeAudio(fileURL: source_input) { job_id, error in
+                                  if error == nil{
+                                      self.checkJobStatus(job_id: "\(job_id)") { data, error in
                                       }
-                                  })
-                              }else{
-                                  //show error
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
+                                          print("AFTER ANALYZING....\(job_id)")
+                                          self.getEnhancedAudioURL(isAnalyze: true) { status, error in
+                                              if error == nil{
+                                                  //start download
+                                                  print("TO DOWNLOAD ANALYZED URL.....\(status)")
+                                                  self.downloadVoice(voiceUrl: status) { url, error in
+                                                      if error == nil{
+                                                          completion(url, error)
+                                                      }
+                                                  }
+                                              }else{
+                                                  //show error
+                                              }
+                                          }
+                                      })
+                                      
+                                  }else{
+                                      //show error
+                                  }
                               }
-                          }
+                             
+                          }else{
+                              let source_input = "dlb://ezen/enhance/\(fileURL.lastPathComponent)"
+                              print("IS FILE UPLOADED?....\(stats)")
+                              self.enhanceAudio(fileURL: source_input) { job_id, error in
+                                  if error == nil{
+                                      self.checkJobStatus(job_id: "\(job_id)") { data, error in
+                                      }
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
+                                          print("AFTER ENHANCING....\(job_id)")
+                                          self.getEnhancedAudioURL(isAnalyze: false) { status, error in
+                                              if error == nil{
+                                                  //start download
+                                                  print("TO DOWNLOAD ENHANCED URL.....\(status)")
+                                                  self.downloadVoice(voiceUrl: status) { url, error in
+                                                      if error == nil{
+                                                          completion(url, error)
+                                                      }
+                                                  }
+                                              }else{
+                                                  //show error
+                                              }
+                                          }
+                                      })
+                                  }else{
+                                      //show error
+                                  }
+                              }
+                          }//end
+
                       }
                   }
               }
@@ -110,7 +147,7 @@ class APAPIGateway {
 
         let parameters = [
           "input": "\(fileURL)",
-          "output": "dlb://ezen/analyzed_adminSample.mp3",
+          "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
           "loudness": ["profile": "standard_a85"],
           "content": [
             "type": "podcast",
@@ -160,7 +197,7 @@ class APAPIGateway {
         
         let parameters = [
           "input": "\(fileURL)",
-          "output": "dlb://ezen/enhanced_adminSample.mp3",
+          "output": "dlb://ezen/enhance/enhanced_adminSample.mp3",
           "content": ["type": "podcast"],
           "audio": [
             "loudness": [
@@ -237,14 +274,20 @@ class APAPIGateway {
     }
     
     
-    func getEnhancedAudioURL(completion: @escaping (String, Error?) -> Void){
+    func getEnhancedAudioURL(isAnalyze: Bool,completion: @escaping (String, Error?) -> Void){
 
         let headers = [
           "accept": "application/json",
           "content-type": "application/json",
           "authorization": "Bearer \(self.token!)"
         ]
-        let parameters = ["url": "dlb://ezen/enhanced_adminSample.mp3"] as [String : Any]
+        var param_string = ""
+        if isAnalyze{
+            param_string = "dlb://ezen/analyzed/enhanced_adminSample.mp3"
+        }else{
+            param_string = "dlb://ezen/enhance/enhanced_adminSample.mp3"
+        }
+        let parameters = ["url": param_string] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -311,8 +354,8 @@ class APAPIGateway {
         }
     }
     
-    var time = 0
     
+    var time = 0
     func checkJobStatus(job_id: String, completion: @escaping(String, Error?) -> Void){
 
         let getURL = "https://api.dolby.com/media/enhance"
