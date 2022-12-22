@@ -85,9 +85,26 @@ extension APHomeViewModel{
             }else{
                 //
                 file_url.address = url
-                print("File status is....\(url)")
+                loadData()
+                print("JSON File DATA is from....\(url)")
             }
         }
     }
     
+    func loadData(){
+        var json: Any?
+        do {
+            let fileUrl = URL(fileURLWithPath: file_url.address!.path)
+            // Getting data from JSON file using the file URL
+            let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
+            json = try? JSONSerialization.jsonObject(with: data)
+            
+            print("JSON DATA IS...\(json)")
+        } catch {
+            // Handle error here
+            print("CAMNmmm")
+        }
+    }
+    
 }
+

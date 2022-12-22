@@ -31,7 +31,7 @@ class APAPIGateway {
         return alamofireManager
     }()
     
-    func uploadVoiceOver(fileURL: URL, isAnalyze: Bool, completion: @escaping (URL, Error?) -> Void){
+    func uploadVoiceOver(fileURL: URL, isAnalyze: Bool, completion: @escaping (URL?, Error?) -> Void){
 
         let headers = [
           "accept": "application/json",
@@ -75,16 +75,16 @@ class APAPIGateway {
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: true) { _, _ in
                                       }
                                       print("ANALYZE JOB ID....\(job_id)")
-                                      DispatchQueue.main.asyncAfter(deadline: .now() + 24, execute: {
-                                          
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 16, execute: {
                                           self.getEnhancedAudioURL(isAnalyze: true) { status, error in
-                                              print("THE STATUS IS ......\(status)")
-                                          }
-                                          
-                                          self.getAnalyzedData(job_id: "\(job_id)"){ json, error in
                                               if error == nil{
                                                   //start download
-                                                  print("ANALYZED JSON DATA .....\(json)")
+                                                  print("DOWNLOAD ANALYSED JSON File..\(status)")
+                                                  self.downloadVoice(downldURL: status, isAnalyze: true) { url, error in
+                                                      if error == nil{
+                                                          completion(url, error)
+                                                      }
+                                                  }
                                               }else{
                                                   //show error
                                               }
@@ -108,7 +108,7 @@ class APAPIGateway {
                                               if error == nil{
                                                   //start download
                                                   print("TO DOWNLOAD ENHANCED URL.....\(status)")
-                                                  self.downloadVoice(voiceUrl: status) { url, error in
+                                                  self.downloadVoice(downldURL: status, isAnalyze: false) { url, error in
                                                       if error == nil{
                                                           completion(url, error)
                                                       }
@@ -142,7 +142,7 @@ class APAPIGateway {
         
         let parameters = [
             "input": "\(fileURL)",
-            "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
+            "output": "dlb://ezen/analyzed/enhanced_adminSample.json",
             "loudness": ["profile": "standard_a85"],
             "content": [
                 "type": "podcast",
@@ -308,8 +308,9 @@ class APAPIGateway {
           "authorization": "Bearer \(self.token!)"
         ]
         var param_string = ""
+        var url = "https://api.dolby.com/media/output"
         if isAnalyze{
-            param_string = "dlb://ezen/analyzed/enhanced_adminSample.mp3"
+            param_string = "dlb://ezen/analyzed/enhanced_adminSample.json"
         }else{
             param_string = "dlb://ezen/enhance/enhanced_adminSample.mp3"
         }
@@ -317,7 +318,7 @@ class APAPIGateway {
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.dolby.com/media/output")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "POST"
@@ -477,7 +478,7 @@ class APAPIGateway {
                                 if error == nil{
                                     //download file
                                     print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
-                                    self.downloadVoice(voiceUrl: "http://45.61.56.80/\(file_dir)") { url, error in
+                                    self.downloadVoice(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
                                         if error == nil{
                                             completion(url, nil)
                                         }else{
@@ -532,15 +533,23 @@ class APAPIGateway {
             }
         }
     }
+
     
-    
-    func downloadVoice(voiceUrl: String, completion: @escaping(URL, Error?) -> Void){
+    func downloadVoice(downldURL: String, isAnalyze: Bool, completion: @escaping(URL?, Error?) -> Void){
+        
+        var fileName = ""
+        if isAnalyze{
+            fileName = "analyzed_file.json"
+        }else{
+            fileName = "Guided_Meditation.mp3"
+        }
+        
         let destination: DownloadRequest.Destination = { _, _ in
             var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            documentsURL.appendPathComponent("Guided_Meditation.mp3")
+            documentsURL.appendPathComponent(fileName)
             return (documentsURL, [.removePreviousFile])
         }
-        AlamofireManager!.download(voiceUrl, to: destination)
+        AlamofireManager!.download(downldURL, to: destination)
             .downloadProgress(queue: .main) { progress in
                 print("Download Progress: \(progress.fractionCompleted * 100)%")
             }.responseData { response in
@@ -548,7 +557,7 @@ class APAPIGateway {
                     print("Done with the download of \(String(describing: response.fileURL))")
                     completion(response.fileURL!, nil)
                 }else{
-                    completion(URL(string: "")!, nil)
+                    completion(nil, nil)
                 }
             }
     }
