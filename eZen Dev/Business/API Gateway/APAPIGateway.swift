@@ -74,17 +74,17 @@ class APAPIGateway {
                                   if error == nil{
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: true) { _, _ in
                                       }
-                                      DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
-                                          print("AFTER ANALYZING....\(job_id)")
-                                          self.getEnhancedAudioURL(isAnalyze: true) { status, error in
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 24, execute: {
+                                          
+                                          self.getAnalyzedData(job_id: "\(job_id)"){ json, error in
                                               if error == nil{
                                                   //start download
-                                                  print("ANALYZED JSON DATA .....\(status)")
-                                                  
+                                                  print("ANALYZED JSON DATA .....\(json)")
                                               }else{
                                                   //show error
                                               }
                                           }
+                                          
                                       })
                                       
                                   }else{
@@ -94,12 +94,11 @@ class APAPIGateway {
                              
                           }else{
                               let source_input = "dlb://ezen/enhance/\(fileURL.lastPathComponent)"
-                              print("IS FILE UPLOADED?....\(stats)")
+
                               self.enhanceAudio(fileURL: source_input) { job_id, error in
                                   if error == nil{
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: false) { _, _ in}
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
-                                          print("AFTER ENHANCING....\(job_id)")
                                           self.getEnhancedAudioURL(isAnalyze: false) { status, error in
                                               if error == nil{
                                                   //start download
@@ -128,6 +127,7 @@ class APAPIGateway {
         dataTask.resume()
     }
     
+    
     func analyzeAudio(fileURL: String, completion: @escaping (String, Error?) -> Void){
         let headers = [
           "accept": "application/json",
@@ -135,7 +135,9 @@ class APAPIGateway {
           "authorization": "Bearer \(self.token!)"
         ]
         
-        let parameterss = ["content": ["silence": [
+        let parameterss = [
+            "content":
+                ["silence": [
               "threshold": -60,
               "duration": 2
             ]]] as [String : Any]
@@ -143,20 +145,12 @@ class APAPIGateway {
         let parameters = [
           "input": "\(fileURL)",
           "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
-          "loudness": ["profile": "standard_a85"],
           "content": [
-            "type": "podcast",
-            "tags": ["announcer", "football", "real madrid"],
             "silence": [
-              "threshold": -60,
-              "duration": 3
+              "threshold": -28,
+              "duration": 2
             ]
-          ],
-          "validation": ["loudness": [
-              "true_peak_max": -1,
-              "loudness_max": -20,
-              "loudness_min": -23
-            ]]
+          ]
         ] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -272,6 +266,33 @@ class APAPIGateway {
         dataTask.resume()
     }
     
+    func getAnalyzedData(job_id: String, completion: @escaping (JSON, Error?) -> Void){
+
+        let headers: HTTPHeaders = [
+          "accept": "application/json",
+          "authorization": "Bearer \(self.token!)"
+        ]
+
+        let url = URL(string: "https://api.dolby.com/media/analyze")
+        let parameters: Parameters = [
+            "job_id": job_id
+        ]
+        AlamofireManager?.request(url!, method: .get, parameters: parameters, headers: headers).response(completionHandler: { response in
+            switch(response.result) {
+            case .success(_):
+                if response.value != nil{
+                    let json = JSON(response.value)
+                    completion(json, nil)
+                }else{
+                    print("DDDDD")
+                }
+                break
+            case .failure(let encodingError):
+                print("ZRrorro")
+                break
+            }
+        })
+    }
     
     func getEnhancedAudioURL(isAnalyze: Bool,completion: @escaping (String, Error?) -> Void){
 
@@ -391,7 +412,12 @@ class APAPIGateway {
                         self.checkJobStatus(job_id: job_id, isAnalyze: isAnalyze, completion: {_,_ in })
                     }else{
                         print("JO IS DONE YOU CAN DOWNLOAD.....\(json)")
-                        completion(job_id, nil)
+                        
+                        if isAnalyze{
+                            completion("\(json)", nil)
+                        }else{
+                            completion(job_id, nil)
+                        }
                     }
                     
                 }else{
