@@ -1,0 +1,6 @@
+framework module Pods_eZen_Dev_eZen_DevUITests {
+  umbrella header "Pods-eZen Dev-eZen DevUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
