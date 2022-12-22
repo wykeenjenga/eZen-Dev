@@ -143,19 +143,13 @@ class APAPIGateway {
         let parameters = [
             "input": "\(fileURL)",
             "output": "dlb://ezen/analyzed/enhanced_adminSample.json",
-            "loudness": ["profile": "standard_a85"],
             "content": [
                 "type": "podcast",
                 "silence": [
-                  "threshold": -25,
+                  "threshold": -30,
                   "duration": 1
                 ]
-              ],
-              "validation": ["loudness": [
-                  "true_peak_max": -1,
-                  "loudness_max": -20,
-                  "loudness_min": -23
-                ]]
+              ]
             ] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -525,6 +519,45 @@ class APAPIGateway {
                     break
                 case .failure(let error):
                     completion("", error.asAFError)
+                    break
+                }
+                self.endBGTask()
+            }
+        }
+    }
+    
+    
+    func applyNoiseGate(parts: [[Double]], completion: @escaping(URL?, Error?) -> Void){
+        let url =  "http://45.61.56.80/api/ApplyNoiseGate"
+        let parameters = ["parts": parts, "fileName": "ezenAdmin"] as [String : Any]
+        
+        DispatchQueue.global().async {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+                self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+            }
+            
+            self.AlamofireManager!.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON{response in
+                switch(response.result) {
+                case .success(_):
+                    if response.value != nil{
+                        let json = JSON(response.value!)
+                        print("Request response for set Friter=>", json)
+                        if json["IsSucces"].boolValue {
+                            print("DONE with Noise gate.......\(json).....\n\n NOW DOWNLOADING???")
+                            self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated", isAnalyze: false) { url, error in
+                                if error == nil{
+                                    completion(url, nil)
+                                }else{
+                                    completion(nil, error)
+                                }
+                            }
+                        }
+                    }
+                    break
+                case .failure(let error):
+                    completion(nil, error.asAFError)
                     break
                 }
                 self.endBGTask()

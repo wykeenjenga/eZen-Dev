@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 enum APHomeViewModelRoute {
     case initial
@@ -25,6 +26,7 @@ protocol APHomeViewModelInput {
 protocol APHomeViewModelOutput {
     var route: Dynamic<APHomeViewModelRoute> { get set }
     var initFile: Dynamic<URL?> {get set}
+    var sectionsArray: Dynamic<[[Double]]> {get set}
 }
 
 protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput {
@@ -33,6 +35,7 @@ protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput {
 final class DefaultAPHomeViewModel: APHomeViewModel {
     var route: Dynamic<APHomeViewModelRoute> = Dynamic(.initial)
     var initFile: Dynamic<URL?> = Dynamic(nil)
+    var sectionsArray: Dynamic<[[Double]]> = Dynamic([])
     
     init() {
     }
@@ -94,19 +97,80 @@ extension APHomeViewModel{
     }
     
     func loadData(){
-        var json: Any?
         do {
             let fileUrl = URL(fileURLWithPath: file_url.address!.path)
             // Getting data from JSON file using the file URL
             let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
-            json = try? JSONSerialization.jsonObject(with: data)
+            //json = try? JSONSerialization.jsonObject(with: data)
             
-            print("JSON DATA IS...\(json)")
+            let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
+            if(jsonData == nil) {
+                print("Could not parse data")
+            }else{
+                let json = JSON(jsonData as Any)
+                
+                let processed_region = json["processed_region"]
+                //print("JSON DATA IS...\(processed_region)")
+                
+                let audio = processed_region["audio"]
+                
+                let silence = audio["silence"]
+                
+                let sections = silence["sections"]
+                
+                let dd = "\(sections)"
+                print("DD", dd)
+                
+                let jsonDD = """
+                \(dd)
+                """.data(using: .utf8)!
+
+                do {
+                    let parts = try? JSONDecoder().decode([SilentPart].self, from: jsonDD)
+                    for part in parts!{
+                        let start = part.start
+                        let end = part.duration + start
+                        
+                        var sectionPart = [Double]()
+                        //"(\(start),\(end))"
+                        
+                        sectionPart.append(start)
+                        sectionPart.append(end)
+                        
+                        self.sectionsArray.value?.append(sectionPart)
+                        
+                        print("SECTION ADDED....\(sectionPart)")
+                        sectionPart.removeAll()
+                        
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+            let ss = "\(self.sectionsArray.value!)"
+            print("NOW THE WHOLE PARTS IS ......\(ss)")
+            self.applyNoiseGate()
+           
         } catch {
             // Handle error here
             print("CAMNmmm")
         }
     }
     
+    func applyNoiseGate(){
+        self.route.value = .activity(loading: true)
+        APAPIGateway.door().applyNoiseGate(parts: self.sectionsArray.value!) { url, error in
+            self.route.value = .activity(loading: false)
+            if error != nil{
+                self.route.value = .error
+            }else{
+                file_url.address = url
+                print("NEW GATED URL IS..\(url)")
+                self.route.value = .isPreview
+            }
+        }
+    }
 }
+
+
 
