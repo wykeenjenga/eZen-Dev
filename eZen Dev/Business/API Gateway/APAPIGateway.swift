@@ -76,6 +76,10 @@ class APAPIGateway {
                                       }
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 24, execute: {
                                           
+                                          self.getEnhancedAudioURL(isAnalyze: true) { status, error in
+                                              print("THE STATUS IS ......\(status)")
+                                          }
+                                          
                                           self.getAnalyzedData(job_id: "\(job_id)"){ json, error in
                                               if error == nil{
                                                   //start download
@@ -134,21 +138,14 @@ class APAPIGateway {
           "content-type": "application/json",
           "authorization": "Bearer \(self.token!)"
         ]
-        
-        let parameterss = [
-            "content":
-                ["silence": [
-              "threshold": -60,
-              "duration": 2
-            ]]] as [String : Any]
 
         let parameters = [
           "input": "\(fileURL)",
           "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
           "content": [
             "silence": [
-              "threshold": -28,
-              "duration": 2
+              "threshold": -25,
+              "duration": 1
             ]
           ]
         ] as [String : Any]
