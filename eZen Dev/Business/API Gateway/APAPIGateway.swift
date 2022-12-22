@@ -74,6 +74,7 @@ class APAPIGateway {
                                   if error == nil{
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: true) { _, _ in
                                       }
+                                      print("ANALYZE JOB ID....\(job_id)")
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 24, execute: {
                                           
                                           self.getEnhancedAudioURL(isAnalyze: true) { status, error in
@@ -138,17 +139,24 @@ class APAPIGateway {
           "content-type": "application/json",
           "authorization": "Bearer \(self.token!)"
         ]
-
+        
         let parameters = [
-          "input": "\(fileURL)",
-          "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
-          "content": [
-            "silence": [
-              "threshold": -25,
-              "duration": 1
-            ]
-          ]
-        ] as [String : Any]
+            "input": "\(fileURL)",
+            "output": "dlb://ezen/analyzed/enhanced_adminSample.mp3",
+            "loudness": ["profile": "standard_a85"],
+            "content": [
+                "type": "podcast",
+                "silence": [
+                  "threshold": -25,
+                  "duration": 1
+                ]
+              ],
+              "validation": ["loudness": [
+                  "true_peak_max": -1,
+                  "loudness_max": -20,
+                  "loudness_min": -23
+                ]]
+            ] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -266,8 +274,9 @@ class APAPIGateway {
     func getAnalyzedData(job_id: String, completion: @escaping (JSON, Error?) -> Void){
 
         let headers: HTTPHeaders = [
-          "accept": "application/json",
-          "authorization": "Bearer \(self.token!)"
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": "Bearer \(self.token!)"
         ]
 
         let url = URL(string: "https://api.dolby.com/media/analyze")
@@ -463,7 +472,7 @@ class APAPIGateway {
                         if response.value != nil{
                             let json = JSON(response.value! as Any)
                             let play_file = json["play_file"]
-                            print(".........RESPONSE AFTER Silince silence.....\(play_file)......\(json)")
+                            print(".........RESPONSE AFTER BELL FILTER EQ silence.....\(play_file)......\(json)")
                             self.setFilter { file_dir, error in
                                 if error == nil{
                                     //download file

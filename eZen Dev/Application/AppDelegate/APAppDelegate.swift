@@ -64,7 +64,7 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
               }else{
                   let json = JSON(jsonData as Any)
                   let token = json["access_token"]
-                  //print("TOKEN IS///........\(token)")
+                  print("TOKEN IS///........\(token)")
                   UserDefaults.standard.setValue("\(token)", forKey: "APP_TOKEN")
               }
 
