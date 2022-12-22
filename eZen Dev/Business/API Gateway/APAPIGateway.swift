@@ -76,11 +76,11 @@ class APAPIGateway {
                                       }
                                       print("ANALYZE JOB ID....\(job_id)")
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 16, execute: {
-                                          self.getEnhancedAudioURL(isAnalyze: true) { status, error in
+                                          self.getResultsURL(isAnalyze: true) { status, error in
                                               if error == nil{
                                                   //start download
                                                   print("DOWNLOAD ANALYSED JSON File..\(status)")
-                                                  self.downloadVoice(downldURL: status, isAnalyze: true) { url, error in
+                                                  self.downloadFile(downldURL: status, isAnalyze: true) { url, error in
                                                       if error == nil{
                                                           completion(url, error)
                                                       }
@@ -104,11 +104,11 @@ class APAPIGateway {
                                   if error == nil{
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: false) { _, _ in}
                                       DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
-                                          self.getEnhancedAudioURL(isAnalyze: false) { status, error in
+                                          self.getResultsURL(isAnalyze: false) { status, error in
                                               if error == nil{
                                                   //start download
                                                   print("TO DOWNLOAD ENHANCED URL.....\(status)")
-                                                  self.downloadVoice(downldURL: status, isAnalyze: false) { url, error in
+                                                  self.downloadFile(downldURL: status, isAnalyze: false) { url, error in
                                                       if error == nil{
                                                           completion(url, error)
                                                       }
@@ -300,7 +300,7 @@ class APAPIGateway {
         })
     }
     
-    func getEnhancedAudioURL(isAnalyze: Bool,completion: @escaping (String, Error?) -> Void){
+    func getResultsURL(isAnalyze: Bool,completion: @escaping (String, Error?) -> Void){
 
         let headers = [
           "accept": "application/json",
@@ -308,12 +308,14 @@ class APAPIGateway {
           "authorization": "Bearer \(self.token!)"
         ]
         var param_string = ""
-        var url = "https://api.dolby.com/media/output"
+        let url = "https://api.dolby.com/media/output"
+        
         if isAnalyze{
             param_string = "dlb://ezen/analyzed/enhanced_adminSample.json"
         }else{
             param_string = "dlb://ezen/enhance/enhanced_adminSample.mp3"
         }
+        
         let parameters = ["url": param_string] as [String : Any]
 
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -335,12 +337,8 @@ class APAPIGateway {
                   print("Could not parse data")
               }else{
                   let json = JSON(jsonData as Any)
-                  if isAnalyze{
-                      completion("\(json)", nil)
-                  }else{
-                      let job_id = json["url"]
-                      completion("\(job_id)", nil)
-                  }
+                  let job_id = json["url"]
+                  completion("\(job_id)", nil)
               }
           }
         })
@@ -478,7 +476,7 @@ class APAPIGateway {
                                 if error == nil{
                                     //download file
                                     print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
-                                    self.downloadVoice(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
+                                    self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
                                         if error == nil{
                                             completion(url, nil)
                                         }else{
@@ -535,7 +533,7 @@ class APAPIGateway {
     }
 
     
-    func downloadVoice(downldURL: String, isAnalyze: Bool, completion: @escaping(URL?, Error?) -> Void){
+    func downloadFile(downldURL: String, isAnalyze: Bool, completion: @escaping(URL?, Error?) -> Void){
         
         var fileName = ""
         if isAnalyze{
@@ -553,6 +551,7 @@ class APAPIGateway {
             .downloadProgress(queue: .main) { progress in
                 print("Download Progress: \(progress.fractionCompleted * 100)%")
             }.responseData { response in
+                print("***********DOWNLOAD_RESPONSE**********\(response.value)")
                 if response.value != nil{
                     print("Done with the download of \(String(describing: response.fileURL))")
                     completion(response.fileURL!, nil)

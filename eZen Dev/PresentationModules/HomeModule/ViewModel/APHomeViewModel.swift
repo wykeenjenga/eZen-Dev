@@ -85,8 +85,10 @@ extension APHomeViewModel{
             }else{
                 //
                 file_url.address = url
-                loadData()
+                
                 print("JSON File DATA is from....\(url)")
+                
+                loadData()
             }
         }
     }
