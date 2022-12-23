@@ -34,3 +34,23 @@ struct OnboardingSubTitles{
     static let meditate = "Remove background noise from your voice, and add music to your guided meditation."
     static let headphones = "Save the final guided meditation on your phone and share it with your audience!"
 }
+
+
+struct EnhanceValues{
+    static var target_level = -18
+    static var speech_threshold = 15
+    static var peak_limit = -1
+    static var filter_highpass_enabled = true
+    static var speech_isolation_enabled = true
+}
+
+struct AnalysisValues{
+    static var threshold = -60
+    static var duration = 2
+}
+
+
+struct BellCurveFilter{
+    static var amplitude = -10
+    static var center_frequency = 500
+}

@@ -148,12 +148,27 @@
                     <color key="textColor" name="gray"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN2-Sf-tLC">
+                    <rect key="frame" x="319" y="59" width="58" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="58" id="3BZ-nS-JtO"/>
+                        <constraint firstAttribute="height" constant="35" id="svQ-8l-kpi"/>
+                    </constraints>
+                    <color key="tintColor" name="blue"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
+                    <connections>
+                        <action selector="settings:" destination="-1" eventType="touchUpInside" id="FgB-XZ-cDn"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ttj-0d-0ai"/>
             <color key="backgroundColor" name="yellow"/>
             <constraints>
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="9Jn-Ci-Ij5" secondAttribute="trailing" constant="43" id="4hN-I7-z9c"/>
                 <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="top" secondItem="Ttj-0d-0ai" secondAttribute="top" constant="36" id="8Kz-Xr-OY3"/>
+                <constraint firstItem="PN2-Sf-tLC" firstAttribute="top" secondItem="Ttj-0d-0ai" secondAttribute="top" id="DBn-Dy-beZ"/>
+                <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="PN2-Sf-tLC" secondAttribute="trailing" constant="16" id="INI-Z4-3PZ"/>
                 <constraint firstItem="0TH-xH-LAa" firstAttribute="top" secondItem="9Jn-Ci-Ij5" secondAttribute="bottom" id="LgB-od-nbL"/>
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="bottom" secondItem="XRd-Cz-0vL" secondAttribute="bottom" constant="36" id="QSJ-IK-mko"/>
                 <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="leading" secondItem="Ttj-0d-0ai" secondAttribute="leading" constant="45" id="ceB-jN-UQn"/>
@@ -161,12 +176,14 @@
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="0TH-xH-LAa" secondAttribute="trailing" constant="43" id="nKh-qV-mdE"/>
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="XRd-Cz-0vL" secondAttribute="trailing" constant="20" id="oC2-i1-N4H"/>
                 <constraint firstItem="XRd-Cz-0vL" firstAttribute="leading" secondItem="Ttj-0d-0ai" secondAttribute="leading" constant="20" id="qcY-wB-WRG"/>
+                <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="top" secondItem="PN2-Sf-tLC" secondAttribute="bottom" constant="1" id="qji-WU-RwM"/>
             </constraints>
             <point key="canvasLocation" x="-35.384615384615387" y="-729.38388625592415"/>
         </view>
     </objects>
     <resources>
         <image name="file" width="81.666664123535156" height="69.333335876464844"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="microphone" width="50.333332061767578" height="90.333335876464844"/>
         <namedColor name="blue">
             <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

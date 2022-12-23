@@ -105,4 +105,10 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
         self.viewModel.enhanceAudio()
     }
     
+    @IBAction func settings(_ sender: Any) {
+        let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeSettingsDIContainer().makeSettingsViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        homeVC.modalTransitionStyle = .coverVertical
+        self.present(homeVC, animated: true, completion: nil)
+    }
 }

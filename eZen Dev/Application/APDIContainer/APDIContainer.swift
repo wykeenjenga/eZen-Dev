@@ -26,4 +26,10 @@ extension APDIContainer {
         let dependencies = APPreviewVoiceOverDIContainer.Dependencies()
         return APPreviewVoiceOverDIContainer(dependencies: dependencies)
     }
+    
+    /// Creates Home DIContainer.
+    func makeSettingsDIContainer() -> APSettingsDIContainer {
+        let dependencies = APSettingsDIContainer.Dependencies()
+        return APSettingsDIContainer(dependencies: dependencies)
+    }
 }

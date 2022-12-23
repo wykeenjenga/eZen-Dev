@@ -61,6 +61,9 @@
 		0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */; };
 		0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */; };
 		0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE982954AA1100976E55 /* SilentParts.swift */; };
+		0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */; };
+		0BBABBF02955F8D4007CABEB /* APSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */; };
+		0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD379B295615000006FF9E /* SettingsDIContainer.swift */; };
 		41C8E6358B1725F842771A77 /* Pods_eZen_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4437B90A8D53959911F7A6 /* Pods_eZen_Dev.framework */; };
 		46983E979F5BA7B0575B2566 /* Pods_eZen_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F2BE35F8ABAB5335A65EF /* Pods_eZen_DevTests.framework */; };
 		D16AE8D2D52ECA84E98C012E /* Pods_eZen_Dev_eZen_DevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */; };
@@ -142,6 +145,9 @@
 		0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APPreviewAudioViewController.xib; sourceTree = "<group>"; };
 		0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewVoiceOverDIContainer.swift; sourceTree = "<group>"; };
 		0B76DE982954AA1100976E55 /* SilentParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentParts.swift; sourceTree = "<group>"; };
+		0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingsViewController.swift; sourceTree = "<group>"; };
+		0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSettingsViewController.xib; sourceTree = "<group>"; };
+		0BCD379B295615000006FF9E /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A823D223CBF11B8905DB38 /* Pods-eZen DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.debug.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+				0BCD379A295614E10006FF9E /* SettingsContainer */,
 				0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */,
 				0B32C54629504EFE00028D5D /* HomeDIContainer */,
 			);
@@ -367,10 +374,11 @@
 		0B32C53E295048D800028D5D /* PresentationModules */ = {
 			isa = PBXGroup;
 			children = (
+				0B32C53F295048E800028D5D /* HomeModule */,
+				0BBABBEA2955F89E007CABEB /* SettingsModule */,
 				0B76DE8E2952490F00976E55 /* PreviewAudio */,
 				0B76DE852950595000976E55 /* BaseViewController */,
 				0B32C54029504D9400028D5D /* HardwallModule */,
-				0B32C53F295048E800028D5D /* HomeModule */,
 			);
 			path = PresentationModules;
 			sourceTree = "<group>";
@@ -551,6 +559,39 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		0BBABBEA2955F89E007CABEB /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				0BBABBEC2955F8B4007CABEB /* ViewModel */,
+				0BBABBEB2955F8AD007CABEB /* ViewController */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		0BBABBEB2955F8AD007CABEB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */,
+				0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0BBABBEC2955F8B4007CABEB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0BCD379A295614E10006FF9E /* SettingsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0BCD379B295615000006FF9E /* SettingsDIContainer.swift */,
+			);
+			path = SettingsContainer;
+			sourceTree = "<group>";
+		};
 		DBC02030C8A86A76A7588C37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,6 +732,7 @@
 				0B32C56D2950500D00028D5D /* ArimaMadurai-ExtraBold.ttf in Resources */,
 				0B32C5722950500D00028D5D /* Mulish-SemiBoldItalic.ttf in Resources */,
 				0B32C56E2950500D00028D5D /* Mulish-ExtraBoldItalic.ttf in Resources */,
+				0BBABBF02955F8D4007CABEB /* APSettingsViewController.xib in Resources */,
 				0B32C5742950500D00028D5D /* Mulish-Bold.ttf in Resources */,
 				0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */,
 				0B32C5732950500D00028D5D /* Mulish-ExtraLightItalic.ttf in Resources */,
@@ -854,12 +896,14 @@
 				0B32C5392950466400028D5D /* Accessors.swift in Sources */,
 				0B32C51A295044C800028D5D /* APIEndPoints.swift in Sources */,
 				0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */,
+				0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
 				0B76DE832950590D00976E55 /* APError.swift in Sources */,
 				0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */,
 				0B32C54C29504F4E00028D5D /* APHomeViewController.swift in Sources */,
 				0B32C54529504DF800028D5D /* APHardWallViewController.swift in Sources */,
 				0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */,
+				0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */,
 				0B76DE922952495200976E55 /* APPreviewAudioViewController.swift in Sources */,
 				0B32C4E0294D933E00028D5D /* APAppDelegate.swift in Sources */,
 				0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */,

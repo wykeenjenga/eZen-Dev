@@ -192,7 +192,7 @@ class APAPIGateway {
         let parameters = [
           "input": "\(fileURL)",
           "output": "dlb://ezen/enhance/enhanced_adminSample.mp3",
-          "content": ["type": "podcast"],
+          "content": ["type": "voice_over"],
           "audio": [
             "loudness": [
               "enable": true,
@@ -496,7 +496,7 @@ class APAPIGateway {
     
     func setFilter(completion: @escaping(String, Error?) -> Void){
         let url =  "http://45.61.56.80/api/setBellFilter"
-        let parameters = ["id_file": "","hight": 0,"low": 0, "fileName": "ezenAdmin"] as [String : Any]
+        let parameters = ["id_file": "","frequency": 0, "amplitude": 0, "fileName": "ezenAdmin"] as [String : Any]
         
         DispatchQueue.global().async {
             self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
