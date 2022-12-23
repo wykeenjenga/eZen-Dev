@@ -1088,7 +1088,7 @@
 				DEVELOPMENT_TEAM = 7RR73CT43V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Create Meditation";
+				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1123,7 +1123,7 @@
 				DEVELOPMENT_TEAM = 7RR73CT43V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Create Meditation";
+				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

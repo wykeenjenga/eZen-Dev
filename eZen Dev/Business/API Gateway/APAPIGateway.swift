@@ -146,8 +146,8 @@ class APAPIGateway {
             "content": [
                 "type": "podcast",
                 "silence": [
-                  "threshold": -30,
-                  "duration": 2
+                    "threshold": AnalysisValues.threshold,
+                    "duration": AnalysisValues.duration
                 ]
               ]
             ] as [String : Any]
@@ -196,10 +196,10 @@ class APAPIGateway {
           "audio": [
             "loudness": [
               "enable": true,
-              "target_level": -18,
+              "target_level": EnhanceValues.target_level,
               "dialog_intelligence": true,
-              "speech_threshold": 15,
-              "peak_limit": -1,
+              "speech_threshold": EnhanceValues.speech_threshold,
+              "peak_limit": EnhanceValues.peak_limit,
               "peak_reference": "true_peak"
             ],
             "dynamics": ["range_control": [
@@ -213,15 +213,15 @@ class APAPIGateway {
             "filter": [
               "dynamic_eq": ["enable": true],
               "high_pass": [
-                "enable": true,
-                "frequency": 80
+                "enable": EnhanceValues.filter_highpass_enabled,
+                "frequency": EnhanceValues.filter_highpass_value
               ],
               "hum": ["enable": true]
             ],
             "speech": [
               "isolation": [
-                "enable": true,
-                "amount": 90
+                "enable": EnhanceValues.speech_isolation_enabled,
+                "amount": EnhanceValues.speech_isolation_value
               ],
               "sibilance": ["reduction": [
                   "enable": true,
@@ -496,7 +496,11 @@ class APAPIGateway {
     
     func setFilter(completion: @escaping(String, Error?) -> Void){
         let url =  "http://45.61.56.80/api/setBellFilter"
-        let parameters = ["id_file": "","frequency": 0, "amplitude": 0, "fileName": "ezenAdmin"] as [String : Any]
+        let parameters = ["id_file": "",
+                          "frequency": BellCurveFilter.center_frequency,
+                          "amplitude": BellCurveFilter.amplitude,
+                          "fileName": "ezenAdmin"
+        ] as [String : Any]
         
         DispatchQueue.global().async {
             self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {

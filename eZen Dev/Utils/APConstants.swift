@@ -42,6 +42,9 @@ struct EnhanceValues{
     static var peak_limit = -1
     static var filter_highpass_enabled = true
     static var speech_isolation_enabled = true
+    
+    static var filter_highpass_value = 80
+    static var speech_isolation_value = 90
 }
 
 struct AnalysisValues{

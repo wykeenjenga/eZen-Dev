@@ -149,14 +149,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN2-Sf-tLC">
-                    <rect key="frame" x="319" y="59" width="58" height="35"/>
+                    <rect key="frame" x="348" y="59" width="29" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="58" id="3BZ-nS-JtO"/>
+                        <constraint firstAttribute="width" constant="29" id="3BZ-nS-JtO"/>
                         <constraint firstAttribute="height" constant="35" id="svQ-8l-kpi"/>
                     </constraints>
                     <color key="tintColor" name="blue"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
+                    <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="black"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="settings:" destination="-1" eventType="touchUpInside" id="FgB-XZ-cDn"/>
                     </connections>
@@ -178,7 +180,7 @@
                 <constraint firstItem="XRd-Cz-0vL" firstAttribute="leading" secondItem="Ttj-0d-0ai" secondAttribute="leading" constant="20" id="qcY-wB-WRG"/>
                 <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="top" secondItem="PN2-Sf-tLC" secondAttribute="bottom" constant="1" id="qji-WU-RwM"/>
             </constraints>
-            <point key="canvasLocation" x="-35.384615384615387" y="-729.38388625592415"/>
+            <point key="canvasLocation" x="-35.877862595419849" y="-729.57746478873241"/>
         </view>
     </objects>
     <resources>
