@@ -147,7 +147,7 @@ class APAPIGateway {
                 "type": "podcast",
                 "silence": [
                   "threshold": -30,
-                  "duration": 1
+                  "duration": 2
                 ]
               ]
             ] as [String : Any]
@@ -457,7 +457,7 @@ class APAPIGateway {
             }
             
             self.AlamofireManager!.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: voiceOverUrl.description, mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
+            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: "ezenAdmin.mp3", mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
                 print("Progress...\(progress.fractionCompleted * 100)% uploaded to eZen")
             }).response { response in
                     switch(response.result) {
@@ -545,9 +545,9 @@ class APAPIGateway {
                         let json = JSON(response.value!)
                         print("Request response for set Friter=>", json)
                         if json["IsSucces"].boolValue {
-                            print("DONE with Noise gate.......\(json).....\n\n NOW DOWNLOADING???")
-                            self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated", isAnalyze: false) { url, error in
+                            self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
                                 if error == nil{
+                                    file_url.address = url
                                     completion(url, nil)
                                 }else{
                                     completion(nil, error)
@@ -572,7 +572,7 @@ class APAPIGateway {
         if isAnalyze{
             fileName = "analyzed_file.json"
         }else{
-            fileName = "Guided_Meditation.mp3"
+            fileName = "GuidedMeditation.mp3"
         }
         
         let destination: DownloadRequest.Destination = { _, _ in

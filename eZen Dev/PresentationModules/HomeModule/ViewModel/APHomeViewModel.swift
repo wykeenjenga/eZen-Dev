@@ -164,7 +164,6 @@ extension APHomeViewModel{
             if error != nil{
                 self.route.value = .error
             }else{
-                file_url.address = url
                 print("NEW GATED URL IS..\(url)")
                 self.route.value = .isPreview
             }
