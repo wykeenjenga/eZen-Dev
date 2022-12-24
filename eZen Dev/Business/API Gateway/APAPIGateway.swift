@@ -499,6 +499,8 @@ class APAPIGateway {
         let parameters = ["id_file": "",
                           "frequency": BellCurveFilter.center_frequency,
                           "amplitude": BellCurveFilter.amplitude,
+                          "bandwidth":BellCurveFilter.bandWidth,
+                          "order":BellCurveFilter.order,
                           "fileName": "ezenAdmin"
         ] as [String : Any]
         

@@ -56,4 +56,6 @@ struct AnalysisValues{
 struct BellCurveFilter{
     static var amplitude = -10
     static var center_frequency = 500
+    static var order = 2
+    static var bandWidth = 100
 }
