@@ -37,14 +37,31 @@ struct OnboardingSubTitles{
 
 
 struct EnhanceValues{
-    static var target_level = -18
-    static var speech_threshold = 15
-    static var peak_limit = -1
-    static var filter_highpass_enabled = true
-    static var speech_isolation_enabled = true
+    static var etarget_level = -18
+    static var espeech_threshold = 15
+    static var epeak_limit = -1
+    static var efilter_highpass_enabled = true
+    static var espeech_isolation_enabled = true
+    static var efilter_highpass_value = 80
+    static var espeech_isolation_value = 90
     
-    static var filter_highpass_value = 80
-    static var speech_isolation_value = 90
+    static var efilter_humreduct_enabled = true
+    
+    static var espeech_dynamic_value = "medium"
+    static var espeech_dynamic_enabled = true
+    
+    static var enoise_reduction_value = "auto"
+    static var enoise_reduction_enabled = true
+    
+    static var esibilance_reduction_value = "medium"
+    static var esibilance_reduction_enabled = true
+    
+    static var eplosive_reduction_value = "medium"
+    static var eplosive_reduction_enabled = true
+    
+    static var eclick_reduction_value = "medium"
+    static var eclick_reduction_enabled = true
+    
 }
 
 struct AnalysisValues{
