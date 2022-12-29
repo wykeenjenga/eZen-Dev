@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -149,15 +150,18 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN2-Sf-tLC">
-                    <rect key="frame" x="348" y="59" width="29" height="35"/>
+                    <rect key="frame" x="331" y="59" width="46" height="49"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="29" id="3BZ-nS-JtO"/>
-                        <constraint firstAttribute="height" constant="35" id="svQ-8l-kpi"/>
+                        <constraint firstAttribute="width" constant="46" id="3BZ-nS-JtO"/>
+                        <constraint firstAttribute="height" constant="49" id="svQ-8l-kpi"/>
                     </constraints>
                     <color key="tintColor" name="blue"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system">
-                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="black"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="font" scale="large" weight="black">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        </preferredSymbolConfiguration>
                     </buttonConfiguration>
                     <connections>
                         <action selector="settings:" destination="-1" eventType="touchUpInside" id="FgB-XZ-cDn"/>
@@ -178,7 +182,7 @@
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="0TH-xH-LAa" secondAttribute="trailing" constant="43" id="nKh-qV-mdE"/>
                 <constraint firstItem="Ttj-0d-0ai" firstAttribute="trailing" secondItem="XRd-Cz-0vL" secondAttribute="trailing" constant="20" id="oC2-i1-N4H"/>
                 <constraint firstItem="XRd-Cz-0vL" firstAttribute="leading" secondItem="Ttj-0d-0ai" secondAttribute="leading" constant="20" id="qcY-wB-WRG"/>
-                <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="top" secondItem="PN2-Sf-tLC" secondAttribute="bottom" constant="1" id="qji-WU-RwM"/>
+                <constraint firstItem="9Jn-Ci-Ij5" firstAttribute="top" secondItem="PN2-Sf-tLC" secondAttribute="bottom" constant="-13.000000000000014" id="qji-WU-RwM"/>
             </constraints>
             <point key="canvasLocation" x="-35.877862595419849" y="-729.57746478873241"/>
         </view>

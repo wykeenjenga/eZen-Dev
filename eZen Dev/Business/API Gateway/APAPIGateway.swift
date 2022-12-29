@@ -196,32 +196,32 @@ class APAPIGateway {
           "audio": [
             "loudness": [
               "enable": true,
-              "target_level": EnhanceValues.target_level,
+              "target_level": EnhanceValues.etarget_level,
               "dialog_intelligence": true,
-              "speech_threshold": EnhanceValues.speech_threshold,
-              "peak_limit": EnhanceValues.peak_limit,
+              "speech_threshold": EnhanceValues.espeech_threshold,
+              "peak_limit": EnhanceValues.epeak_limit,
               "peak_reference": "true_peak"
             ],
             "dynamics": ["range_control": [
-                "enable": true,
-                "amount": "medium"
+                "enable": EnhanceValues.espeech_dynamic_enabled,
+                "amount": EnhanceValues.espeech_dynamic_value
               ]],
             "noise": ["reduction": [
-                "enable": true,
-                "amount": "auto"
+                "enable": EnhanceValues.enoise_reduction_enabled,
+                "amount": EnhanceValues.enoise_reduction_value
               ]],
             "filter": [
               "dynamic_eq": ["enable": true],
               "high_pass": [
-                "enable": EnhanceValues.filter_highpass_enabled,
-                "frequency": EnhanceValues.filter_highpass_value
+                "enable": EnhanceValues.efilter_highpass_enabled,
+                "frequency": EnhanceValues.efilter_highpass_value
               ],
               "hum": ["enable": true]
             ],
             "speech": [
               "isolation": [
-                "enable": EnhanceValues.speech_isolation_enabled,
-                "amount": EnhanceValues.speech_isolation_value
+                "enable": EnhanceValues.espeech_isolation_enabled,
+                "amount": EnhanceValues.espeech_isolation_value
               ],
               "sibilance": ["reduction": [
                   "enable": true,
@@ -499,6 +499,8 @@ class APAPIGateway {
         let parameters = ["id_file": "",
                           "frequency": BellCurveFilter.center_frequency,
                           "amplitude": BellCurveFilter.amplitude,
+                          "bandwidth":BellCurveFilter.bandWidth,
+                          "order":BellCurveFilter.order,
                           "fileName": "ezenAdmin"
         ] as [String : Any]
         

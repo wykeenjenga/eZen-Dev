@@ -15,29 +15,76 @@ class APSettingsViewController: UIViewController {
         print("IS to dismiss....")
     }
     
-    
-    
     @IBOutlet weak var targetLevelTF: UITextField!
     @IBOutlet weak var speechThresholdTF: UITextField!
     @IBOutlet weak var peakLimitTF: UITextField!
     @IBOutlet weak var speechIsolationTF: UITextField!
+    @IBOutlet weak var eHubReduction: UISwitch!
     @IBOutlet weak var eQHighPassTF: UITextField!
-    
     
     @IBOutlet weak var bellAmplitude: UITextField!
     @IBOutlet weak var bellFrequency: UITextField!
+    @IBOutlet weak var bellOrder: UITextField!
+    @IBOutlet weak var bandWidth: UITextField!
     
     @IBOutlet weak var analysisThreshold: UITextField!
     @IBOutlet weak var analysisDuration: UITextField!
     
-    
     @IBOutlet weak var isSpeechIsolation: UISwitch!
     @IBOutlet weak var isEQHighPass: UISwitch!
+    
+    @IBOutlet weak var speechDynamicTF: UITextField!
+    @IBOutlet weak var isSpeechDynamic: UISwitch!
+    
+    @IBOutlet weak var noiseReductionTF: UITextField!
+    @IBOutlet weak var isNoiseReduction: UISwitch!
+    
+    @IBOutlet weak var sibilanceReductionTF: UITextField!
+    @IBOutlet weak var isSibilanceReduction: UISwitch!
+    
+    @IBOutlet weak var plosiveReductionTF: UITextField!
+    @IBOutlet weak var isPlosiveReduction: UISwitch!
+    
+    @IBOutlet weak var clickReductionTF: UITextField!
+    @IBOutlet weak var isClickReduction: UISwitch!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.targetLevelTF.text = String(EnhanceValues.etarget_level)
+        self.speechThresholdTF.text = String(EnhanceValues.espeech_threshold)
+        self.peakLimitTF.text = String(EnhanceValues.epeak_limit)
+        self.speechIsolationTF.text = String(EnhanceValues.espeech_isolation_value)
+        self.eQHighPassTF.text = String(EnhanceValues.efilter_highpass_value)
+        self.isSpeechIsolation.isOn = EnhanceValues.espeech_isolation_enabled
+        self.isEQHighPass.isOn = EnhanceValues.efilter_highpass_enabled
+        self.eHubReduction.isOn = EnhanceValues.efilter_humreduct_enabled
+        self.isSpeechDynamic.isOn = EnhanceValues.espeech_dynamic_enabled
+        self.speechDynamicTF.text = EnhanceValues.espeech_dynamic_value
+        self.noiseReductionTF.text = EnhanceValues.enoise_reduction_value
+        self.isNoiseReduction.isOn = EnhanceValues.enoise_reduction_enabled
+        self.isSibilanceReduction.isOn = EnhanceValues.esibilance_reduction_enabled
+        self.sibilanceReductionTF.text = EnhanceValues.esibilance_reduction_value
+        self.plosiveReductionTF.text = EnhanceValues.eplosive_reduction_value
+        self.isPlosiveReduction.isOn = EnhanceValues.eplosive_reduction_enabled
+        self.clickReductionTF.text = EnhanceValues.eclick_reduction_value
+        self.isClickReduction.isOn = EnhanceValues.eclick_reduction_enabled
+        
+        self.bellAmplitude.text = String(BellCurveFilter.amplitude)
+        self.bellFrequency.text = String(BellCurveFilter.center_frequency)
+        self.bellOrder.text = String(BellCurveFilter.order)
+        self.bandWidth.text = String(BellCurveFilter.bandWidth)
+        
+        self.analysisDuration.text = String(AnalysisValues.duration)
+        self.analysisThreshold.text = String(AnalysisValues.threshold)
+        
+        
     }
     
     final class func create() -> APSettingsViewController {
@@ -46,30 +93,44 @@ class APSettingsViewController: UIViewController {
     }
 
     @IBAction func saveSettings(_ sender: Any) {
-        print("Target Level is...\(targetLevelTF.text) and Speech threshold is...\(speechThresholdTF.text)")
-        if targetLevelTF.text != "" && speechThresholdTF.text != "" && peakLimitTF.text != "" && speechIsolationTF.text != "" && eQHighPassTF.text != "" && bellAmplitude.text != "", bellFrequency.text != "" && analysisThreshold.text != "" && analysisThreshold.text != "" {
-            //Save data
-            EnhanceValues.target_level = Int(targetLevelTF.text!) ?? -18
-            EnhanceValues.speech_threshold = Int(speechThresholdTF.text!) ?? 15
-            EnhanceValues.peak_limit = Int(peakLimitTF.text!) ?? -1
-            
-            EnhanceValues.speech_isolation_value = Int(speechThresholdTF.text!) ?? 90
-            EnhanceValues.filter_highpass_value = Int(eQHighPassTF.text!) ?? 80
-            
-            EnhanceValues.filter_highpass_enabled = self.isEQHighPass.isOn
-            EnhanceValues.speech_isolation_enabled = self.isSpeechIsolation.isOn
-            
-            AnalysisValues.threshold = Int(analysisThreshold.text!) ?? -60
-            AnalysisValues.duration = Int(analysisDuration.text!) ?? 2
-            
-            BellCurveFilter.amplitude = Int(bellAmplitude.text!) ?? -10
-            BellCurveFilter.center_frequency = Int(bellFrequency.text!) ?? 500
-            
-            print("isEQ==\(self.isEQHighPass.isOn), and isSpeech==\(self.isSpeechIsolation.isOn)")
-            self.dismiss(animated: true)
-        }else{
-            self.dismiss(animated: true)
-        }
+        print("Target Level is...\(targetLevelTF.text) and Speech threshold is...\(speechThresholdTF.text).....SPEEECH\(self.speechDynamicTF.text!)")
+        
+        //Save data
+        EnhanceValues.etarget_level = Int(targetLevelTF.text!) ?? -18
+        EnhanceValues.espeech_threshold = Int(speechThresholdTF.text!) ?? 15
+        EnhanceValues.epeak_limit = Int(peakLimitTF.text!) ?? -1
+        
+        EnhanceValues.espeech_isolation_value = Int(speechThresholdTF.text!) ?? 90
+        EnhanceValues.efilter_highpass_value = Int(eQHighPassTF.text!) ?? 80
+        
+        EnhanceValues.efilter_highpass_enabled = self.isEQHighPass.isOn
+        EnhanceValues.espeech_isolation_enabled = self.isSpeechIsolation.isOn
+        EnhanceValues.efilter_humreduct_enabled = self.eHubReduction.isOn
+        
+        EnhanceValues.espeech_dynamic_value = self.speechDynamicTF.text ?? "medium"
+        EnhanceValues.espeech_dynamic_enabled = self.isSpeechDynamic.isOn
+        
+        EnhanceValues.enoise_reduction_value = self.noiseReductionTF.text ?? "auto"
+        EnhanceValues.enoise_reduction_enabled = self.isNoiseReduction.isOn
+        
+        EnhanceValues.esibilance_reduction_value = self.speechDynamicTF.text ?? "medium"
+        EnhanceValues.esibilance_reduction_enabled = self.isSibilanceReduction.isOn
+        
+        EnhanceValues.eplosive_reduction_value = self.plosiveReductionTF.text ?? "medium"
+        EnhanceValues.eplosive_reduction_enabled = self.isPlosiveReduction.isOn
+        
+        EnhanceValues.eclick_reduction_value = self.clickReductionTF.text ?? "medium"
+        EnhanceValues.eclick_reduction_enabled = self.isClickReduction.isOn
+        
+        AnalysisValues.threshold = Int(analysisThreshold.text!) ?? -60
+        AnalysisValues.duration = Int(analysisDuration.text!) ?? 2
+        
+        BellCurveFilter.amplitude = Int(bellAmplitude.text!) ?? -10
+        BellCurveFilter.center_frequency = Int(bellFrequency.text!) ?? 500
+        BellCurveFilter.order = Int(self.bellOrder.text!) ?? 2
+        BellCurveFilter.bandWidth = Int(self.bandWidth.text!) ?? 100
+        
+        self.dismiss(animated: true)
         
     }
     
