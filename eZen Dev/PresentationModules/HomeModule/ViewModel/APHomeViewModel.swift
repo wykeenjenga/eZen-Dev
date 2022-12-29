@@ -71,7 +71,7 @@ extension APHomeViewModel{
                 self.route.value = .error
             }else{
                 file_url.address = url
-                print("File status is..AFTER BELL Curve filter EQ..\(url)")
+                print("GETTING SILENCE PARTS..\(url)")
                 //self.route.value = .isPreview
                 self.getSilentParts()
             }

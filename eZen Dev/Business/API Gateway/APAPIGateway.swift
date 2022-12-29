@@ -455,14 +455,9 @@ class APAPIGateway {
                 UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
                 self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
             }
-            var fileName = ""
-            if AppSettings.isBellCurveEQAtcive{
-                fileName = "ezenAdmin.mp3"
-            }else{
-                fileName = "ezenAdminFiltered.mp3"
-            }
+            
             self.AlamofireManager!.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: fileName, mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
+            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: "ezenAdmin.mp3", mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
                 print("Progress...\(progress.fractionCompleted * 100)% uploaded to eZen")
             }).response { response in
                     switch(response.result) {
@@ -470,27 +465,30 @@ class APAPIGateway {
                         if response.value != nil{
                             let json = JSON(response.value! as Any)
                             let play_file = json["play_file"]
-                            print(".........RESPONSE AFTER BELL FILTER EQ silence.....\(play_file)......\(json)")
+                            print(".........RESPONSE AFTER UPLOADING TO EZEN.....\(play_file)......\(json)")
+                            completion(voiceOverUrl, nil)
                             
-                            if AppSettings.isBellCurveEQAtcive{
-                                self.setFilter { file_dir, error in
-                                    if error == nil{
-                                        //download file
-                                        print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
-                                        self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
-                                            if error == nil{
-                                                completion(url, nil)
-                                            }else{
-                                                completion(nil, error)
-                                            }
-                                        }
-                                    }else{
-                                        completion(voiceOverUrl, error)
-                                    }
-                                }
-                            }else{
-                                print("*******IS NOT BELL CURVE GO DIRECT TO DOLBY DIRECT******************")
-                                completion(voiceOverUrl, nil)
+//                            self.setFilter { file_dir, error in
+//                                if error == nil{
+//                                    //download file
+//                                    print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
+//                                    self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
+//                                        if error == nil{
+//                                            completion(url, nil)
+//                                        }else{
+//                                            completion(nil, error)
+//                                        }
+//                                    }
+//                                }else{
+//                                    completion(nil, error)
+//                                }
+//                            }
+                            
+//                            if AppSettings.isBellCurveEQAtcive{
+//
+//                            }else{
+//                                print("*******IS NOT BELL CURVE GO DIRECT TO DOLBY DIRECT******************")
+//                                completion(voiceOverUrl, nil)
 //                                self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdminFiltered.mp3", isAnalyze: false) { url, error in
 //                                    if error == nil{
 //                                        completion(url, nil)
@@ -498,8 +496,8 @@ class APAPIGateway {
 //                                        completion(nil, error)
 //                                    }
 //                                }
-                            }
-                            
+//                            }
+//
                         }else{
                             completion(nil, nil)
                         }

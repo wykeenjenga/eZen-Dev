@@ -97,9 +97,10 @@ class APPreviewAudioViewController: BaseViewController {
             applyBellBtn.isHidden = true
         }
         
-        if !AppSettings.isBellCurveEQAtcive{
-            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
-        }
+//        if !AppSettings.isBellCurveEQAtcive{
+//            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
+//        }
+        self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         self.bindViewModel()
     }
     
