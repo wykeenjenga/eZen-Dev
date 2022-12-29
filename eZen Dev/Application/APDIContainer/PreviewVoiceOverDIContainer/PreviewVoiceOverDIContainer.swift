@@ -20,6 +20,12 @@ final class APPreviewVoiceOverDIContainer {
     }
     
     func makePreviewViewController() -> APPreviewAudioViewController {
-        return APPreviewAudioViewController.create()
+        return APPreviewAudioViewController.create(with: viewModel())
+    }
+    
+    private func viewModel() -> APHomeViewModel{
+        return DefaultAPHomeViewModel()
     }
 }
+
+

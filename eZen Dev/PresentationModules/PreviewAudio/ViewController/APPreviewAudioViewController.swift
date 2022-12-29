@@ -15,7 +15,7 @@ import Alamofire
 import SwiftyJSON
 import AVFoundation
 
-class APPreviewAudioViewController: UIViewController {
+class APPreviewAudioViewController: BaseViewController {
     
     var asset: AVURLAsset!
     let outputFileName = "output"
@@ -40,6 +40,9 @@ class APPreviewAudioViewController: UIViewController {
     
     var start1 : Double = 0
     var end1 : Double = 10
+    
+    var isEnhance = true
+    var viewModel: APHomeViewModel!
  
     @IBAction func playVoiceOver(_ sender: Any) {
         if isPlaying{
@@ -76,8 +79,9 @@ class APPreviewAudioViewController: UIViewController {
     }
     
     
-    final class func create() -> APPreviewAudioViewController {
+    final class func create(with viewModel: APHomeViewModel) -> APPreviewAudioViewController {
         let view = APPreviewAudioViewController(nibName: "APPreviewAudioViewController", bundle: nil)
+        view.viewModel = viewModel
         return view
     }
     
@@ -88,6 +92,49 @@ class APPreviewAudioViewController: UIViewController {
         playerProgressBar.addTarget(self, action: #selector(playbackSliderValueChanged(_:)), for: .valueChanged)
 
         playerProgressBar.isContinuous = true
+        
+        if !isEnhance{
+            applyBellBtn.isHidden = true
+        }
+        
+        if !AppSettings.isBellCurveEQAtcive{
+            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
+        }
+        self.bindViewModel()
+    }
+    
+    @IBOutlet weak var applyBellBtn: UIButton!
+    @IBAction func applyBellEQ(_ sender: Any) {
+        self.viewModel.equalizeAudio()
+        self.invalidateTimer()
+    }
+    
+    
+    func bindViewModel(){
+        self.viewModel.route.bind = { [weak self] route in
+            DispatchQueue.main.async {
+                switch route{
+                case .activity(let isLoading):
+                    if isLoading{
+                        self?.showHUD()
+                    }else{
+                        self?.hideHUD()
+                    }
+                case .error:
+                    self?.showAlert(title: "Error", message: "We are experiencing technical difficulties. Please try again later")
+                    break
+                case .isPreview:
+                    let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+                    homeVC.isEnhance = false
+                    homeVC.modalPresentationStyle = .fullScreen
+                    homeVC.modalTransitionStyle = .coverVertical
+                    self?.present(homeVC, animated: true, completion: nil)
+                    break
+                default:
+                    break
+                }
+            }
+        }
     }
     
     func pausePlayer(){

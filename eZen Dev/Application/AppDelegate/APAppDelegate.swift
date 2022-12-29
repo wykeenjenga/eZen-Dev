@@ -17,8 +17,15 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
     let appDiContainer = APDIContainer()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
-        self.getAPIToken()
+        let token = UserDefaults.standard.string(forKey: "APP_TOKEN") ?? ""
+        if token == ""{
+            self.getAPIToken()
+            print("TOKEN REQUEST")
+        }else{
+            print("We will not request token again")
+        }
         navigateToOnboarding()
         IQKeyboardManager.shared.enable = true
         return true
@@ -46,7 +53,7 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
           ]
 
         let postData = NSMutableData(data: "grant_type=client_credentials".data(using: String.Encoding.utf8)!)
-        postData.append("&expires_in=86400".data(using: String.Encoding.utf8)!)
+        postData.append("&expires_in=2592000".data(using: String.Encoding.utf8)!)
 
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.dolby.io/v1/auth/token")! as URL,cachePolicy: .useProtocolCachePolicy,timeoutInterval: 10.0)
         request.httpMethod = "POST"
