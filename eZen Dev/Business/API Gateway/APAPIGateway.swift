@@ -75,7 +75,7 @@ class APAPIGateway {
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: true) { _, _ in
                                       }
                                       print("ANALYZE JOB ID....\(job_id)")
-                                      DispatchQueue.main.asyncAfter(deadline: .now() + 16, execute: {
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 20, execute: {
                                           self.getResultsURL(isAnalyze: true) { status, error in
                                               if error == nil{
                                                   //start download
@@ -103,7 +103,7 @@ class APAPIGateway {
                               self.enhanceAudio(fileURL: source_input) { job_id, error in
                                   if error == nil{
                                       self.checkJobStatus(job_id: "\(job_id)", isAnalyze: false) { _, _ in}
-                                      DispatchQueue.main.asyncAfter(deadline: .now() + 14, execute: {
+                                      DispatchQueue.main.asyncAfter(deadline: .now() + 20, execute: {
                                           self.getResultsURL(isAnalyze: false) { status, error in
                                               if error == nil{
                                                   //start download
@@ -192,15 +192,15 @@ class APAPIGateway {
         let parameters = [
           "input": "\(fileURL)",
           "output": "dlb://ezen/enhance/enhanced_adminSample.mp3",
-          "content": ["type": "voice_over"],
+          "content": ["type": EnhanceValues.econtent_type],
           "audio": [
             "loudness": [
-              "enable": true,
+                "enable": EnhanceValues.eloudness_enabled,
               "target_level": EnhanceValues.etarget_level,
-              "dialog_intelligence": true,
+                "dialog_intelligence": EnhanceValues.edialog_intelligence_enabled,
               "speech_threshold": EnhanceValues.espeech_threshold,
               "peak_limit": EnhanceValues.epeak_limit,
-              "peak_reference": "true_peak"
+                "peak_reference": EnhanceValues.peak_reference
             ],
             "dynamics": ["range_control": [
                 "enable": EnhanceValues.espeech_dynamic_enabled,
@@ -211,12 +211,12 @@ class APAPIGateway {
                 "amount": EnhanceValues.enoise_reduction_value
               ]],
             "filter": [
-              "dynamic_eq": ["enable": true],
+              "dynamic_eq": ["enable": EnhanceValues.edynamic_eq_enabled],
               "high_pass": [
                 "enable": EnhanceValues.efilter_highpass_enabled,
                 "frequency": EnhanceValues.efilter_highpass_value
               ],
-              "hum": ["enable": true]
+              "hum": ["enable": EnhanceValues.efilter_humreduct_enabled]
             ],
             "speech": [
               "isolation": [
@@ -224,16 +224,16 @@ class APAPIGateway {
                 "amount": EnhanceValues.espeech_isolation_value
               ],
               "sibilance": ["reduction": [
-                  "enable": true,
-                  "amount": "medium"
+                "enable": EnhanceValues.esibilance_reduction_enabled,
+                "amount": EnhanceValues.esibilance_reduction_value
                 ]],
               "plosive": ["reduction": [
-                  "enable": true,
-                  "amount": "medium"
+                "enable": EnhanceValues.eplosive_reduction_enabled,
+                "amount": EnhanceValues.eplosive_reduction_value
                 ]],
               "click": ["reduction": [
-                  "enable": false,
-                  "amount": "medium"
+                "enable": EnhanceValues.eclick_reduction_enabled,
+                "amount": EnhanceValues.eclick_reduction_value
                 ]]
             ],
             "music": ["detection": ["enable": false]]
@@ -455,9 +455,14 @@ class APAPIGateway {
                 UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
                 self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
             }
-            
+            var fileName = ""
+            if AppSettings.isBellCurveEQAtcive{
+                fileName = "ezenAdmin.mp3"
+            }else{
+                fileName = "ezenAdminFiltered.mp3"
+            }
             self.AlamofireManager!.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: "ezenAdmin.mp3", mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
+            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: fileName, mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
                 print("Progress...\(progress.fractionCompleted * 100)% uploaded to eZen")
             }).response { response in
                     switch(response.result) {
@@ -466,21 +471,35 @@ class APAPIGateway {
                             let json = JSON(response.value! as Any)
                             let play_file = json["play_file"]
                             print(".........RESPONSE AFTER BELL FILTER EQ silence.....\(play_file)......\(json)")
-                            self.setFilter { file_dir, error in
-                                if error == nil{
-                                    //download file
-                                    print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
-                                    self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
-                                        if error == nil{
-                                            completion(url, nil)
-                                        }else{
-                                            completion(nil, error)
+                            
+                            if AppSettings.isBellCurveEQAtcive{
+                                self.setFilter { file_dir, error in
+                                    if error == nil{
+                                        //download file
+                                        print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
+                                        self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
+                                            if error == nil{
+                                                completion(url, nil)
+                                            }else{
+                                                completion(nil, error)
+                                            }
                                         }
+                                    }else{
+                                        completion(voiceOverUrl, error)
                                     }
-                                }else{
-                                    completion(nil, error)
                                 }
+                            }else{
+                                print("*******IS NOT BELL CURVE GO DIRECT TO DOLBY DIRECT******************")
+                                completion(voiceOverUrl, nil)
+//                                self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdminFiltered.mp3", isAnalyze: false) { url, error in
+//                                    if error == nil{
+//                                        completion(url, nil)
+//                                    }else{
+//                                        completion(nil, error)
+//                                    }
+//                                }
                             }
+                            
                         }else{
                             completion(nil, nil)
                         }

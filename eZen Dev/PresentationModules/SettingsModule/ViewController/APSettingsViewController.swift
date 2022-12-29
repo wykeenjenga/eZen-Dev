@@ -48,6 +48,13 @@ class APSettingsViewController: UIViewController {
     @IBOutlet weak var clickReductionTF: UITextField!
     @IBOutlet weak var isClickReduction: UISwitch!
     
+    @IBOutlet weak var isDynamicEQ: UISwitch!
+    @IBOutlet weak var isAudioLoudness: UISwitch!
+    @IBOutlet weak var isDolbyGating: UISwitch!
+    @IBOutlet weak var audioType: UITextField!
+    @IBOutlet weak var peakReferenceTF: UITextField!
+    
+    @IBOutlet weak var isBellCurveEQ: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +82,12 @@ class APSettingsViewController: UIViewController {
         self.isPlosiveReduction.isOn = EnhanceValues.eplosive_reduction_enabled
         self.clickReductionTF.text = EnhanceValues.eclick_reduction_value
         self.isClickReduction.isOn = EnhanceValues.eclick_reduction_enabled
+        self.peakReferenceTF.text = EnhanceValues.peak_reference
+        
+        self.isDynamicEQ.isOn = EnhanceValues.edynamic_eq_enabled
+        self.isAudioLoudness.isOn = EnhanceValues.eloudness_enabled
+        self.isDolbyGating.isOn = EnhanceValues.edialog_intelligence_enabled
+        self.audioType.text = EnhanceValues.econtent_type
         
         self.bellAmplitude.text = String(BellCurveFilter.amplitude)
         self.bellFrequency.text = String(BellCurveFilter.center_frequency)
@@ -84,7 +97,7 @@ class APSettingsViewController: UIViewController {
         self.analysisDuration.text = String(AnalysisValues.duration)
         self.analysisThreshold.text = String(AnalysisValues.threshold)
         
-        
+        self.isBellCurveEQ.isOn = AppSettings.isBellCurveEQAtcive
     }
     
     final class func create() -> APSettingsViewController {
@@ -100,12 +113,18 @@ class APSettingsViewController: UIViewController {
         EnhanceValues.espeech_threshold = Int(speechThresholdTF.text!) ?? 15
         EnhanceValues.epeak_limit = Int(peakLimitTF.text!) ?? -1
         
-        EnhanceValues.espeech_isolation_value = Int(speechThresholdTF.text!) ?? 90
+        EnhanceValues.espeech_isolation_value = Int(speechIsolationTF.text!) ?? 90
         EnhanceValues.efilter_highpass_value = Int(eQHighPassTF.text!) ?? 80
         
         EnhanceValues.efilter_highpass_enabled = self.isEQHighPass.isOn
         EnhanceValues.espeech_isolation_enabled = self.isSpeechIsolation.isOn
         EnhanceValues.efilter_humreduct_enabled = self.eHubReduction.isOn
+        
+        EnhanceValues.econtent_type = self.audioType.text ?? "voice_over"
+        EnhanceValues.peak_reference = self.peakReferenceTF.text ?? "true_peak"
+        EnhanceValues.edynamic_eq_enabled = self.isDynamicEQ.isOn
+        EnhanceValues.eloudness_enabled = self.isAudioLoudness.isOn
+        EnhanceValues.edialog_intelligence_enabled = self.isDolbyGating.isOn
         
         EnhanceValues.espeech_dynamic_value = self.speechDynamicTF.text ?? "medium"
         EnhanceValues.espeech_dynamic_enabled = self.isSpeechDynamic.isOn
@@ -113,7 +132,7 @@ class APSettingsViewController: UIViewController {
         EnhanceValues.enoise_reduction_value = self.noiseReductionTF.text ?? "auto"
         EnhanceValues.enoise_reduction_enabled = self.isNoiseReduction.isOn
         
-        EnhanceValues.esibilance_reduction_value = self.speechDynamicTF.text ?? "medium"
+        EnhanceValues.esibilance_reduction_value = self.sibilanceReductionTF.text ?? "medium"
         EnhanceValues.esibilance_reduction_enabled = self.isSibilanceReduction.isOn
         
         EnhanceValues.eplosive_reduction_value = self.plosiveReductionTF.text ?? "medium"
@@ -123,12 +142,14 @@ class APSettingsViewController: UIViewController {
         EnhanceValues.eclick_reduction_enabled = self.isClickReduction.isOn
         
         AnalysisValues.threshold = Int(analysisThreshold.text!) ?? -60
-        AnalysisValues.duration = Int(analysisDuration.text!) ?? 2
+        AnalysisValues.duration = Double(analysisDuration.text!) ?? 2.0
         
         BellCurveFilter.amplitude = Int(bellAmplitude.text!) ?? -10
         BellCurveFilter.center_frequency = Int(bellFrequency.text!) ?? 500
         BellCurveFilter.order = Int(self.bellOrder.text!) ?? 2
         BellCurveFilter.bandWidth = Int(self.bandWidth.text!) ?? 100
+        
+        AppSettings.isBellCurveEQAtcive = self.isBellCurveEQ.isOn
         
         self.dismiss(animated: true)
         

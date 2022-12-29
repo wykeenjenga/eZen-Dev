@@ -29,8 +29,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.bindViewModel()
-        
-        print("From HOME \n\n:::Target Level is...\(EnhanceValues.etarget_level) and Speech threshold is...\(EnhanceValues.espeech_threshold)")
+        print("From HOME:::Target Level is...\(EnhanceValues.etarget_level) and Speech threshold is...\(EnhanceValues.espeech_threshold)....\(EnhanceValues.enoise_reduction_value)")
     }
     
     func bindViewModel(){

@@ -45,6 +45,12 @@ struct EnhanceValues{
     static var efilter_highpass_value = 80
     static var espeech_isolation_value = 90
     
+    static var econtent_type = "voice_over"
+    static var peak_reference = "true_peak"
+    static var eloudness_enabled = true
+    static var edialog_intelligence_enabled = true
+    static var edynamic_eq_enabled =  true
+    
     static var efilter_humreduct_enabled = true
     
     static var espeech_dynamic_value = "medium"
@@ -66,7 +72,7 @@ struct EnhanceValues{
 
 struct AnalysisValues{
     static var threshold = -60
-    static var duration = 2
+    static var duration = 2.0
 }
 
 
@@ -75,4 +81,8 @@ struct BellCurveFilter{
     static var center_frequency = 500
     static var order = 2
     static var bandWidth = 100
+}
+
+struct AppSettings{
+    static var isBellCurveEQAtcive = true
 }

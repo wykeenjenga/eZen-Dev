@@ -21,6 +21,7 @@ enum APHomeViewModelRoute {
 
 protocol APHomeViewModelInput {
     func enhanceAudio()
+    func equalizeAudio()
 }
 
 protocol APHomeViewModelOutput {
@@ -56,7 +57,7 @@ extension APHomeViewModel{
                 //
                 file_url.address = url
                 print("File status is....\(url)")
-                self.equalizeAudio()
+                self.route.value = .isPreview
             }
         }
     }
@@ -88,9 +89,7 @@ extension APHomeViewModel{
             }else{
                 //
                 file_url.address = url
-                
                 print("JSON File DATA is from....\(url)")
-                
                 loadData()
             }
         }
