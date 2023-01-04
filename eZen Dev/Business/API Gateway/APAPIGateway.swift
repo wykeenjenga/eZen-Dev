@@ -550,6 +550,37 @@ class APAPIGateway {
     }
     
     
+    func getTranscription(completion: @escaping(String, Error?) -> Void){
+        let url =  "http://45.61.56.80/api/getTranscription"
+        let parameters = ["fileName": "ezenAdmin"] as [String : Any]
+        
+        DispatchQueue.global().async {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+                self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+            }
+            
+            self.AlamofireManager!.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON{response in
+                switch(response.result) {
+                case .success(_):
+                    if response.value != nil{
+                        let json = JSON(response.value!)
+                        print("Request response for audio transcription==>", json)
+                        let data = json["response"].stringValue
+                        print("We have the information....")
+                        completion(data, nil)
+                    }
+                    break
+                case .failure(let error):
+                    completion("", error.asAFError)
+                    break
+                }
+                self.endBGTask()
+            }
+        }
+    }
+    
     func applyNoiseGate(parts: [[Double]], completion: @escaping(URL?, Error?) -> Void){
         let url =  "http://45.61.56.80/api/ApplyNoiseGate"
         let parameters = ["parts": parts, "fileName": "ezenAdmin"] as [String : Any]
@@ -568,12 +599,16 @@ class APAPIGateway {
                         let json = JSON(response.value!)
                         print("Request response for set Friter=>", json)
                         if json["IsSucces"].boolValue {
-                            self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
+                            self.getTranscription { transcription, error in
                                 if error == nil{
-                                    file_url.address = url
-                                    completion(url, nil)
-                                }else{
-                                    completion(nil, error)
+                                    self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
+                                        if error == nil{
+                                            file_url.address = url
+                                            completion(url, nil)
+                                        }else{
+                                            completion(nil, error)
+                                        }
+                                    }
                                 }
                             }
                         }

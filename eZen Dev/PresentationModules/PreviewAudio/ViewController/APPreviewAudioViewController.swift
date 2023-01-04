@@ -101,6 +101,7 @@ class APPreviewAudioViewController: BaseViewController {
 //        if !AppSettings.isBellCurveEQAtcive{
 //            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
 //        }
+        
         self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         self.bindViewModel()
     }
@@ -182,8 +183,6 @@ class APPreviewAudioViewController: BaseViewController {
             print("Device doesn't support speech recognition")
         }
     }
-    
-    
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?

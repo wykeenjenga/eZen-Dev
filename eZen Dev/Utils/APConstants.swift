@@ -43,7 +43,7 @@ struct EnhanceValues{
     static var efilter_highpass_enabled = true
     static var espeech_isolation_enabled = true
     static var efilter_highpass_value = 80
-    static var espeech_isolation_value = 90
+    static var espeech_isolation_value = 100
     
     static var econtent_type = "voice_over"
     static var peak_reference = "true_peak"
@@ -71,8 +71,8 @@ struct EnhanceValues{
 }
 
 struct AnalysisValues{
-    static var threshold = -60
-    static var duration = 2.0
+    static var threshold = -50
+    static var duration = 0.5
 }
 
 
