@@ -1090,6 +1090,8 @@
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Your speech will be detected after tapping the start button";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your speech will be detected after tapping the start button";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1125,6 +1127,8 @@
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Your speech will be detected after tapping the start button";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your speech will be detected after tapping the start button";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

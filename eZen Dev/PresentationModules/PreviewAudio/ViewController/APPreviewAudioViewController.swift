@@ -14,6 +14,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AVFoundation
+import Speech
 
 class APPreviewAudioViewController: BaseViewController {
     
@@ -152,10 +153,34 @@ class APPreviewAudioViewController: BaseViewController {
             player?.seek(to: toTime, toleranceBefore: .zero, toleranceAfter: .zero)
         }
         playerIcon.image = UIImage(systemName: "pause.fill")
+        
+        self.showTC()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    func showTC(){
+        let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        let request = SFSpeechURLRecognitionRequest(url: file_url.address!)
+
+        request.shouldReportPartialResults = true
+        request.taskHint = .dictation
+        
+
+        if (recognizer?.isAvailable)! {
+
+            recognizer?.recognitionTask(with: request) { result, error in
+                guard error == nil else { print("Error: \(error!)"); return }
+                guard let result = result else { print("No result!"); return }
+                
+                print(result.bestTranscription.formattedString)
+                
+            }
+        } else {
+            print("Device doesn't support speech recognition")
+        }
     }
     
     
