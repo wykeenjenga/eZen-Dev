@@ -196,12 +196,10 @@ class APPreviewAudioViewController: BaseViewController {
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
     var sentence = ""
+    var stringArray = [String]()
     
     
     func playVoice(){
-        
-        var words = self.words.map {$0.punctuatedWord}
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             do {
@@ -210,7 +208,7 @@ class APPreviewAudioViewController: BaseViewController {
                 player = AVPlayer(playerItem: playerItem)
                 player?.play()
 
-                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.0001, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
+                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
@@ -233,39 +231,33 @@ class APPreviewAudioViewController: BaseViewController {
                             let start = word.start
                             let end = word.end
                             let punctuatedWord = word.punctuatedWord
-                            
+
                             let range = start...end
-                            
+
                             if range.contains(time){
-                                print("WORD.....",punctuatedWord)
+                                self.transcriptionLbl.text = punctuatedWord
+
+//                                self.stringArray.append(punctuatedWord)
+//
+//                                if self.stringArray.contains(punctuatedWord){
+//                                    print("Word is contained......\(self.stringArray)")
+//                                    self.stringArray.remove(at: 0)
+//                                }else{
+//                                    if self.stringArray.count > 3 {
+//                                        self.stringArray.remove(at: 0)
+//                                        self.sentence = self.stringArray.joined(separator: " ")
+//                                        print("Updated sentence: \(self.sentence)")
+//                                    } else {
+//                                        print("Number of words is not greater than 4.")
+//                                    }
+//
+//                                    self.sentence = self.stringArray.joined(separator: " ")
+//                                    self.transcriptionLbl.text = self.sentence
+//
+//                                }
+
                             }
-                            
-    
-//                            if time >= start && time <= end {
-//                                print("THE WORD IS....\(word.word).....\(word.punctuatedWord)")
-////                                let wordss = self.sentence.split(separator: " ")
-//
-////                                if wordss.count > 4 {
-////                                    let newWord = " \(punctuatedWord)"
-////                                    let updatedSentence = wordss[1...].joined(separator: " ")
-////                                    self.sentence = "\(updatedSentence) \(newWord)"
-////                                    print("Updated sentence: \(self.sentence)")
-////                                } else {
-////                                    print("Number of words is not greater than 4.")
-////                                    self.sentence.append(" \(punctuatedWord)")
-////                                }
-//
-//                                self.transcriptionLbl.text = punctuatedWord
-//
-//                                //self.transcriptionLbl.animate(newText: self.transcriptionLbl.text ?? "", characterDelay: 0.1)
-//
-//                            }else{
-//                                //print("Does not contain....")
-//                                //self.transcriptionLbl.text = ""
-//                            }
                         }
-                        //do any
-                        
                     }
                 }
                 
