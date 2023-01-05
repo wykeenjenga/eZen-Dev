@@ -197,7 +197,11 @@ class APPreviewAudioViewController: BaseViewController {
     var playerItem: AVPlayerItem?
     var sentence = ""
     
+    
     func playVoice(){
+        
+        var words = self.words.map {$0.punctuatedWord}
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             do {
@@ -224,14 +228,29 @@ class APPreviewAudioViewController: BaseViewController {
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
                         
+                        
                         for word in self.words{
                             let start = word.start
                             let end = word.end
                             let punctuatedWord = word.punctuatedWord
-                            
+    
                             if time >= start && time <= end {
-                                self.transcriptionLbl.text = punctuatedWord
+                               
+                                let wordss = self.sentence.split(separator: " ")
+                                
+                                if wordss.count > 4 {
+                                    let newWord = " \(punctuatedWord)"
+                                    let updatedSentence = wordss[1...].joined(separator: " ")
+                                    self.sentence = "\(updatedSentence) \(newWord)"
+                                    print("Updated sentence: \(self.sentence)")
+                                } else {
+                                    print("Number of words is not greater than 4.")
+                                    self.sentence.append(" \(punctuatedWord)")
+                                }
+                                
+                                self.transcriptionLbl.text = self.sentence
                                 //self.transcriptionLbl.animate(newText: self.transcriptionLbl.text ?? "", characterDelay: 0.1)
+                                
                             }else{
                                 //print("Does not contain....")
                                 //self.transcriptionLbl.text = ""
