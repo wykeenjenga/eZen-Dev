@@ -91,9 +91,9 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
             try fileManager.moveItem(at: originPath, to: destinationPath)
             
             //use destination file path... to upload
-            file_url.address = destinationPath
-            self.uploadAudio(filePath: destinationPath)
-            //self.viewModel.route.value = .isPreview
+            curr_file_url.address = destinationPath
+            //self.uploadAudio(filePath: destinationPath)
+            self.viewModel.route.value = .isPreview
             
         } catch {
             self.viewModel.route.value = .error

@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Mulish-Bold.ttf">
+            <string>Mulish-Bold</string>
+        </array>
         <array key="Mulish-Regular.ttf">
             <string>Mulish-Regular</string>
         </array>
@@ -21,6 +24,7 @@
                 <outlet property="playerIcon" destination="SRs-kg-s5y" id="o0U-NN-iQO"/>
                 <outlet property="playerProgressBar" destination="UfK-vN-sGo" id="a4I-Sc-e6H"/>
                 <outlet property="start_at" destination="FE2-vY-rQe" id="PPt-br-a7w"/>
+                <outlet property="transcriptionLbl" destination="fir-EP-SeF" id="950-35-JTo"/>
                 <outlet property="view" destination="JxS-CR-pEr" id="Un5-QF-u7w"/>
             </connections>
         </placeholder>
@@ -185,6 +189,12 @@
                         <action selector="exit:" destination="-1" eventType="touchUpInside" id="7F8-Zz-j3y"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fir-EP-SeF">
+                    <rect key="frame" x="16" y="513" width="361" height="0.0"/>
+                    <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
+                    <color key="textColor" name="red"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="bPT-gn-NOQ"/>
             <color key="backgroundColor" name="yellow"/>
@@ -194,10 +204,13 @@
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="EfK-l6-qQU" secondAttribute="trailing" constant="44" id="ICM-Dy-S4y"/>
                 <constraint firstItem="EfK-l6-qQU" firstAttribute="centerY" secondItem="JxS-CR-pEr" secondAttribute="centerY" constant="-6" id="Mpz-fg-B7U"/>
                 <constraint firstItem="EfK-l6-qQU" firstAttribute="centerX" secondItem="JxS-CR-pEr" secondAttribute="centerX" id="Nin-db-Ofk"/>
+                <constraint firstItem="fir-EP-SeF" firstAttribute="top" secondItem="EfK-l6-qQU" secondAttribute="bottom" constant="14" id="Pau-lz-eql"/>
+                <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="fir-EP-SeF" secondAttribute="trailing" constant="16" id="SW1-gw-GHT"/>
                 <constraint firstItem="oxU-Yu-iEB" firstAttribute="top" secondItem="bPT-gn-NOQ" secondAttribute="top" constant="54" id="Tql-hf-kVk"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="IxB-iw-xgJ" secondAttribute="trailing" constant="20" id="VAm-Og-BFd"/>
                 <constraint firstItem="oxU-Yu-iEB" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="45" id="Vhn-7z-dEn"/>
                 <constraint firstItem="IxB-iw-xgJ" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="20" id="W1C-pJ-dLB"/>
+                <constraint firstItem="fir-EP-SeF" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="16" id="coc-2m-v5l"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="bottom" secondItem="IxB-iw-xgJ" secondAttribute="bottom" constant="28" id="oUb-LL-NeB"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="oxU-Yu-iEB" secondAttribute="trailing" constant="43" id="pct-xD-8DD"/>
                 <constraint firstItem="OVM-pm-Cu8" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="-9" id="y2i-fu-Gkk"/>

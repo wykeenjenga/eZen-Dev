@@ -28,15 +28,20 @@ protocol APHomeViewModelOutput {
     var route: Dynamic<APHomeViewModelRoute> { get set }
     var initFile: Dynamic<URL?> {get set}
     var sectionsArray: Dynamic<[[Double]]> {get set}
+    var transcript: Dynamic<String> {get set}
+    var words: Dynamic<[Word]> {get set}
 }
 
-protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput {
+protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput{
+    
 }
 
 final class DefaultAPHomeViewModel: APHomeViewModel {
     var route: Dynamic<APHomeViewModelRoute> = Dynamic(.initial)
     var initFile: Dynamic<URL?> = Dynamic(nil)
     var sectionsArray: Dynamic<[[Double]]> = Dynamic([])
+    var transcript: Dynamic<String> = Dynamic("")
+    var words: Dynamic<[Word]> = Dynamic([])
     
     init() {
     }
@@ -55,7 +60,7 @@ extension APHomeViewModel{
                 self.route.value = .error
             }else{
                 //
-                file_url.address = url
+                curr_file_url.address = url
                 print("File status is....\(url)")
                 self.route.value = .isPreview
             }
@@ -65,12 +70,12 @@ extension APHomeViewModel{
     
     func equalizeAudio(){
         self.route.value = .activity(loading: true)
-        APAPIGateway.door().uploadToEzen(voiceOverUrl: file_url.address!) { url, error in
+        APAPIGateway.door().uploadToEzen(voiceOverUrl: curr_file_url.address!) { url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
             }else{
-                file_url.address = url
+                curr_file_url.address = url
                 print("GETTING SILENCE PARTS..\(url)")
                 //self.route.value = .isPreview
                 self.getSilentParts()
@@ -80,15 +85,15 @@ extension APHomeViewModel{
     
     func getSilentParts(){
         self.route.value = .activity(loading: true)
-        print("THE URL IS ...\(String(describing: file_url.address!))")
+        print("THE URL IS ...\(String(describing: curr_file_url.address!))")
         
-        APAPIGateway.door().uploadVoiceOver(fileURL: file_url.address!, isAnalyze: true) { url, error in
+        APAPIGateway.door().uploadVoiceOver(fileURL: curr_file_url.address!, isAnalyze: true) { url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
             }else{
                 //
-                file_url.address = url
+                curr_file_url.address = url
                 print("JSON File DATA is from....\(url)")
                 loadData()
             }
@@ -97,7 +102,7 @@ extension APHomeViewModel{
     
     func loadData(){
         do {
-            let fileUrl = URL(fileURLWithPath: file_url.address!.path)
+            let fileUrl = URL(fileURLWithPath: curr_file_url.address!.path)
             // Getting data from JSON file using the file URL
             let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
             //json = try? JSONSerialization.jsonObject(with: data)
@@ -118,7 +123,7 @@ extension APHomeViewModel{
                 let sections = silence["sections"]
                 
                 let dd = "\(sections)"
-                print("DD", dd)
+                //print("DD", dd)
                 
                 let jsonDD = """
                 \(dd)
@@ -158,12 +163,24 @@ extension APHomeViewModel{
     
     func applyNoiseGate(){
         self.route.value = .activity(loading: true)
-        APAPIGateway.door().applyNoiseGate(parts: self.sectionsArray.value!) { url, error in
+        APAPIGateway.door().applyNoiseGate(parts: self.sectionsArray.value!) {json, url, error in
             self.route.value = .activity(loading: false)
             if error != nil{
                 self.route.value = .error
             }else{
-                print("NEW GATED URL IS..\(url)")
+                let jsonData = """
+                \(json!)
+                """.data(using: .utf8)!
+                
+                let data = try? JSONDecoder().decode(APTranscriptionModel.self, from: jsonData)
+                let results = data!.results.channels[0].alternatives[0]
+                
+                self.transcript.value = results.transcript
+                print("NEW GATED URL IS AND TRANSCRIPTION DATA IS............\(self.transcript.value)")
+                
+                let words = results.words
+                self.words.value = words
+                
                 self.route.value = .isPreview
             }
         }

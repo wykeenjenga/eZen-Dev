@@ -550,7 +550,7 @@ class APAPIGateway {
     }
     
     
-    func getTranscription(completion: @escaping(String, Error?) -> Void){
+    func getTranscription(completion: @escaping(JSON?, Error?) -> Void){
         let url =  "http://45.61.56.80/api/getTranscription"
         let parameters = ["fileName": "ezenAdmin"] as [String : Any]
         
@@ -566,14 +566,13 @@ class APAPIGateway {
                 case .success(_):
                     if response.value != nil{
                         let json = JSON(response.value!)
-                        print("Request response for audio transcription==>", json)
-                        let data = json["response"].stringValue
-                        print("We have the information....")
+                        print("Request response for audio transcription==>")
+                        let data = json["response"]
                         completion(data, nil)
                     }
                     break
                 case .failure(let error):
-                    completion("", error.asAFError)
+                    completion(nil, error.asAFError)
                     break
                 }
                 self.endBGTask()
@@ -581,7 +580,7 @@ class APAPIGateway {
         }
     }
     
-    func applyNoiseGate(parts: [[Double]], completion: @escaping(URL?, Error?) -> Void){
+    func applyNoiseGate(parts: [[Double]], completion: @escaping(JSON?, URL?, Error?) -> Void){
         let url =  "http://45.61.56.80/api/ApplyNoiseGate"
         let parameters = ["parts": parts, "fileName": "ezenAdmin"] as [String : Any]
         
@@ -603,10 +602,10 @@ class APAPIGateway {
                                 if error == nil{
                                     self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
                                         if error == nil{
-                                            file_url.address = url
-                                            completion(url, nil)
+                                            curr_file_url.address = url
+                                            completion(transcription, url, nil)
                                         }else{
-                                            completion(nil, error)
+                                            completion(nil, nil, error)
                                         }
                                     }
                                 }
@@ -615,7 +614,7 @@ class APAPIGateway {
                     }
                     break
                 case .failure(let error):
-                    completion(nil, error.asAFError)
+                    completion(nil, nil, error.asAFError)
                     break
                 }
                 self.endBGTask()

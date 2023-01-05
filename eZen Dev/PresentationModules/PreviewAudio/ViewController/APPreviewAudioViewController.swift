@@ -6,7 +6,7 @@
 //  Copyright © 2022 Music of Wisdom. All rights reserved.
 //
 
-struct file_url {
+struct curr_file_url {
     static var address : URL?
 }
 
@@ -30,8 +30,11 @@ class APPreviewAudioViewController: BaseViewController {
     var timeIntvl: TimeInterval = Double(0.0)
     var cmTime = CMTime()
     
-    var url = file_url.address
+    var url = curr_file_url.address
+    var transcription = ""
+    var words = [Word]()
     
+    @IBOutlet weak var transcriptionLbl: UILabel!
     
     @IBOutlet weak var start_at: UILabel!
     @IBOutlet weak var end_at: UILabel!
@@ -127,8 +130,11 @@ class APPreviewAudioViewController: BaseViewController {
                     self?.showAlert(title: "Error", message: "We are experiencing technical difficulties. Please try again later")
                     break
                 case .isPreview:
+                    let s = self?.viewModel.transcript.value
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.isEnhance = false
+                    homeVC.transcription = s ?? ""
+                    homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
                     self?.present(homeVC, animated: true, completion: nil)
@@ -155,7 +161,8 @@ class APPreviewAudioViewController: BaseViewController {
         }
         playerIcon.image = UIImage(systemName: "pause.fill")
         
-        self.showTC()
+        //self.showTC()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -164,7 +171,7 @@ class APPreviewAudioViewController: BaseViewController {
     
     func showTC(){
         let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-        let request = SFSpeechURLRecognitionRequest(url: file_url.address!)
+        let request = SFSpeechURLRecognitionRequest(url: curr_file_url.address!)
 
         request.shouldReportPartialResults = true
         request.taskHint = .dictation
@@ -182,6 +189,7 @@ class APPreviewAudioViewController: BaseViewController {
         } else {
             print("Device doesn't support speech recognition")
         }
+
     }
     
     var player: AVPlayer?
@@ -213,6 +221,23 @@ class APPreviewAudioViewController: BaseViewController {
                         self.currentDuration = time
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
+                        
+                        for word in self.words{
+                            let start = word.start
+                            let end = word.end
+                            let punctuatedWord = word.punctuatedWord
+                            
+                            if time >= start && time <= end {
+                                print(punctuatedWord)
+                                self.transcriptionLbl.animate(newText: punctuatedWord ?? "", characterDelay: 0.1)
+                                print("ON Play...\(word.punctuatedWord)....\(word.start)....\(word.end)")
+                            }else{
+                                print("Does not contain....")
+                                self.transcriptionLbl.text = ""
+                            }
+
+                            
+                        }
                     }
                 }
                 
@@ -231,6 +256,7 @@ class APPreviewAudioViewController: BaseViewController {
     @objc func playerDidFinishPlaying(note: NSNotification) {
         self.currentDuration = 0.0
         self.invalidateTimer()
+        self.transcriptionLbl.text = ""
     }
 
     
