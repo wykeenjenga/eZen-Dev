@@ -111,7 +111,8 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
+        //self.viewModel.equalizeAudio()
+        self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     
@@ -194,6 +195,7 @@ class APPreviewAudioViewController: BaseViewController {
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
+    var sentence = ""
     
     func playVoice(){
         do {
@@ -228,15 +230,12 @@ class APPreviewAudioViewController: BaseViewController {
                             let punctuatedWord = word.punctuatedWord
                             
                             if time >= start && time <= end {
-                                print(punctuatedWord)
-                                self.transcriptionLbl.animate(newText: punctuatedWord ?? "", characterDelay: 0.1)
-                                print("ON Play...\(word.punctuatedWord)....\(word.start)....\(word.end)")
+                                self.transcriptionLbl.text = punctuatedWord
+                                //self.transcriptionLbl.animate(newText: self.transcriptionLbl.text ?? "", characterDelay: 0.1)
                             }else{
-                                print("Does not contain....")
-                                self.transcriptionLbl.text = ""
+                                //print("Does not contain....")
+                                //self.transcriptionLbl.text = ""
                             }
-
-                            
                         }
                     }
                 }

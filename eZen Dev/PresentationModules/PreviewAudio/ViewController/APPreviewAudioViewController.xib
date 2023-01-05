@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Mulish-Bold.ttf">
-            <string>Mulish-Bold</string>
+        <array key="ArimaMadurai-Bold.ttf">
+            <string>ArimaMadurai-Bold</string>
         </array>
         <array key="Mulish-Regular.ttf">
             <string>Mulish-Regular</string>
@@ -191,7 +191,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fir-EP-SeF">
                     <rect key="frame" x="16" y="513" width="361" height="0.0"/>
-                    <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="ArimaMadurai-Bold" family="Arima Madurai" pointSize="24"/>
                     <color key="textColor" name="red"/>
                     <nil key="highlightedColor"/>
                 </label>

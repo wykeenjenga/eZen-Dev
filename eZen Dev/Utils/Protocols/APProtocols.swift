@@ -114,5 +114,5 @@ extension UILabel {
             }
         }
     }
-
 }
+
