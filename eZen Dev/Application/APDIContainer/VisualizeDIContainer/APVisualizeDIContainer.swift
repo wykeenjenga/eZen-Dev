@@ -19,7 +19,7 @@ final class APVisualizeDIContainer {
         self.dependencies = dependencies
     }
     
-    func makeSettingsViewController() -> APVisualizeViewController {
+    func makeVisualViewController() -> APVisualizeViewController {
         return APVisualizeViewController.create()
     }
 }

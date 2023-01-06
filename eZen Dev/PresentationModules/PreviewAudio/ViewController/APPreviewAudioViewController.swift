@@ -40,6 +40,7 @@ class APPreviewAudioViewController: BaseViewController {
     @IBOutlet weak var end_at: UILabel!
     @IBOutlet var playerIcon: UIImageView!
 
+    @IBOutlet weak var visualizeBtn: UIButton!
     @IBOutlet var playerProgressBar: UISlider!
     
     var start1 : Double = 0
@@ -59,8 +60,7 @@ class APPreviewAudioViewController: BaseViewController {
     @IBAction func onClickVisualize(_ sender: Any) {
         //navigate to visualization
         let s = self.viewModel.transcript.value
-        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
-        visualizeVC.isEnhance = false
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
         visualizeVC.transcription = s ?? ""
         visualizeVC.words = (self.viewModel.words.value)!
         visualizeVC.modalPresentationStyle = .fullScreen

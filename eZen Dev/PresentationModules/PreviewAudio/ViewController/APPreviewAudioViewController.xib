@@ -26,6 +26,7 @@
                 <outlet property="start_at" destination="FE2-vY-rQe" id="PPt-br-a7w"/>
                 <outlet property="transcriptionLbl" destination="fir-EP-SeF" id="950-35-JTo"/>
                 <outlet property="view" destination="JxS-CR-pEr" id="Un5-QF-u7w"/>
+                <outlet property="visualizeBtn" destination="UTV-ea-eRP" id="15P-Hc-pZp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -182,7 +183,7 @@
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
-                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="large" weight="regular"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="exit:" destination="-1" eventType="touchUpInside" id="7F8-Zz-j3y"/>
@@ -195,10 +196,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
-                    <rect key="frame" x="345" y="59" width="32" height="35"/>
+                    <rect key="frame" x="341" y="59" width="36" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Puz-mI-4fe"/>
-                        <constraint firstAttribute="width" constant="32" id="a2i-XV-ztG"/>
+                        <constraint firstAttribute="width" constant="36" id="a2i-XV-ztG"/>
                     </constraints>
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
@@ -206,7 +207,6 @@
                         <backgroundConfiguration key="background" image="u-removebg-preview"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="exit:" destination="-1" eventType="touchUpInside" id="MeE-uh-rNg"/>
                         <action selector="onClickVisualize:" destination="-1" eventType="touchUpInside" id="T2N-91-yDf"/>
                     </connections>
                 </button>
@@ -239,7 +239,7 @@
         <image name="Ellipse" width="170.66667175292969" height="170.66667175292969"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
-        <image name="u-removebg-preview" width="473" height="528"/>
+        <image name="u-removebg-preview" width="157.66667175292969" height="176"/>
         <namedColor name="blue">
             <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
