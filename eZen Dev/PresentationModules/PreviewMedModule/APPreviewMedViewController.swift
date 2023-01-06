@@ -40,13 +40,13 @@ class APPreviewMedViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.invalidateTimer()
         self.playVoice()
     }
     
     @IBAction func closePage(_ sender: Any) {
-        
+        self.invalidateTimer()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changeOrientation(_ sender: Any) {
@@ -54,16 +54,16 @@ class APPreviewMedViewController: UIViewController {
     }
     
     @IBAction func playMusic(_ sender: Any) {
-        
+        //mute and unmute audio
     }
     
     @IBAction func showTranscription(_ sender: Any) {
-        
+        //show or hide transcription
     }
     
     
     @IBAction func showVideo(_ sender: Any) {
-        
+        //show or hide video
     }
 
     
@@ -83,17 +83,8 @@ class APPreviewMedViewController: UIViewController {
 
                         let duration : CMTime = self.playerItem!.asset.duration
                         let seconds : Float64 = CMTimeGetSeconds(duration)
-
-                        self.start_at.text = self.stringFromTimeInterval(interval: time)
-                        
-                        self.end_at.text = self.stringFromTimeInterval(interval: seconds)
-                        
-                        self.playerProgressBar.maximumValue = Float(seconds)
-                        self.playerProgressBar.isContinuous = true
                         
                         self.currentDuration = time
-                        
-                        self.playerProgressBar.setValue(Float(time), animated: true)
                         
                         for word in self.words{
                             let start = word.start
@@ -130,8 +121,6 @@ class APPreviewMedViewController: UIViewController {
                     }
                 }
                 
-                self.isPlaying = true
-                
                 NotificationCenter.default.addObserver(self,selector: #selector(playerDidFinishPlaying),name: .AVPlayerItemDidPlayToEndTime,object: player?.currentItem)
 
             } catch _ as NSError {
@@ -155,8 +144,6 @@ class APPreviewMedViewController: UIViewController {
     
     func invalidateTimer(){
         self.player?.pause()
-        self.playerIcon.image = UIImage(systemName: "play.fill")
-        self.isPlaying = false
     }
     
     
