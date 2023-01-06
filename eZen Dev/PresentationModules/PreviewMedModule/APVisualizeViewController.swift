@@ -101,16 +101,16 @@ class APVisualizeViewController: UIViewController {
                             if range.contains(time){
                                 
                                 if let lastString = self.stringArray.last, lastString == punctuatedWord{
-                                    print("Word is contained......\(self.stringArray)")
+                                    print("Word... is contained......\(self.stringArray)")
                                     //self.stringArray.remove(at: 0)
                                 }else{
                                     
                                     if self.stringArray.count > 3 {
                                         self.stringArray.remove(at: 0)
                                         self.sentence = self.stringArray.joined(separator: " ")
-                                        print("Updated sentence: \(self.sentence)")
+                                        print("Updated.. sentence: \(self.sentence)")
                                     } else {
-                                        print("Number of words is not greater than 4.")
+                                        print("Number.. of words is not greater than 4.")
                                     }
                                     
                                     self.stringArray.append(punctuatedWord)

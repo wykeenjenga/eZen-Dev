@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,22 +27,23 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="cxY-hH-AKj">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="cxY-hH-AKj">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4a-qP-Cf4">
                     <rect key="frame" x="16" y="59" width="361" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwf-sY-ceY">
-                            <rect key="frame" x="0.0" y="5" width="22" height="35"/>
+                            <rect key="frame" x="0.0" y="5" width="41" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="22" id="Bbm-HP-emR"/>
-                                <constraint firstAttribute="height" constant="35" id="TvG-m8-weJ"/>
+                                <constraint firstAttribute="width" constant="41" id="Bbm-HP-emR"/>
+                                <constraint firstAttribute="height" constant="32" id="TvG-m8-weJ"/>
                             </constraints>
                             <color key="tintColor" name="yellow"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
+                            <buttonConfiguration key="configuration" style="plain" cornerStyle="small">
+                                <imageReference key="image" image="arrow.left" catalog="system" symbolScale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="closePage:" destination="-1" eventType="touchUpInside" id="LaU-Et-JMU"/>
@@ -66,7 +68,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="bwf-sY-ceY" firstAttribute="top" secondItem="A4a-qP-Cf4" secondAttribute="top" constant="5" id="OoB-NN-5wV"/>
-                        <constraint firstAttribute="bottom" secondItem="bwf-sY-ceY" secondAttribute="bottom" constant="5" id="gpB-pj-afk"/>
+                        <constraint firstAttribute="bottom" secondItem="bwf-sY-ceY" secondAttribute="bottom" constant="8" id="gpB-pj-afk"/>
                         <constraint firstItem="Axm-q7-qh8" firstAttribute="top" secondItem="A4a-qP-Cf4" secondAttribute="top" constant="5" id="hjc-ff-UpH"/>
                         <constraint firstAttribute="trailing" secondItem="Axm-q7-qh8" secondAttribute="trailing" id="kzI-J8-TmL"/>
                         <constraint firstAttribute="height" constant="45" id="xJg-72-rc9"/>
@@ -134,11 +136,11 @@
                         <constraint firstItem="nA1-3U-THQ" firstAttribute="centerX" secondItem="Sks-YB-uxo" secondAttribute="centerX" id="r5a-6s-Kbi"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
-                    <rect key="frame" x="45" y="362" width="305" height="128"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
+                    <rect key="frame" x="44" y="362" width="305" height="128"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the present moment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzq-GY-QHT">
-                            <rect key="frame" x="8" y="8" width="289" height="104.66666666666667"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzq-GY-QHT">
+                            <rect key="frame" x="8" y="8" width="289" height="0.0"/>
                             <fontDescription key="fontDescription" name="ArimaMadurai-Bold" family="Arima Madurai" pointSize="32"/>
                             <color key="textColor" name="yellow"/>
                             <nil key="highlightedColor"/>
@@ -146,10 +148,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="xzq-GY-QHT" secondAttribute="trailing" constant="8" id="Cem-aV-KqS"/>
-                        <constraint firstItem="xzq-GY-QHT" firstAttribute="top" secondItem="rch-ba-0W8" secondAttribute="top" constant="8" id="EfD-KV-Sbq"/>
-                        <constraint firstItem="xzq-GY-QHT" firstAttribute="leading" secondItem="rch-ba-0W8" secondAttribute="leading" constant="8" id="N3j-tU-3wp"/>
-                        <constraint firstAttribute="height" constant="128" id="vnI-sw-85k"/>
+                        <constraint firstAttribute="height" constant="128" id="AXK-h9-3BL"/>
+                        <constraint firstAttribute="trailing" secondItem="xzq-GY-QHT" secondAttribute="trailing" constant="8" id="bcI-UD-SYO"/>
+                        <constraint firstItem="xzq-GY-QHT" firstAttribute="top" secondItem="rch-ba-0W8" secondAttribute="top" constant="8" id="jrm-eF-W91"/>
+                        <constraint firstItem="xzq-GY-QHT" firstAttribute="leading" secondItem="rch-ba-0W8" secondAttribute="leading" constant="8" id="tvV-BY-ww7"/>
+                        <constraint firstAttribute="width" constant="305" id="xNv-ef-xdU"/>
                     </constraints>
                 </view>
             </subviews>
@@ -161,12 +164,11 @@
                 <constraint firstItem="A4a-qP-Cf4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DVN-5Q-aYE"/>
                 <constraint firstItem="A4a-qP-Cf4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Kcu-ra-GtX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="A4a-qP-Cf4" secondAttribute="trailing" constant="16" id="LaW-Mh-Mtj"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rch-ba-0W8" secondAttribute="trailing" constant="43" id="Nlj-Ua-vft"/>
                 <constraint firstItem="cxY-hH-AKj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TEb-6k-NDN"/>
-                <constraint firstItem="rch-ba-0W8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="VEw-Bh-lXD"/>
                 <constraint firstItem="cxY-hH-AKj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YQp-X0-3jS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Sks-YB-uxo" secondAttribute="trailing" constant="16" id="b0h-fg-yAD"/>
-                <constraint firstItem="rch-ba-0W8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iGy-Ha-FTb"/>
+                <constraint firstItem="rch-ba-0W8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dn0-6c-7K6"/>
+                <constraint firstItem="rch-ba-0W8" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="o8P-p7-Qe2"/>
                 <constraint firstItem="Sks-YB-uxo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="y7B-fe-IXP"/>
                 <constraint firstItem="Sks-YB-uxo" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="yrH-LM-lad"/>
             </constraints>
@@ -174,7 +176,7 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow.backward" catalog="system" width="128" height="95"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="background" width="170.66667175292969" height="369.66665649414062"/>
         <image name="music" width="170.66667175292969" height="170.66667175292969"/>
         <image name="orientation" width="170.66667175292969" height="159.66667175292969"/>

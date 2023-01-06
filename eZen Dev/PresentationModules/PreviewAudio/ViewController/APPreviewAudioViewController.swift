@@ -59,10 +59,9 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBAction func onClickVisualize(_ sender: Any) {
         //navigate to visualization
-        let s = self.viewModel.transcript.value
         let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-        visualizeVC.transcription = s ?? ""
-        visualizeVC.words = (self.viewModel.words.value)!
+        visualizeVC.transcription = self.transcription
+        visualizeVC.words = self.words
         visualizeVC.modalPresentationStyle = .fullScreen
         visualizeVC.modalTransitionStyle = .coverVertical
         self.present(visualizeVC, animated: true, completion: nil)
@@ -110,7 +109,9 @@ class APPreviewAudioViewController: BaseViewController {
         playerProgressBar.isContinuous = true
         
         if !isEnhance{
-            applyBellBtn.isHidden = true
+            self.applyBellBtn.isHidden = true
+        }else{
+            self.visualizeBtn.isHidden = true
         }
         
 //        if !AppSettings.isBellCurveEQAtcive{
