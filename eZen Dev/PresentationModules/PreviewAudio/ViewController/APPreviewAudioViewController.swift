@@ -208,7 +208,7 @@ class APPreviewAudioViewController: BaseViewController {
                 player = AVPlayer(playerItem: playerItem)
                 player?.play()
 
-                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
+                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.0001, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
@@ -226,7 +226,6 @@ class APPreviewAudioViewController: BaseViewController {
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
                         
-                        
                         for word in self.words{
                             let start = word.start
                             let end = word.end
@@ -235,29 +234,30 @@ class APPreviewAudioViewController: BaseViewController {
                             let range = start...end
 
                             if range.contains(time){
-                                self.transcriptionLbl.text = punctuatedWord
-
-//                                self.stringArray.append(punctuatedWord)
-//
-//                                if self.stringArray.contains(punctuatedWord){
-//                                    print("Word is contained......\(self.stringArray)")
-//                                    self.stringArray.remove(at: 0)
-//                                }else{
-//                                    if self.stringArray.count > 3 {
-//                                        self.stringArray.remove(at: 0)
-//                                        self.sentence = self.stringArray.joined(separator: " ")
-//                                        print("Updated sentence: \(self.sentence)")
-//                                    } else {
-//                                        print("Number of words is not greater than 4.")
-//                                    }
-//
-//                                    self.sentence = self.stringArray.joined(separator: " ")
-//                                    self.transcriptionLbl.text = self.sentence
-//
-//                                }
+                                
+                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
+                                    print("Word is contained......\(self.stringArray)")
+                                    //self.stringArray.remove(at: 0)
+                                }else{
+                                    
+                                    if self.stringArray.count > 3 {
+                                        self.stringArray.remove(at: 0)
+                                        self.sentence = self.stringArray.joined(separator: " ")
+                                        print("Updated sentence: \(self.sentence)")
+                                    } else {
+                                        print("Number of words is not greater than 4.")
+                                    }
+                                    
+                                    self.stringArray.append(punctuatedWord)
+                                    self.sentence = self.stringArray.joined(separator: " ")
+                                    
+                                    self.transcriptionLbl.text = self.sentence
+                                    self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+                                }
 
                             }
                         }
+                        
                     }
                 }
                 
@@ -271,6 +271,8 @@ class APPreviewAudioViewController: BaseViewController {
         } catch _ as NSError {
             print("")
         }
+     
+        
     }
 
     @objc func playerDidFinishPlaying(note: NSNotification) {
