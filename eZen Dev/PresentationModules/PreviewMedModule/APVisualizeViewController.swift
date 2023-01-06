@@ -12,7 +12,7 @@ import SwiftyJSON
 import AVFoundation
 import Speech
 
-class APPreviewMedViewController: UIViewController {
+class APVisualizeViewController: UIViewController {
     
     var duration = 0.0
     var currentDuration = 0.0
@@ -35,6 +35,11 @@ class APPreviewMedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    final class func create() -> APVisualizeViewController {
+        let view = APVisualizeViewController(nibName: "APVisualizeViewController", bundle: nil)
+        return view
     }
 
 
@@ -82,7 +87,7 @@ class APPreviewMedViewController: UIViewController {
                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
                         let duration : CMTime = self.playerItem!.asset.duration
-                        let seconds : Float64 = CMTimeGetSeconds(duration)
+                        let _ : Float64 = CMTimeGetSeconds(duration)
                         
                         self.currentDuration = time
                         

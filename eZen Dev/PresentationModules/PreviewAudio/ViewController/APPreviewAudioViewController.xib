@@ -174,16 +174,15 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVM-pm-Cu8">
-                    <rect key="frame" x="-9" y="59" width="105" height="35"/>
+                    <rect key="frame" x="0.0" y="59" width="44" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="IbP-AE-iui"/>
-                        <constraint firstAttribute="width" constant="105" id="Rzd-im-eRo"/>
+                        <constraint firstAttribute="width" constant="44" id="Rzd-im-eRo"/>
                     </constraints>
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" imagePlacement="leading" title="Home">
-                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
-                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="exit:" destination="-1" eventType="touchUpInside" id="7F8-Zz-j3y"/>
@@ -195,6 +194,22 @@
                     <color key="textColor" name="red"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
+                    <rect key="frame" x="345" y="59" width="32" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Puz-mI-4fe"/>
+                        <constraint firstAttribute="width" constant="32" id="a2i-XV-ztG"/>
+                    </constraints>
+                    <color key="tintColor" name="gray"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <backgroundConfiguration key="background" image="u-removebg-preview"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="exit:" destination="-1" eventType="touchUpInside" id="MeE-uh-rNg"/>
+                        <action selector="onClickVisualize:" destination="-1" eventType="touchUpInside" id="T2N-91-yDf"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="bPT-gn-NOQ"/>
             <color key="backgroundColor" name="yellow"/>
@@ -213,15 +228,18 @@
                 <constraint firstItem="fir-EP-SeF" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="16" id="coc-2m-v5l"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="bottom" secondItem="IxB-iw-xgJ" secondAttribute="bottom" constant="28" id="oUb-LL-NeB"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="oxU-Yu-iEB" secondAttribute="trailing" constant="43" id="pct-xD-8DD"/>
-                <constraint firstItem="OVM-pm-Cu8" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="-9" id="y2i-fu-Gkk"/>
+                <constraint firstItem="UTV-ea-eRP" firstAttribute="top" secondItem="bPT-gn-NOQ" secondAttribute="top" id="q5y-ft-ZyT"/>
+                <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="UTV-ea-eRP" secondAttribute="trailing" constant="16" id="qvP-Le-azy"/>
+                <constraint firstItem="OVM-pm-Cu8" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" id="y2i-fu-Gkk"/>
             </constraints>
             <point key="canvasLocation" x="90.839694656488547" y="634.50704225352115"/>
         </view>
     </objects>
     <resources>
         <image name="Ellipse" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
+        <image name="u-removebg-preview" width="473" height="528"/>
         <namedColor name="blue">
             <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

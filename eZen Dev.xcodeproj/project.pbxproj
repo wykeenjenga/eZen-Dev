@@ -62,8 +62,9 @@
 		0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */; };
 		0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE982954AA1100976E55 /* SilentParts.swift */; };
 		0B7B6DEF2965DEA500EAE309 /* APTranscriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DEE2965DEA500EAE309 /* APTranscriptionModel.swift */; };
-		0B7B6DF32966EABC00EAE309 /* APPreviewMedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF12966EABC00EAE309 /* APPreviewMedViewController.swift */; };
+		0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */; };
 		0B7B6DF42966EABC00EAE309 /* APPreviewMedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF22966EABC00EAE309 /* APPreviewMedViewController.xib */; };
+		0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */; };
 		0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */; };
 		0BBABBF02955F8D4007CABEB /* APSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */; };
 		0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD379B295615000006FF9E /* SettingsDIContainer.swift */; };
@@ -149,8 +150,9 @@
 		0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewVoiceOverDIContainer.swift; sourceTree = "<group>"; };
 		0B76DE982954AA1100976E55 /* SilentParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentParts.swift; sourceTree = "<group>"; };
 		0B7B6DEE2965DEA500EAE309 /* APTranscriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionModel.swift; sourceTree = "<group>"; };
-		0B7B6DF12966EABC00EAE309 /* APPreviewMedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPreviewMedViewController.swift; sourceTree = "<group>"; };
+		0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeViewController.swift; sourceTree = "<group>"; };
 		0B7B6DF22966EABC00EAE309 /* APPreviewMedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APPreviewMedViewController.xib; sourceTree = "<group>"; };
+		0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeDIContainer.swift; sourceTree = "<group>"; };
 		0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingsViewController.swift; sourceTree = "<group>"; };
 		0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSettingsViewController.xib; sourceTree = "<group>"; };
 		0BCD379B295615000006FF9E /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+				0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */,
 				0BCD379A295614E10006FF9E /* SettingsContainer */,
 				0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */,
 				0B32C54629504EFE00028D5D /* HomeDIContainer */,
@@ -570,10 +573,18 @@
 		0B7B6DF02966EA8E00EAE309 /* PreviewMedModule */ = {
 			isa = PBXGroup;
 			children = (
-				0B7B6DF12966EABC00EAE309 /* APPreviewMedViewController.swift */,
+				0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */,
 				0B7B6DF22966EABC00EAE309 /* APPreviewMedViewController.xib */,
 			);
 			path = PreviewMedModule;
+			sourceTree = "<group>";
+		};
+		0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */,
+			);
+			path = VisualizeDIContainer;
 			sourceTree = "<group>";
 		};
 		0BBABBEA2955F89E007CABEB /* SettingsModule */ = {
@@ -909,7 +920,8 @@
 				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
 				0B32C53C2950466400028D5D /* APAPIGateway.swift in Sources */,
 				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,
-				0B7B6DF32966EABC00EAE309 /* APPreviewMedViewController.swift in Sources */,
+				0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */,
+				0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */,
 				0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */,
 				0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */,
 				0B32C5392950466400028D5D /* Accessors.swift in Sources */,

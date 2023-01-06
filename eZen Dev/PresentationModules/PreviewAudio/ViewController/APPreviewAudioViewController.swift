@@ -56,6 +56,11 @@ class APPreviewAudioViewController: BaseViewController {
         }
     }
     
+    @IBAction func onClickVisualize(_ sender: Any) {
+        //navigate to visualization
+        
+    }
+    
     @IBAction func exit(_ sender: Any) {
         self.invalidateTimer()
         let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
