@@ -42,8 +42,6 @@ class APPreviewAudioViewController: BaseViewController {
 
     @IBOutlet var playerProgressBar: UISlider!
     
-    var start1 : Double = 0
-    var end1 : Double = 10
     
     var isEnhance = true
     var viewModel: APHomeViewModel!
@@ -162,8 +160,6 @@ class APPreviewAudioViewController: BaseViewController {
         }
         playerIcon.image = UIImage(systemName: "pause.fill")
         
-        //self.showTC()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -252,7 +248,7 @@ class APPreviewAudioViewController: BaseViewController {
                                     self.sentence = self.stringArray.joined(separator: " ")
                                     
                                     self.transcriptionLbl.text = self.sentence
-                                    self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
                                 }
 
                             }
@@ -279,6 +275,8 @@ class APPreviewAudioViewController: BaseViewController {
         self.currentDuration = 0.0
         self.invalidateTimer()
         self.transcriptionLbl.text = ""
+        self.stringArray.removeAll()
+        self.sentence = ""
     }
 
     

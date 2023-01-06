@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APPreviewMedViewController" customModule="eZen_Dev" customModuleProvider="target">
             <connections>
+                <outlet property="transcriptionLbl" destination="xzq-GY-QHT" id="4oq-sO-Fbc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,6 +43,9 @@
                             <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="closePage:" destination="-1" eventType="touchUpInside" id="LaU-Et-JMU"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axm-q7-qh8">
                             <rect key="frame" x="324" y="5" width="37" height="35"/>
@@ -54,6 +58,9 @@
                             <buttonConfiguration key="configuration" style="plain">
                                 <backgroundConfiguration key="background" image="orientation"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="changeOrientation:" destination="-1" eventType="touchUpInside" id="1ci-eJ-M9g"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,6 +88,9 @@
                             <buttonConfiguration key="configuration" style="plain">
                                 <backgroundConfiguration key="background" image="transcription"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="showTranscription:" destination="-1" eventType="touchUpInside" id="K9F-gk-0vD"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1at-ob-ul7">
                             <rect key="frame" x="263.66666666666669" y="8" width="50" height="50"/>
@@ -93,6 +103,9 @@
                             <buttonConfiguration key="configuration" style="plain">
                                 <backgroundConfiguration key="background" image="video"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="showVideo:" destination="-1" eventType="touchUpInside" id="Yih-Un-Kjf"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hop-af-xw3">
                             <rect key="frame" x="47.666666666666657" y="8" width="50" height="50"/>
@@ -105,6 +118,9 @@
                             <buttonConfiguration key="configuration" style="plain">
                                 <backgroundConfiguration key="background" image="music"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="playMusic:" destination="-1" eventType="touchUpInside" id="XyJ-Wr-hFU"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -159,7 +175,7 @@
     </objects>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
-        <image name="background" width="512" height="1109"/>
+        <image name="background" width="170.66667175292969" height="369.66665649414062"/>
         <image name="music" width="170.66667175292969" height="170.66667175292969"/>
         <image name="orientation" width="170.66667175292969" height="159.66667175292969"/>
         <image name="transcription" width="170.66667175292969" height="170.66667175292969"/>
