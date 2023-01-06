@@ -42,6 +42,8 @@ class APPreviewAudioViewController: BaseViewController {
 
     @IBOutlet var playerProgressBar: UISlider!
     
+    var start1 : Double = 0
+    var end1 : Double = 0
     
     var isEnhance = true
     var viewModel: APHomeViewModel!
