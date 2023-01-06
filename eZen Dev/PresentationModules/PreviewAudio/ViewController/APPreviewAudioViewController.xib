@@ -204,7 +204,7 @@
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
-                        <backgroundConfiguration key="background" image="u-removebg-preview"/>
+                        <backgroundConfiguration key="background" image="Un-removebg-preview"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="onClickVisualize:" destination="-1" eventType="touchUpInside" id="T2N-91-yDf"/>
@@ -237,9 +237,9 @@
     </objects>
     <resources>
         <image name="Ellipse" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="Un-removebg-preview" width="157.66667175292969" height="176"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
-        <image name="u-removebg-preview" width="157.66667175292969" height="176"/>
         <namedColor name="blue">
             <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

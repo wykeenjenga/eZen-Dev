@@ -11,9 +11,11 @@ import Alamofire
 import SwiftyJSON
 import AVFoundation
 import Speech
+import Loaf
 
 class APVisualizeViewController: UIViewController {
     
+    var isMuted = false
     var duration = 0.0
     var currentDuration = 0.0
     
@@ -60,6 +62,16 @@ class APVisualizeViewController: UIViewController {
     
     @IBAction func playMusic(_ sender: Any) {
         //mute and unmute audio
+        if isMuted{
+            self.player?.isMuted = false
+            Loaf("Audio is Unmuted",
+                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }else{
+            self.player?.isMuted = true
+            isMuted = true
+            Loaf("Audio is Muted",
+                 state: .warning, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }
     }
     
     @IBAction func showTranscription(_ sender: Any) {

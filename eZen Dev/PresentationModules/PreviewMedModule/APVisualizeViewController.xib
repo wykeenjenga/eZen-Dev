@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -33,22 +32,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4a-qP-Cf4">
                     <rect key="frame" x="16" y="59" width="361" height="45"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwf-sY-ceY">
-                            <rect key="frame" x="0.0" y="5" width="41" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="41" id="Bbm-HP-emR"/>
-                                <constraint firstAttribute="height" constant="32" id="TvG-m8-weJ"/>
-                            </constraints>
-                            <color key="tintColor" name="yellow"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" cornerStyle="small">
-                                <imageReference key="image" image="arrow.left" catalog="system" symbolScale="large"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="closePage:" destination="-1" eventType="touchUpInside" id="LaU-Et-JMU"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axm-q7-qh8">
                             <rect key="frame" x="324" y="5" width="37" height="35"/>
                             <constraints>
@@ -64,16 +47,31 @@
                                 <action selector="changeOrientation:" destination="-1" eventType="touchUpInside" id="1ci-eJ-M9g"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iv2-We-jQH">
+                            <rect key="frame" x="0.0" y="5" width="44" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="b2u-Wi-t3Q"/>
+                                <constraint firstAttribute="height" constant="35" id="sFE-I7-p6R"/>
+                            </constraints>
+                            <color key="tintColor" name="yellow"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="large" weight="regular"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="closePage:" destination="-1" eventType="touchUpInside" id="Oqc-GE-IJI"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="bwf-sY-ceY" firstAttribute="top" secondItem="A4a-qP-Cf4" secondAttribute="top" constant="5" id="OoB-NN-5wV"/>
-                        <constraint firstAttribute="bottom" secondItem="bwf-sY-ceY" secondAttribute="bottom" constant="8" id="gpB-pj-afk"/>
+                        <constraint firstItem="iv2-We-jQH" firstAttribute="leading" secondItem="A4a-qP-Cf4" secondAttribute="leading" id="2Bo-Z1-ryO"/>
+                        <constraint firstAttribute="bottom" secondItem="iv2-We-jQH" secondAttribute="bottom" constant="5" id="4P1-oa-B0C"/>
+                        <constraint firstItem="iv2-We-jQH" firstAttribute="top" secondItem="A4a-qP-Cf4" secondAttribute="top" constant="5" id="Ugz-Ef-OLS"/>
                         <constraint firstItem="Axm-q7-qh8" firstAttribute="top" secondItem="A4a-qP-Cf4" secondAttribute="top" constant="5" id="hjc-ff-UpH"/>
                         <constraint firstAttribute="trailing" secondItem="Axm-q7-qh8" secondAttribute="trailing" id="kzI-J8-TmL"/>
                         <constraint firstAttribute="height" constant="45" id="xJg-72-rc9"/>
                         <constraint firstAttribute="bottom" secondItem="Axm-q7-qh8" secondAttribute="bottom" constant="5" id="xh1-RG-SmW"/>
-                        <constraint firstItem="bwf-sY-ceY" firstAttribute="leading" secondItem="A4a-qP-Cf4" secondAttribute="leading" id="yki-vF-MHh"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sks-YB-uxo">
