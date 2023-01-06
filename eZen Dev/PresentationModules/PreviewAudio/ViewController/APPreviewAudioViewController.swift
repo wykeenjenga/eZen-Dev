@@ -58,7 +58,14 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBAction func onClickVisualize(_ sender: Any) {
         //navigate to visualization
-        
+        let s = self.viewModel.transcript.value
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+        visualizeVC.isEnhance = false
+        visualizeVC.transcription = s ?? ""
+        visualizeVC.words = (self.viewModel.words.value)!
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.present(visualizeVC, animated: true, completion: nil)
     }
     
     @IBAction func exit(_ sender: Any) {
