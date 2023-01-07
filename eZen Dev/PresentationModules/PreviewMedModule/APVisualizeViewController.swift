@@ -57,70 +57,52 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotatePotrait(){
+        let delegate = UIApplication.shared.delegate as! APAppDelegate
+        delegate.orientation = .portrait
+        let value = UIInterfaceOrientation.portrait.rawValue
+        
         if #available(iOS 16.0, *) {
             DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .portrait
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                self.setNeedsUpdateOfSupportedInterfaceOrientations()
+                self.navigationController?.setNeedsUpdateOfSupportedInterfaceOrientations()
                 windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait)) { error in
-                    print("error.",error)
+                    print("error",error)
+                    print(windowScene?.effectiveGeometry ?? "")
                 }
-                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
             }
-            //self.navigateToV()
-            print("Iphone 14....potrait")
         }else{
-            let delegate = UIApplication.shared.delegate as! APAppDelegate
-            delegate.orientation = .portrait
-            let value = UIInterfaceOrientation.portrait.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
             self.viewWillAppear(true)
         }
     }
     
     public func rotateLandscape(){
+        let delegate = UIApplication.shared.delegate as! APAppDelegate
+        delegate.orientation = .landscapeRight
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        
         if #available(iOS 16.0, *) {
             DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .landscapeRight
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                self.setNeedsUpdateOfSupportedInterfaceOrientations()
+                self.navigationController?.setNeedsUpdateOfSupportedInterfaceOrientations()
                 windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { error in
-                    print("ERROR (landscapeRight)....", error)
+                    print("error",error)
+                    print(windowScene?.effectiveGeometry ?? "")
+                    
                 }
-                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
+                
             }
-            //self.navigateToV()
-            print("Iphone 14....landscape")
         }else{
-            let delegate = UIApplication.shared.delegate as! APAppDelegate
-            delegate.orientation = .landscapeRight
-            let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
             self.viewWillAppear(true)
         }
     }
     
-    public func navigateToV(){
-        self.invalidateTimer()
-        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-        visualizeVC.transcription = self.transcription
-        visualizeVC.words = self.words
-        visualizeVC.modalPresentationStyle = .fullScreen
-        visualizeVC.modalTransitionStyle = .coverVertical
-        self.present(visualizeVC, animated: true, completion: nil)
-    }
-    
     @IBAction func closePage(_ sender: Any) {
         self.invalidateTimer()
-        //self.dismiss(animated: true, completion: nil)
-        if #available(iOS 16.0, *) {
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .portrait
-                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait)) { error in
-                    print("error.",error)
-                }
-                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
-            }
-        }
+        self.rotatePotrait()
         
         let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
         previewVC.isEnhance = false
@@ -128,18 +110,18 @@ class APVisualizeViewController: BaseViewController {
         previewVC.words = self.words
         previewVC.modalPresentationStyle = .fullScreen
         previewVC.modalTransitionStyle = .coverVertical
-        self.present(previewVC, animated: true, completion: nil)
+        self.customPresent(vc: previewVC, duration: 0.2, type: .fromLeft)
     }
     
     @IBAction func changeOrientation(_ sender: Any) {
-//        if isRotation{
-//            isRotation = false
-//            self.rotatePotrait()
-//
-//        }else{
-//            isRotation = true
-//            self.rotateLandscape()
-//        }
+        if isRotation{
+            isRotation = false
+            self.rotatePotrait()
+
+        }else{
+            isRotation = true
+            self.rotateLandscape()
+        }
     }
     
     @IBAction func playMusic(_ sender: Any) {
@@ -176,8 +158,6 @@ class APVisualizeViewController: BaseViewController {
     @IBAction func showVideo(_ sender: Any) {
         //show or hide video
     }
-
-    
     
     
     func playVoice(){

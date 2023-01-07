@@ -49,7 +49,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
-                    self?.present(homeVC, animated: true, completion: nil)
+                    self?.customPresent(vc: homeVC, duration: 0.0, type: .fromRight)
                     break
                 default:
                     break
@@ -88,6 +88,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
             }else{
                 self.viewModel.route.value = .error
             }
+            
             try fileManager.moveItem(at: originPath, to: destinationPath)
             
             //use destination file path... to upload

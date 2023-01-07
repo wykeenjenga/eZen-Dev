@@ -65,7 +65,7 @@ class APPreviewAudioViewController: BaseViewController {
         visualizeVC.words = self.words
         visualizeVC.modalPresentationStyle = .fullScreen
         visualizeVC.modalTransitionStyle = .coverVertical
-        self.present(visualizeVC, animated: true, completion: nil)
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
     }
     
     @IBAction func exit(_ sender: Any) {
@@ -73,7 +73,7 @@ class APPreviewAudioViewController: BaseViewController {
         let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
         homeVC.modalPresentationStyle = .fullScreen
         homeVC.modalTransitionStyle = .coverVertical
-        self.present(homeVC, animated: true, completion: nil)
+        self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
     }
     
     @IBAction func saveAndContinue(_ sender: Any) {
@@ -125,8 +125,8 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
-        //self.viewModel.applyNoiseGate()
+        //self.viewModel.equalizeAudio()
+        self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     
@@ -152,7 +152,7 @@ class APPreviewAudioViewController: BaseViewController {
                     homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
-                    self?.present(homeVC, animated: true, completion: nil)
+                    self?.customPresent(vc: homeVC, duration: 0.2, type: .fromRight)
                     break
                 default:
                     break

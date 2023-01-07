@@ -40,7 +40,7 @@
                             <color key="tintColor" name="yellow"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="large" weight="regular"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="medium" weight="regular"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="closePage:" destination="-1" eventType="touchUpInside" id="Oqc-GE-IJI"/>
