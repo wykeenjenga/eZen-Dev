@@ -14,7 +14,8 @@ import SwiftyJSON
 class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
     
     var window: UIWindow?
-    let appDiContainer = APDIContainer()
+    var appDiContainer = APDIContainer()
+    var orientation: UIInterfaceOrientationMask = .portrait
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -42,6 +43,10 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
         } else {
             assertionFailure("Could not load onboarding screen")
         }
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return orientation
     }
 
     func getAPIToken() {

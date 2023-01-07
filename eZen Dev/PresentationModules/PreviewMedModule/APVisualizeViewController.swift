@@ -13,9 +13,12 @@ import AVFoundation
 import Speech
 import Loaf
 
-class APVisualizeViewController: UIViewController {
+class APVisualizeViewController: BaseViewController {
     
     var isMuted = false
+    var isTranscription = false
+    var isVideo = false
+    
     var duration = 0.0
     var currentDuration = 0.0
     
@@ -51,6 +54,31 @@ class APVisualizeViewController: UIViewController {
         self.playVoice()
     }
     
+    public func rotateScreen(){
+        if #available(iOS 16.0, *) {
+            DispatchQueue.main.async {
+                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .portrait
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait)) { error in
+                    print("HEY ERROR DAMNNNAA....",error)
+                }
+                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
+            }
+        }
+    }
+    
+    override public var shouldAutorotate: Bool {
+      return false
+    }
+    
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
+    
+    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+      return .landscapeRight
+    }
+    
     @IBAction func closePage(_ sender: Any) {
         self.invalidateTimer()
         self.dismiss(animated: true, completion: nil)
@@ -64,18 +92,30 @@ class APVisualizeViewController: UIViewController {
         //mute and unmute audio
         if isMuted{
             self.player?.isMuted = false
+            isMuted = false
             Loaf("Audio is Unmuted",
                  state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }else{
             self.player?.isMuted = true
             isMuted = true
             Loaf("Audio is Muted",
-                 state: .warning, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
     @IBAction func showTranscription(_ sender: Any) {
         //show or hide transcription
+        if isTranscription{
+            isTranscription = false
+            self.transcriptionLbl.isHidden = false
+            Loaf("Transcription is Live",
+                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }else{
+            isTranscription = true
+            self.transcriptionLbl.isHidden = true
+            Loaf("Transcription is Hidden",
+                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }
     }
     
     
@@ -83,6 +123,7 @@ class APVisualizeViewController: UIViewController {
         //show or hide video
     }
 
+    
     
     
     func playVoice(){
@@ -117,7 +158,7 @@ class APVisualizeViewController: UIViewController {
                                     //self.stringArray.remove(at: 0)
                                 }else{
                                     
-                                    if self.stringArray.count > 3 {
+                                    if self.stringArray.count > 2 {
                                         self.stringArray.remove(at: 0)
                                         self.sentence = self.stringArray.joined(separator: " ")
                                         print("Updated.. sentence: \(self.sentence)")
@@ -156,6 +197,7 @@ class APVisualizeViewController: UIViewController {
         self.transcriptionLbl.text = ""
         self.stringArray.removeAll()
         self.sentence = ""
+        self.dismiss(animated: true, completion: nil)
     }
 
     
