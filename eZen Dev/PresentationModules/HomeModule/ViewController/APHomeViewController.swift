@@ -93,8 +93,8 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
             
             //use destination file path... to upload
             curr_file_url.address = destinationPath
-            //self.uploadAudio(filePath: destinationPath)
-            self.viewModel.route.value = .isPreview
+            self.uploadAudio(filePath: destinationPath)
+            //self.viewModel.route.value = .isPreview
             
         } catch {
             self.viewModel.route.value = .error
