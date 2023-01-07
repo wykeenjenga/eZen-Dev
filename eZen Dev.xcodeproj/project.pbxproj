@@ -65,6 +65,7 @@
 		0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */; };
 		0B7B6DF42966EABC00EAE309 /* APVisualizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */; };
 		0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */; };
+		0B7B6DF92969ADED00EAE309 /* APDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */; };
 		0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */; };
 		0BBABBF02955F8D4007CABEB /* APSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */; };
 		0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD379B295615000006FF9E /* SettingsDIContainer.swift */; };
@@ -153,6 +154,7 @@
 		0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeViewController.swift; sourceTree = "<group>"; };
 		0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APVisualizeViewController.xib; sourceTree = "<group>"; };
 		0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeDIContainer.swift; sourceTree = "<group>"; };
+		0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDeviceOrientation.swift; sourceTree = "<group>"; };
 		0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingsViewController.swift; sourceTree = "<group>"; };
 		0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSettingsViewController.xib; sourceTree = "<group>"; };
 		0BCD379B295615000006FF9E /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				0B32C51D2950454F00028D5D /* APProtocols.swift */,
 				0B32C51E2950454F00028D5D /* HUDLoaderProtocol.swift */,
 				0B32C51F2950454F00028D5D /* StoryboardInstantiable.swift */,
+				0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */,
+				0B7B6DF92969ADED00EAE309 /* APDeviceOrientation.swift in Sources */,
 				0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */,
 				0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */,
 				0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */,

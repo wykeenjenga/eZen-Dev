@@ -16,7 +16,6 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
     var window: UIWindow?
     var appDiContainer = APDIContainer()
     var orientation: UIInterfaceOrientationMask = .portrait
-    var orientationm: UIInterfaceOrientation = .portrait
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

@@ -41,6 +41,9 @@ class APVisualizeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.invalidateTimer()
+        self.playVoice()
     }
     
     final class func create() -> APVisualizeViewController {
@@ -51,8 +54,6 @@ class APVisualizeViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.invalidateTimer()
-        self.playVoice()
     }
     
     public func rotatePotrait(){
@@ -65,11 +66,14 @@ class APVisualizeViewController: BaseViewController {
                 }
                 UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
             }
+            //self.navigateToV()
+            print("Iphone 14....potrait")
         }else{
             let delegate = UIApplication.shared.delegate as! APAppDelegate
             delegate.orientation = .portrait
             let value = UIInterfaceOrientation.portrait.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
+            self.viewWillAppear(true)
         }
     }
     
@@ -83,31 +87,59 @@ class APVisualizeViewController: BaseViewController {
                 }
                 UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
             }
+            //self.navigateToV()
+            print("Iphone 14....landscape")
         }else{
             let delegate = UIApplication.shared.delegate as! APAppDelegate
             delegate.orientation = .landscapeRight
             let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
+            self.viewWillAppear(true)
         }
+    }
+    
+    public func navigateToV(){
+        self.invalidateTimer()
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+        visualizeVC.transcription = self.transcription
+        visualizeVC.words = self.words
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.present(visualizeVC, animated: true, completion: nil)
     }
     
     @IBAction func closePage(_ sender: Any) {
         self.invalidateTimer()
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        if #available(iOS 16.0, *) {
+            DispatchQueue.main.async {
+                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .portrait
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait)) { error in
+                    print("error.",error)
+                }
+                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
+            }
+        }
+        
+        let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+        previewVC.isEnhance = false
+        previewVC.transcription = self.transcription
+        previewVC.words = self.words
+        previewVC.modalPresentationStyle = .fullScreen
+        previewVC.modalTransitionStyle = .coverVertical
+        self.present(previewVC, animated: true, completion: nil)
     }
     
     @IBAction func changeOrientation(_ sender: Any) {
-        if isRotation{
-            isRotation = false
-            self.rotatePotrait()
-            print("IS ROTAIO")
-            self.viewWillAppear(true)
-        }else{
-            isRotation = true
-            self.rotateLandscape()
-            print("IS ROTAIOfffff")
-            self.viewWillAppear(true)
-        }
+//        if isRotation{
+//            isRotation = false
+//            self.rotatePotrait()
+//
+//        }else{
+//            isRotation = true
+//            self.rotateLandscape()
+//        }
     }
     
     @IBAction func playMusic(_ sender: Any) {
@@ -115,13 +147,13 @@ class APVisualizeViewController: BaseViewController {
         if isMuted{
             self.player?.isMuted = false
             isMuted = false
-            Loaf("Audio is Unmuted",
-                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+//            Loaf("Audio is Unmuted",
+//                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }else{
             self.player?.isMuted = true
             isMuted = true
-            Loaf("Audio is Muted",
-                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+//            Loaf("Audio is Muted",
+//                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
@@ -130,13 +162,13 @@ class APVisualizeViewController: BaseViewController {
         if isTranscription{
             isTranscription = false
             self.transcriptionLbl.isHidden = false
-            Loaf("Transcription is Live",
-                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+//            Loaf("Transcription is Live",
+//                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }else{
             isTranscription = true
             self.transcriptionLbl.isHidden = true
-            Loaf("Transcription is Hidden",
-                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+//            Loaf("Transcription is Hidden",
+//                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
