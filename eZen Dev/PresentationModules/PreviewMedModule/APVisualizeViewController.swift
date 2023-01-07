@@ -18,6 +18,7 @@ class APVisualizeViewController: BaseViewController {
     var isMuted = false
     var isTranscription = false
     var isVideo = false
+    var isRotation = false
     
     var duration = 0.0
     var currentDuration = 0.0
@@ -54,29 +55,40 @@ class APVisualizeViewController: BaseViewController {
         self.playVoice()
     }
     
-    public func rotateScreen(){
+    public func rotatePotrait(){
         if #available(iOS 16.0, *) {
             DispatchQueue.main.async {
                 (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .portrait
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait)) { error in
-                    print("HEY ERROR DAMNNNAA....",error)
+                    print("error.",error)
                 }
                 UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
             }
+        }else{
+            let delegate = UIApplication.shared.delegate as! APAppDelegate
+            delegate.orientation = .portrait
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
         }
     }
     
-    override public var shouldAutorotate: Bool {
-      return false
-    }
-    
-    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeRight
-    }
-    
-    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-      return .landscapeRight
+    public func rotateLandscape(){
+        if #available(iOS 16.0, *) {
+            DispatchQueue.main.async {
+                (UIApplication.shared.delegate as? APAppDelegate)?.orientation = .landscapeRight
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { error in
+                    print("ERROR (landscapeRight)....", error)
+                }
+                UIApplication.navigationTopViewController()?.setNeedsUpdateOfSupportedInterfaceOrientations()
+            }
+        }else{
+            let delegate = UIApplication.shared.delegate as! APAppDelegate
+            delegate.orientation = .landscapeRight
+            let value = UIInterfaceOrientation.landscapeRight.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
     }
     
     @IBAction func closePage(_ sender: Any) {
@@ -85,7 +97,17 @@ class APVisualizeViewController: BaseViewController {
     }
     
     @IBAction func changeOrientation(_ sender: Any) {
-        
+        if isRotation{
+            isRotation = false
+            self.rotatePotrait()
+            print("IS ROTAIO")
+            self.viewWillAppear(true)
+        }else{
+            isRotation = true
+            self.rotateLandscape()
+            print("IS ROTAIOfffff")
+            self.viewWillAppear(true)
+        }
     }
     
     @IBAction func playMusic(_ sender: Any) {
@@ -154,16 +176,16 @@ class APVisualizeViewController: BaseViewController {
                             if range.contains(time){
                                 
                                 if let lastString = self.stringArray.last, lastString == punctuatedWord{
-                                    print("Word... is contained......\(self.stringArray)")
+                                    //print("Word... is contained......\(self.stringArray)")
                                     //self.stringArray.remove(at: 0)
                                 }else{
                                     
                                     if self.stringArray.count > 2 {
                                         self.stringArray.remove(at: 0)
                                         self.sentence = self.stringArray.joined(separator: " ")
-                                        print("Updated.. sentence: \(self.sentence)")
+                                        //print("Updated.. sentence: \(self.sentence)")
                                     } else {
-                                        print("Number.. of words is not greater than 4.")
+                                        //print("Number.. of words is not greater than 4.")
                                     }
                                     
                                     self.stringArray.append(punctuatedWord)
@@ -197,7 +219,7 @@ class APVisualizeViewController: BaseViewController {
         self.transcriptionLbl.text = ""
         self.stringArray.removeAll()
         self.sentence = ""
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
 
     
