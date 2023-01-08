@@ -105,7 +105,7 @@ class APVisualizeViewController: BaseViewController {
         self.rotatePotrait()
         
         let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
-        previewVC.isEnhance = false
+        previewVC.isEnhance = true
         previewVC.transcription = self.transcription
         previewVC.words = self.words
         previewVC.modalPresentationStyle = .fullScreen

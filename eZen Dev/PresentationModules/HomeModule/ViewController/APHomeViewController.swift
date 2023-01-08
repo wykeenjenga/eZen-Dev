@@ -49,6 +49,7 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
+                    homeVC.isEnhance = false
                     self?.customPresent(vc: homeVC, duration: 0.0, type: .fromRight)
                     break
                 default:
@@ -93,8 +94,8 @@ class APHomeViewController: BaseViewController, UIDocumentPickerDelegate{
             
             //use destination file path... to upload
             curr_file_url.address = destinationPath
-            self.uploadAudio(filePath: destinationPath)
-            //self.viewModel.route.value = .isPreview
+            //self.uploadAudio(filePath: destinationPath)
+            self.viewModel.route.value = .isPreview
             
         } catch {
             self.viewModel.route.value = .error

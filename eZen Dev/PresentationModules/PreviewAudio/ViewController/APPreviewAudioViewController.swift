@@ -36,6 +36,7 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var transcriptionLbl: UILabel!
     
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var start_at: UILabel!
     @IBOutlet weak var end_at: UILabel!
     @IBOutlet var playerIcon: UIImageView!
@@ -70,10 +71,14 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBAction func exit(_ sender: Any) {
         self.invalidateTimer()
-        let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
-        homeVC.modalPresentationStyle = .fullScreen
-        homeVC.modalTransitionStyle = .coverVertical
-        self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
+        if !isEnhance{
+            let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
+            homeVC.modalPresentationStyle = .fullScreen
+            homeVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func saveAndContinue(_ sender: Any) {
@@ -109,10 +114,12 @@ class APPreviewAudioViewController: BaseViewController {
 
         playerProgressBar.isContinuous = true
         
-        if !isEnhance{
+        if isEnhance{
             self.applyBellBtn.isHidden = true
+            self.titleLbl.text = "Preview Your Voiceover After Gating"
         }else{
             self.visualizeBtn.isHidden = true
+            self.titleLbl.text = "Preview Your Voiceover After Enhancement"
         }
         
 //        if !AppSettings.isBellCurveEQAtcive{
@@ -121,12 +128,14 @@ class APPreviewAudioViewController: BaseViewController {
         
         self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         self.bindViewModel()
+        
+        print("The transcription is...\(self.transcription)")
     }
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
-        //self.viewModel.applyNoiseGate()
+        //self.viewModel.equalizeAudio()
+        self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     
@@ -147,7 +156,7 @@ class APPreviewAudioViewController: BaseViewController {
                 case .isPreview:
                     let s = self?.viewModel.transcript.value
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
-                    homeVC.isEnhance = false
+                    homeVC.isEnhance = true
                     homeVC.transcription = s ?? ""
                     homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen

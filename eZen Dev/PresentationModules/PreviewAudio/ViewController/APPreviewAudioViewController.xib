@@ -24,6 +24,7 @@
                 <outlet property="playerIcon" destination="SRs-kg-s5y" id="o0U-NN-iQO"/>
                 <outlet property="playerProgressBar" destination="UfK-vN-sGo" id="a4I-Sc-e6H"/>
                 <outlet property="start_at" destination="FE2-vY-rQe" id="PPt-br-a7w"/>
+                <outlet property="titleLbl" destination="oxU-Yu-iEB" id="1b5-u3-08z"/>
                 <outlet property="transcriptionLbl" destination="fir-EP-SeF" id="950-35-JTo"/>
                 <outlet property="view" destination="JxS-CR-pEr" id="Un5-QF-u7w"/>
                 <outlet property="visualizeBtn" destination="UTV-ea-eRP" id="15P-Hc-pZp"/>
@@ -34,13 +35,13 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-Yu-iEB">
-                    <rect key="frame" x="45" y="113" width="305" height="117.66666666666669"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-Yu-iEB">
+                    <rect key="frame" x="45" y="113" width="305" height="94.333333333333314"/>
                     <attributedString key="attributedText">
                         <fragment content="Preview Your Voiceover">
                             <attributes>
                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="45" name="ArimaMadurai-Bold"/>
+                                <font key="NSFont" size="36" name="ArimaMadurai-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
