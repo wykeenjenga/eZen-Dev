@@ -30,6 +30,7 @@ protocol APHomeViewModelOutput {
     var sectionsArray: Dynamic<[[Double]]> {get set}
     var transcript: Dynamic<String> {get set}
     var words: Dynamic<[Word]> {get set}
+    var sentences: Dynamic<[String]> {get set}
 }
 
 protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput{
@@ -42,6 +43,7 @@ final class DefaultAPHomeViewModel: APHomeViewModel {
     var sectionsArray: Dynamic<[[Double]]> = Dynamic([])
     var transcript: Dynamic<String> = Dynamic("")
     var words: Dynamic<[Word]> = Dynamic([])
+    var sentences: Dynamic<[String]> = Dynamic([])
     
     init() {
     }
@@ -176,7 +178,11 @@ extension APHomeViewModel{
                 let results = data!.results.channels[0].alternatives[0]
                 
                 self.transcript.value = results.transcript
-                print("NEW GATED URL IS AND TRANSCRIPTION DATA IS............\(self.transcript.value)")
+                print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
+
+                let separators = CharacterSet(charactersIn: ".,")
+                let items = self.transcript.value!.components(separatedBy: separators)
+                
                 
                 let words = results.words
                 self.words.value = words

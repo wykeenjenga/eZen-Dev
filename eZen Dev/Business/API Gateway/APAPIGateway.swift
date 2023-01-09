@@ -566,7 +566,7 @@ class APAPIGateway {
                 case .success(_):
                     if response.value != nil{
                         let json = JSON(response.value!)
-                        print("Request response for audio transcription==>")
+                        print("Request response for audio transcription==>\(response)")
                         let data = json["response"]
                         completion(data, nil)
                     }

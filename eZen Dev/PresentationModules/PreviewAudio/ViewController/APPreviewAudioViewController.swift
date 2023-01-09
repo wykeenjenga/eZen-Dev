@@ -128,8 +128,6 @@ class APPreviewAudioViewController: BaseViewController {
         
         self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         self.bindViewModel()
-        
-        print("The transcription is...\(self.transcription)")
     }
     
     @IBOutlet weak var applyBellBtn: UIButton!
