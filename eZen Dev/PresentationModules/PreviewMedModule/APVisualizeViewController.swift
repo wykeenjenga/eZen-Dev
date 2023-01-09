@@ -188,7 +188,7 @@ class APVisualizeViewController: BaseViewController {
                         
                         for sentence in self.sentencesArray{
                             if sentence != ""{
-                                if self.counter <= 5{
+                                if self.counter <= self.sentencesArray.count - 1{
                                     let start = self.timeStampStart[self.counter]
                                     let end = self.timeStampEnd[self.counter]
                                     

@@ -80,7 +80,12 @@ class APPreviewAudioViewController: BaseViewController {
             homeVC.modalTransitionStyle = .coverVertical
             self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
         }else{
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
+            let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+            homeVC.isEnhance = false
+            homeVC.modalPresentationStyle = .fullScreen
+            homeVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
         }
     }
     
@@ -135,8 +140,8 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        //self.viewModel.equalizeAudio()
-        self.viewModel.applyNoiseGate()
+        self.viewModel.equalizeAudio()
+        //self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     
