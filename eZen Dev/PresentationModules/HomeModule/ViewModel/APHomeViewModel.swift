@@ -31,6 +31,8 @@ protocol APHomeViewModelOutput {
     var transcript: Dynamic<String> {get set}
     var words: Dynamic<[Word]> {get set}
     var sentences: Dynamic<[String]> {get set}
+    var timeStampStart: Dynamic<[Double]> {get set}
+    var timeStampEnd: Dynamic<[Double]> {get set}
 }
 
 protocol APHomeViewModel: APHomeViewModelInput, APHomeViewModelOutput{
@@ -44,7 +46,8 @@ final class DefaultAPHomeViewModel: APHomeViewModel {
     var transcript: Dynamic<String> = Dynamic("")
     var words: Dynamic<[Word]> = Dynamic([])
     var sentences: Dynamic<[String]> = Dynamic([])
-    
+    var timeStampStart: Dynamic<[Double]> = Dynamic([])
+    var timeStampEnd: Dynamic<[Double]> = Dynamic([])
     init() {
     }
 }
@@ -178,20 +181,55 @@ extension APHomeViewModel{
                 let results = data!.results.channels[0].alternatives[0]
                 
                 self.transcript.value = results.transcript
+                let words = results.words
+                self.words.value = words
                 print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
 
                 let separators = CharacterSet(charactersIn: ".,?")
-                let sentences = self.transcript.value!.components(separatedBy: separators)
+                var sentences = self.transcript.value!.components(separatedBy: separators)
+                sentences.removeLast()
+                
                 print("Setences are:::....\(sentences)")
                 self.sentences.value = sentences
                 
+                var startTime = 0.0
+                var endTime = 0.0
+                
                 for sentence in sentences {
                     
+                    let wordss = sentence.byWords
+                    let firstWord = wordss.first ?? ""
+                    let lastWord = wordss.last ?? ""
+                    
+                    for wordd in words{
+                        var word = wordd.punctuatedWord
+                        if let i = word.firstIndex(of: "!"){
+                            word.remove(at: i)
+                        }else if let i = word.firstIndex(of: ","){
+                            word.remove(at: i)
+                        }else if let i = word.firstIndex(of: "?"){
+                            word.remove(at: i)
+                        }else if let i = word.firstIndex(of: "."){
+                            word.remove(at: i)
+                        }else{
+                            
+                        }
+                        
+                        if word == firstWord{
+                            startTime = wordd.start
+                            print("Start=\(startTime)..")
+                            self.timeStampStart.value?.append(startTime)
+                        }else if word == lastWord{
+                            endTime = wordd.end
+                            self.timeStampEnd.value?.append(endTime)
+                            print("..End=\(endTime)...")
+                        }else{
+                            print("")
+                        }
+                    }
+                    
                 }
-                
-                let words = results.words
-                self.words.value = words
-                
+        
                 self.route.value = .isPreview
             }
         }

@@ -153,9 +153,15 @@ class APPreviewAudioViewController: BaseViewController {
                     break
                 case .isPreview:
                     let s = self?.viewModel.transcript.value
+                    let ss = self?.viewModel.sentences.value
+                    let start = self?.viewModel.timeStampStart.value
+                    let end = self?.viewModel.timeStampEnd.value
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.isEnhance = true
                     homeVC.transcription = s ?? ""
+                    homeVC.sentencesArray = ss ?? []
+                    homeVC.timeStampStart = start ?? []
+                    homeVC.timeStampEnd = end ?? []
                     homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
@@ -216,7 +222,11 @@ class APPreviewAudioViewController: BaseViewController {
     var playerItem: AVPlayerItem?
     var sentence = ""
     var stringArray = [String]()
+    var sentencesArray = [String]()
+    var timeStampStart = [Double]()
+    var timeStampEnd = [Double]()
     
+    var counter = 0
     
     func playVoice(){
         do {
@@ -245,37 +255,58 @@ class APPreviewAudioViewController: BaseViewController {
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
                         
-                        for word in self.words{
-                            let start = word.start
-                            let end = word.end
-                            let punctuatedWord = word.punctuatedWord
-
-                            let range = start...end
-
-                            if range.contains(time){
-
-                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
-                                    print("Word is contained......\(self.stringArray)")
-                                    //self.stringArray.remove(at: 0)
+                        for sentence in self.sentencesArray{
+                            if sentence != ""{
+                                let start = self.timeStampStart[self.counter]
+                                let end = self.timeStampEnd[self.counter]
+                                
+                                let range = start...end
+                                
+                                if range.contains(time){
+                                    print("NNNN.....\(self.sentencesArray[self.counter])")
+                                    self.transcriptionLbl.text = self.sentencesArray[self.counter]
+                                    self.counter += 1
                                 }else{
-
-                                    if self.stringArray.count > 3 {
-                                        self.stringArray.remove(at: 0)
-                                        self.sentence = self.stringArray.joined(separator: " ")
-                                        print("Updated sentence: \(self.sentence)")
-                                    } else {
-                                        print("Number of words is not greater than 4.")
-                                    }
-
-                                    self.stringArray.append(punctuatedWord)
-                                    self.sentence = self.stringArray.joined(separator: " ")
-
-                                    self.transcriptionLbl.text = self.sentence
-                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+                                    //self.transcriptionLbl.text = ""
                                 }
-
+                            }else{
+                                
                             }
+
                         }
+                        
+                        
+//                        for word in self.words{
+//                            let start = word.start
+//                            let end = word.end
+//                            let punctuatedWord = word.punctuatedWord
+//
+//                            let range = start...end
+//
+//                            if range.contains(time){
+//
+//                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
+//                                    print("Word is contained......\(self.stringArray)")
+//                                    //self.stringArray.remove(at: 0)
+//                                }else{
+//
+//                                    if self.stringArray.count > 3 {
+//                                        self.stringArray.remove(at: 0)
+//                                        self.sentence = self.stringArray.joined(separator: " ")
+//                                        print("Updated sentence: \(self.sentence)")
+//                                    } else {
+//                                        print("Number of words is not greater than 4.")
+//                                    }
+//
+//                                    self.stringArray.append(punctuatedWord)
+//                                    self.sentence = self.stringArray.joined(separator: " ")
+//
+//                                    self.transcriptionLbl.text = self.sentence
+//                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+//                                }
+//
+//                            }
+//                        }
                         
                     }
                 }
@@ -349,3 +380,13 @@ class APPreviewAudioViewController: BaseViewController {
     
 }
 
+
+extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
+    var byWords: [SubSequence] {
+        var byWords: [SubSequence] = []
+        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
+            byWords.append(self[range])
+        }
+        return byWords
+    }
+}
