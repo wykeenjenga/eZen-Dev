@@ -64,6 +64,9 @@ class APPreviewAudioViewController: BaseViewController {
         let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
         visualizeVC.transcription = self.transcription
         visualizeVC.words = self.words
+        visualizeVC.sentencesArray = self.sentencesArray
+        visualizeVC.timeStampStart = self.timeStampStart
+        visualizeVC.timeStampEnd = self.timeStampEnd
         visualizeVC.modalPresentationStyle = .fullScreen
         visualizeVC.modalTransitionStyle = .coverVertical
         self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
@@ -132,8 +135,8 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        //self.viewModel.equalizeAudio()
-        self.viewModel.applyNoiseGate()
+        self.viewModel.equalizeAudio()
+        //self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     
@@ -229,6 +232,8 @@ class APPreviewAudioViewController: BaseViewController {
     var counter = 0
     
     func playVoice(){
+        
+        print("SCount...\(sentencesArray.count)....start...\(timeStampStart.count)....end...\(timeStampEnd.count)")
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             do {
@@ -255,25 +260,22 @@ class APPreviewAudioViewController: BaseViewController {
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
                         
-                        for sentence in self.sentencesArray{
-                            if sentence != ""{
-                                let start = self.timeStampStart[self.counter]
-                                let end = self.timeStampEnd[self.counter]
-                                
-                                let range = start...end
-                                
-                                if range.contains(time){
-                                    print("NNNN.....\(self.sentencesArray[self.counter])")
-                                    self.transcriptionLbl.text = self.sentencesArray[self.counter]
-                                    self.counter += 1
-                                }else{
-                                    //self.transcriptionLbl.text = ""
-                                }
-                            }else{
-                                
-                            }
-
-                        }
+//                        for sentence in self.sentencesArray{
+//                            if sentence != ""{
+//                                if self.counter <= 5{
+//                                    let start = self.timeStampStart[self.counter]
+//                                    let end = self.timeStampEnd[self.counter]
+//
+//                                    let range = start...end
+//
+//                                    if range.contains(time){
+//                                        print("NNNN.....\(self.sentencesArray[self.counter])......\(self.counter)")
+//                                        self.transcriptionLbl.text = self.sentencesArray[self.counter]
+//                                        self.counter += 1
+//                                    }
+//                                }
+//                            }
+//                        }
                         
                         
 //                        for word in self.words{

@@ -212,7 +212,6 @@ extension APHomeViewModel{
                         }else if let i = word.firstIndex(of: "."){
                             word.remove(at: i)
                         }else{
-                            
                         }
                         
                         if word == firstWord{
@@ -224,7 +223,6 @@ extension APHomeViewModel{
                             self.timeStampEnd.value?.append(endTime)
                             print("..End=\(endTime)...")
                         }else{
-                            print("")
                         }
                     }
                     
