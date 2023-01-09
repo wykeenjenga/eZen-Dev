@@ -245,37 +245,37 @@ class APPreviewAudioViewController: BaseViewController {
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
                         
-//                        for word in self.words{
-//                            let start = word.start
-//                            let end = word.end
-//                            let punctuatedWord = word.punctuatedWord
-//
-//                            let range = start...end
-//
-//                            if range.contains(time){
-//
-//                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
-//                                    print("Word is contained......\(self.stringArray)")
-//                                    //self.stringArray.remove(at: 0)
-//                                }else{
-//
-//                                    if self.stringArray.count > 3 {
-//                                        self.stringArray.remove(at: 0)
-//                                        self.sentence = self.stringArray.joined(separator: " ")
-//                                        print("Updated sentence: \(self.sentence)")
-//                                    } else {
-//                                        print("Number of words is not greater than 4.")
-//                                    }
-//
-//                                    self.stringArray.append(punctuatedWord)
-//                                    self.sentence = self.stringArray.joined(separator: " ")
-//
-//                                    self.transcriptionLbl.text = self.sentence
-//                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
-//                                }
-//
-//                            }
-//                        }
+                        for word in self.words{
+                            let start = word.start
+                            let end = word.end
+                            let punctuatedWord = word.punctuatedWord
+
+                            let range = start...end
+
+                            if range.contains(time){
+
+                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
+                                    print("Word is contained......\(self.stringArray)")
+                                    //self.stringArray.remove(at: 0)
+                                }else{
+
+                                    if self.stringArray.count > 3 {
+                                        self.stringArray.remove(at: 0)
+                                        self.sentence = self.stringArray.joined(separator: " ")
+                                        print("Updated sentence: \(self.sentence)")
+                                    } else {
+                                        print("Number of words is not greater than 4.")
+                                    }
+
+                                    self.stringArray.append(punctuatedWord)
+                                    self.sentence = self.stringArray.joined(separator: " ")
+
+                                    self.transcriptionLbl.text = self.sentence
+                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+                                }
+
+                            }
+                        }
                         
                     }
                 }

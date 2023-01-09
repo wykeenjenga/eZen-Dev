@@ -180,9 +180,14 @@ extension APHomeViewModel{
                 self.transcript.value = results.transcript
                 print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
 
-                let separators = CharacterSet(charactersIn: ".,")
-                let items = self.transcript.value!.components(separatedBy: separators)
+                let separators = CharacterSet(charactersIn: ".,?")
+                let sentences = self.transcript.value!.components(separatedBy: separators)
+                print("Setences are:::....\(sentences)")
+                self.sentences.value = sentences
                 
+                for sentence in sentences {
+                    
+                }
                 
                 let words = results.words
                 self.words.value = words
