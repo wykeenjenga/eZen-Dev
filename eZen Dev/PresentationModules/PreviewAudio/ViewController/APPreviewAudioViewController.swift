@@ -140,8 +140,8 @@ class APPreviewAudioViewController: BaseViewController {
     
     @IBOutlet weak var applyBellBtn: UIButton!
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
-        //self.viewModel.applyNoiseGate()
+        //self.viewModel.equalizeAudio()
+        self.viewModel.applyNoiseGate()
         self.invalidateTimer()
     }
     

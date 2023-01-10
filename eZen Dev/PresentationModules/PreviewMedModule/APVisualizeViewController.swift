@@ -157,9 +157,15 @@ class APVisualizeViewController: BaseViewController {
         }
     }
     
+    var isAnimation = false
     
     @IBAction func showVideo(_ sender: Any) {
         //show or hide video
+        if isAnimation{
+            isAnimation = false
+        }else{
+            isAnimation = true
+        }
     }
     
     var sentencesArray = [String]()
@@ -196,7 +202,15 @@ class APVisualizeViewController: BaseViewController {
                                     
                                     if range.contains(time){
                                         print("NNNN.....\(self.sentencesArray[self.counter])......\(self.counter)")
-                                        self.transcriptionLbl.text = self.sentencesArray[self.counter]
+//                                        UIView.transition(with: self.transcriptionLbl, duration: 0.25, options: .transitionCrossDissolve, animations: { [weak self] in
+//                                            self?.transcriptionLbl.text = self?.sentencesArray[self!.counter]
+//                                        }, completion: nil)
+                                        if self.isAnimation{
+                                            self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.06)
+                                        }else{
+                                            self.transcriptionLbl.text = self.sentencesArray[self.counter]
+                                        }
+                                        
                                         self.counter += 1
                                     }
                                 }
