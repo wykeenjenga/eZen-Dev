@@ -202,7 +202,11 @@ class APVisualizeViewController: BaseViewController {
                             let range = start...end
                             
                             if range.contains(time){
-                                self.transcriptionLbl.text = punctuatedWord
+                                if self.isAnimation{
+                                    self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.05)
+                                }else{
+                                    self.transcriptionLbl.text = self.sentencesArray[self.counter]
+                                }
                                 print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
                                 print("")
                             }else{
