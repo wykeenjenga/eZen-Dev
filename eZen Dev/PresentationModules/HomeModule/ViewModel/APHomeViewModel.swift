@@ -186,8 +186,6 @@ extension APHomeViewModel{
                 for sentences in results{
                     self.words.value?.append(sentences)
                 }
-                
-                print("Results are......\(results)")
 //
 //                let separators = CharacterSet(charactersIn: ".,?!")
 //                var sentences = self.transcript.value!.components(separatedBy: separators)
