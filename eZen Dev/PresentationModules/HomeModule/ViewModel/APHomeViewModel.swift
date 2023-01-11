@@ -29,7 +29,7 @@ protocol APHomeViewModelOutput {
     var initFile: Dynamic<URL?> {get set}
     var sectionsArray: Dynamic<[[Double]]> {get set}
     var transcript: Dynamic<String> {get set}
-    var words: Dynamic<[Word]> {get set}
+    var words: Dynamic<[Utterance]> {get set}
     var sentences: Dynamic<[String]> {get set}
     var timeStampStart: Dynamic<[Double]> {get set}
     var timeStampEnd: Dynamic<[Double]> {get set}
@@ -44,7 +44,7 @@ final class DefaultAPHomeViewModel: APHomeViewModel {
     var initFile: Dynamic<URL?> = Dynamic(nil)
     var sectionsArray: Dynamic<[[Double]]> = Dynamic([])
     var transcript: Dynamic<String> = Dynamic("")
-    var words: Dynamic<[Word]> = Dynamic([])
+    var words: Dynamic<[Utterance]> = Dynamic([])
     var sentences: Dynamic<[String]> = Dynamic([])
     var timeStampStart: Dynamic<[Double]> = Dynamic([])
     var timeStampEnd: Dynamic<[Double]> = Dynamic([])
@@ -180,14 +180,14 @@ extension APHomeViewModel{
                 print(json)
 
                 let data = try? JSONDecoder().decode(APTranscriptionModel.self, from: jsonData)
-                let results = data!.results.channels[0].alternatives[0]
+                let resultsWords = data!.results.channels[0].alternatives[0]
+                let results = data!.results.utterances
                 
+                for sentences in results{
+                    self.words.value?.append(sentences)
+                }
                 
-                
-//                self.transcript.value = results.transcript
-//                let words = results.words
-//                self.words.value = words
-//                print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
+                print("Results are......\(results)")
 //
 //                let separators = CharacterSet(charactersIn: ".,?!")
 //                var sentences = self.transcript.value!.components(separatedBy: separators)
