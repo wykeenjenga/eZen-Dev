@@ -28,7 +28,7 @@ class APVisualizeViewController: BaseViewController {
     
     var url = curr_file_url.address
     var transcription = ""
-    var words = [Word]()
+    var words = [Utterance]()
     
     
     @IBOutlet weak var transcriptionLbl: UILabel!
@@ -193,31 +193,45 @@ class APVisualizeViewController: BaseViewController {
                         
                         self.currentDuration = time
                         
-                        for sentence in self.sentencesArray{
+                        for sentence in self.words{
                             
-                            if sentence != ""{
-                                if self.counter <= self.sentencesArray.count - 1{
-                                    let start = self.timeStampStart[self.counter]
-                                    let end = self.timeStampEnd[self.counter]
-                                    
-                                    let range = start...end
-                                    
-                                    if range.contains(time){
-                                        print("NNNN.\(self.sentencesArray.count)....\(self.sentencesArray[self.counter])......\(self.counter)")
-//                                        UIView.transition(with: self.transcriptionLbl, duration: 0.25, options: .transitionCrossDissolve, animations: { [weak self] in
-//                                            self?.transcriptionLbl.text = self?.sentencesArray[self!.counter]
-//                                        }, completion: nil)
-                                        if self.isAnimation{
-                                            self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.06)
-                                        }else{
-                                            self.transcriptionLbl.text = self.sentencesArray[self.counter]
-                                        }
-                                        
-                                        self.counter += 1
-                                    }
-                                }
+                            let start = word.start
+                            let end = word.end
+                            let punctuatedWord = word.punctuatedWord
+
+                            let range = start...end
+
+                            if range.contains(time){
+                                
                             }
+                            
                         }
+                        
+//                        for sentence in self.sentencesArray{
+//
+//                            if sentence != ""{
+//                                if self.counter <= self.sentencesArray.count - 1{
+//                                    let start = self.timeStampStart[self.counter]
+//                                    let end = self.timeStampEnd[self.counter]
+//
+//                                    let range = start...end
+//
+//                                    if range.contains(time){
+//                                        print("NNNN.\(self.sentencesArray.count)....\(self.sentencesArray[self.counter])......\(self.counter)")
+////                                        UIView.transition(with: self.transcriptionLbl, duration: 0.25, options: .transitionCrossDissolve, animations: { [weak self] in
+////                                            self?.transcriptionLbl.text = self?.sentencesArray[self!.counter]
+////                                        }, completion: nil)
+//                                        if self.isAnimation{
+//                                            self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.06)
+//                                        }else{
+//                                            self.transcriptionLbl.text = self.sentencesArray[self.counter]
+//                                        }
+//
+//                                        self.counter += 1
+//                                    }
+//                                }
+//                            }
+//                        }
                         
 //                        for word in self.words{
 //                            let start = word.start

@@ -32,7 +32,7 @@ class APPreviewAudioViewController: BaseViewController {
     
     var url = curr_file_url.address
     var transcription = ""
-    var words = [Word]()
+    var words = [Utterance]()
     
     @IBOutlet weak var transcriptionLbl: UILabel!
     
