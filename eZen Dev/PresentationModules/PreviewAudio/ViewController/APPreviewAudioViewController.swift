@@ -61,7 +61,6 @@ class APPreviewAudioViewController: BaseViewController {
         //navigate to visualization
         self.invalidateTimer()
         let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-        visualizeVC.transcription = self.transcription
         visualizeVC.words = self.words
         visualizeVC.modalPresentationStyle = .fullScreen
         visualizeVC.modalTransitionStyle = .coverVertical
@@ -156,10 +155,6 @@ class APPreviewAudioViewController: BaseViewController {
                     self?.showAlert(title: "Error", message: "We are experiencing technical difficulties. Please try again later")
                     break
                 case .isPreview:
-                    let s = self?.viewModel.transcript.value
-                    let ss = self?.viewModel.sentences.value
-                    let start = self?.viewModel.timeStampStart.value
-                    let end = self?.viewModel.timeStampEnd.value
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.isEnhance = true
                     homeVC.words = (self?.viewModel.words.value)!
