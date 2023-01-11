@@ -107,11 +107,7 @@ class APVisualizeViewController: BaseViewController {
         
         let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
         previewVC.isEnhance = true
-        previewVC.transcription = self.transcription
         previewVC.words = self.words
-        previewVC.sentencesArray = self.sentencesArray
-        previewVC.timeStampStart = self.timeStampStart
-        previewVC.timeStampEnd = self.timeStampEnd
         previewVC.modalPresentationStyle = .fullScreen
         previewVC.modalTransitionStyle = .coverVertical
         self.customPresent(vc: previewVC, duration: 0.2, type: .fromLeft)
@@ -202,11 +198,7 @@ class APVisualizeViewController: BaseViewController {
                             let range = start...end
                             
                             if range.contains(time){
-                                if self.isAnimation{
-                                    self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.05)
-                                }else{
-                                    self.transcriptionLbl.text = self.sentencesArray[self.counter]
-                                }
+                                self.transcriptionLbl.text = punctuatedWord
                                 print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
                                 print("")
                             }else{
@@ -216,64 +208,6 @@ class APVisualizeViewController: BaseViewController {
                             }
                             
                         }
-                        
-//                        for sentence in self.sentencesArray{
-//
-//                            if sentence != ""{
-//                                if self.counter <= self.sentencesArray.count - 1{
-//                                    let start = self.timeStampStart[self.counter]
-//                                    let end = self.timeStampEnd[self.counter]
-//
-//                                    let range = start...end
-//
-//                                    if range.contains(time){
-//                                        print("NNNN.\(self.sentencesArray.count)....\(self.sentencesArray[self.counter])......\(self.counter)")
-////                                        UIView.transition(with: self.transcriptionLbl, duration: 0.25, options: .transitionCrossDissolve, animations: { [weak self] in
-////                                            self?.transcriptionLbl.text = self?.sentencesArray[self!.counter]
-////                                        }, completion: nil)
-//                                        if self.isAnimation{
-//                                            self.transcriptionLbl.animate(newText: self.sentencesArray[self.counter], characterDelay: 0.06)
-//                                        }else{
-//                                            self.transcriptionLbl.text = self.sentencesArray[self.counter]
-//                                        }
-//
-//                                        self.counter += 1
-//                                    }
-//                                }
-//                            }
-//                        }
-                        
-//                        for word in self.words{
-//                            let start = word.start
-//                            let end = word.end
-//                            let punctuatedWord = word.punctuatedWord
-//
-//                            let range = start...end
-//
-//                            if range.contains(time){
-//
-//                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
-//                                    //print("Word... is contained......\(self.stringArray)")
-//                                    //self.stringArray.remove(at: 0)
-//                                }else{
-//
-//                                    if self.stringArray.count > 2 {
-//                                        self.stringArray.remove(at: 0)
-//                                        self.sentence = self.stringArray.joined(separator: " ")
-//                                        //print("Updated.. sentence: \(self.sentence)")
-//                                    } else {
-//                                        //print("Number.. of words is not greater than 4.")
-//                                    }
-//
-//                                    self.stringArray.append(punctuatedWord)
-//                                    self.sentence = self.stringArray.joined(separator: " ")
-//
-//                                    self.transcriptionLbl.text = self.sentence
-//                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
-//                                }
-//
-//                            }
-//                        }
                         
                     }
                 }

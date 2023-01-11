@@ -31,7 +31,6 @@ class APPreviewAudioViewController: BaseViewController {
     var cmTime = CMTime()
     
     var url = curr_file_url.address
-    var transcription = ""
     var words = [Utterance]()
     
     @IBOutlet weak var transcriptionLbl: UILabel!
@@ -64,9 +63,6 @@ class APPreviewAudioViewController: BaseViewController {
         let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
         visualizeVC.transcription = self.transcription
         visualizeVC.words = self.words
-        visualizeVC.sentencesArray = self.sentencesArray
-        visualizeVC.timeStampStart = self.timeStampStart
-        visualizeVC.timeStampEnd = self.timeStampEnd
         visualizeVC.modalPresentationStyle = .fullScreen
         visualizeVC.modalTransitionStyle = .coverVertical
         self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
@@ -166,10 +162,6 @@ class APPreviewAudioViewController: BaseViewController {
                     let end = self?.viewModel.timeStampEnd.value
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
                     homeVC.isEnhance = true
-                    homeVC.transcription = s ?? ""
-                    homeVC.sentencesArray = ss ?? []
-                    homeVC.timeStampStart = start ?? []
-                    homeVC.timeStampEnd = end ?? []
                     homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
