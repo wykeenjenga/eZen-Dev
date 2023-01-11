@@ -177,56 +177,102 @@ extension APHomeViewModel{
                 \(json!)
                 """.data(using: .utf8)!
                 
+                print(json)
+
                 let data = try? JSONDecoder().decode(APTranscriptionModel.self, from: jsonData)
                 let results = data!.results.channels[0].alternatives[0]
                 
-                self.transcript.value = results.transcript
-                let words = results.words
-                self.words.value = words
-                print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
-
-                let separators = CharacterSet(charactersIn: ".,?")
-                var sentences = self.transcript.value!.components(separatedBy: separators)
-                sentences.removeLast()
                 
-                print("Setences are:::....\(sentences)")
-                self.sentences.value = sentences
                 
-                var startTime = 0.0
-                var endTime = 0.0
-                
-                for sentence in sentences {
-                    
-                    let wordss = sentence.byWords
-                    let firstWord = wordss.first ?? ""
-                    let lastWord = wordss.last ?? ""
-                    
-                    for wordd in words{
-                        var word = wordd.punctuatedWord
-                        if let i = word.firstIndex(of: "!"){
-                            word.remove(at: i)
-                        }else if let i = word.firstIndex(of: ","){
-                            word.remove(at: i)
-                        }else if let i = word.firstIndex(of: "?"){
-                            word.remove(at: i)
-                        }else if let i = word.firstIndex(of: "."){
-                            word.remove(at: i)
-                        }else{
-                        }
-                        
-                        if word == firstWord{
-                            startTime = wordd.start
-                            print("Start=\(startTime)..")
-                            self.timeStampStart.value?.append(startTime)
-                        }else if word == lastWord{
-                            endTime = wordd.end
-                            self.timeStampEnd.value?.append(endTime)
-                            print("..End=\(endTime)...")
-                        }else{
-                        }
-                    }
-                    
-                }
+//                self.transcript.value = results.transcript
+//                let words = results.words
+//                self.words.value = words
+//                print("NEW GATED URL IS... AND TRANSCRIPTION DATA IS............\(self.transcript.value!)")
+//
+//                let separators = CharacterSet(charactersIn: ".,?!")
+//                var sentences = self.transcript.value!.components(separatedBy: separators)
+//                print("WORDS are:::....\(words.count)")
+//
+//                sentences = sentences.filter(){$0 != ""}
+//
+//                print("Setences are:::....\(sentences)")
+//                self.sentences.value = sentences
+//
+//                var startTime = 0.0
+//                var endTime = 0.0
+//
+//                var firstWord = ""
+//                var lastWord = ""
+//
+//                for sentence in sentences {
+//
+//                    let wrd = sentence.byWords
+//                    firstWord = String(wrd.first ?? "")
+//                    lastWord = String(wrd.last ?? "")
+//                    print("....\(wrd.count)....1st..\(firstWord)........2nd..\(lastWord)")
+//
+//                    for wordd in words{
+//                        var word = wordd.punctuatedWord
+//                        if let i = word.firstIndex(of: "!"){
+//                            word.remove(at: i)
+//                        }else if let i = word.firstIndex(of: ","){
+//                            word.remove(at: i)
+//                        }else if let i = word.firstIndex(of: "?"){
+//                            word.remove(at: i)
+//                        }else if let i = word.firstIndex(of: "."){
+//                            word.remove(at: i)
+//                        }
+//
+//                        if wrd.count > 1{
+//                            if word == firstWord || word == lastWord{
+//                                startTime = wordd.start
+//                                print("Start=\(startTime)..")
+//                                self.timeStampStart.value?.append(startTime)
+//
+//                                endTime = wordd.end
+//                                self.timeStampEnd.value?.append(endTime)
+//                                print("..End=\(endTime)...")
+//                                break
+//                            }
+//
+//                        }else{
+//                            if word == firstWord && word == lastWord{
+//                                startTime = wordd.start
+//                                endTime = wordd.end
+//                                self.timeStampStart.value?.append(startTime)
+//                                self.timeStampEnd.value?.append(endTime)
+//                                print("Start=\(startTime)......End=\(endTime).")
+//                                break
+//                            }
+//                        }
+//
+//                    }
+//
+//
+////                    for wordd in words{
+////                        var word = wordd.punctuatedWord
+////                        if let i = word.firstIndex(of: "!"){
+////                            word.remove(at: i)
+////                        }else if let i = word.firstIndex(of: ","){
+////                            word.remove(at: i)
+////                        }else if let i = word.firstIndex(of: "?"){
+////                            word.remove(at: i)
+////                        }else if let i = word.firstIndex(of: "."){
+////                            word.remove(at: i)
+////                        }
+////
+////                        if word == firstWord{
+////                            startTime = wordd.start
+////                            print("Start=\(startTime)..")
+////                            self.timeStampStart.value?.append(startTime)
+////                        }else if word == lastWord{
+////                            endTime = wordd.end
+////                            self.timeStampEnd.value?.append(endTime)
+////                            print("..End=\(endTime)...")
+////                        }
+////                    }
+//
+//                }
         
                 self.route.value = .isPreview
             }

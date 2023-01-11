@@ -6,7 +6,7 @@
 //  Copyright © 2022 Music of Wisdom. All rights reserved.
 //
 
-import Foundation
+import AVFoundation
 import Alamofire
 import SwiftyJSON
 
@@ -551,8 +551,11 @@ class APAPIGateway {
     
     
     func getTranscription(completion: @escaping(JSON?, Error?) -> Void){
+//        let audioFile =  try? AVAudioFile(forReading: curr_file_url.address!)
+//        let sampleRate = audioFile!.fileFormat.sampleRate
+   
         let url =  "http://45.61.56.80/api/getTranscription"
-        let parameters = ["fileName": "ezenAdmin"] as [String : Any]
+        let parameters = ["fileName": "ezenAdmin", "sample_rate": "sampleRate"] as [String : Any]
         
         DispatchQueue.global().async {
             self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {

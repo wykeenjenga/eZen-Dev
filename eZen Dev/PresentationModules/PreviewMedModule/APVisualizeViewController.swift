@@ -54,6 +54,7 @@ class APVisualizeViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Sentences count....\(self.self.sentencesArray)")
     }
     
     public func rotatePotrait(){
@@ -193,6 +194,7 @@ class APVisualizeViewController: BaseViewController {
                         self.currentDuration = time
                         
                         for sentence in self.sentencesArray{
+                            
                             if sentence != ""{
                                 if self.counter <= self.sentencesArray.count - 1{
                                     let start = self.timeStampStart[self.counter]
@@ -201,7 +203,7 @@ class APVisualizeViewController: BaseViewController {
                                     let range = start...end
                                     
                                     if range.contains(time){
-                                        print("NNNN.....\(self.sentencesArray[self.counter])......\(self.counter)")
+                                        print("NNNN.\(self.sentencesArray.count)....\(self.sentencesArray[self.counter])......\(self.counter)")
 //                                        UIView.transition(with: self.transcriptionLbl, duration: 0.25, options: .transitionCrossDissolve, animations: { [weak self] in
 //                                            self?.transcriptionLbl.text = self?.sentencesArray[self!.counter]
 //                                        }, completion: nil)
