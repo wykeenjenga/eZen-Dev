@@ -195,14 +195,18 @@ class APVisualizeViewController: BaseViewController {
                         
                         for sentence in self.words{
                             
-                            let start = word.start
-                            let end = word.end
-                            let punctuatedWord = word.punctuatedWord
+                            let start = sentence.start
+                            let end = sentence.end
+                            let punctuatedWord = sentence.transcript
 
                             let range = start...end
 
                             if range.contains(time){
-                                
+                                //self.transcriptionLbl.isHidden = false
+                                self.transcriptionLbl.text = punctuatedWord
+                                print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
+                            }else{
+                                //self.transcriptionLbl.isHidden = true
                             }
                             
                         }
