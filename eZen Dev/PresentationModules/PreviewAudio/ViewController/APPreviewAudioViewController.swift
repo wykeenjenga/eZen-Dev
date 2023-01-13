@@ -119,7 +119,7 @@ class APPreviewAudioViewController: BaseViewController {
         
         if isEnhance{
             self.applyBellBtn.isHidden = true
-            self.titleLbl.text = "Preview Your Voiceover After Gating"
+            self.titleLbl.text = "Preview Final Mix"
         }else{
             self.visualizeBtn.isHidden = true
             self.titleLbl.text = "Preview Your Voiceover After Enhancement"
