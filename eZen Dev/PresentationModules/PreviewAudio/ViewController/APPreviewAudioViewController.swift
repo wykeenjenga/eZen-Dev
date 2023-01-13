@@ -118,8 +118,9 @@ class APPreviewAudioViewController: BaseViewController {
         playerProgressBar.isContinuous = true
         
         if isEnhance{
-            self.applyBellBtn.isHidden = true
+            //self.applyBellBtn.isHidden = true
             self.titleLbl.text = "Preview Final Mix"
+            self.applyBellBtn.setTitle("Create Video", for: .normal)
         }else{
             self.visualizeBtn.isHidden = true
             self.titleLbl.text = "Preview Your Voiceover After Enhancement"
@@ -134,9 +135,22 @@ class APPreviewAudioViewController: BaseViewController {
     }
     
     @IBOutlet weak var applyBellBtn: UIButton!
+    
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
-        //self.viewModel.applyNoiseGate()
+        if isEnhance{
+            //continue to review transcription
+            print("Continue to .......")
+            self.invalidateTimer()
+            let transcriptVC = Accessors.AppDelegate.delegate.appDiContainer.makeTranscriptDIContainer().makeTranscriptViewController()
+            transcriptVC.words = self.words
+            transcriptVC.modalPresentationStyle = .fullScreen
+            transcriptVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: transcriptVC, duration: 0.2, type: .fromRight)
+        }else{
+            //self.viewModel.equalizeAudio()
+            self.viewModel.applyNoiseGate()
+        }
+        
         self.invalidateTimer()
     }
     

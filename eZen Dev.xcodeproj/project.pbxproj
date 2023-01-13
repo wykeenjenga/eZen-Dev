@@ -52,6 +52,9 @@
 		0B32C5772950500D00028D5D /* Mulish-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5632950500C00028D5D /* Mulish-Medium.ttf */; };
 		0B32C5782950500D00028D5D /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */; };
 		0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */; };
+		0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */; };
+		0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */; };
+		0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */; };
 		0B76DE832950590D00976E55 /* APError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE802950590D00976E55 /* APError.swift */; };
 		0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE822950590D00976E55 /* APDynamicType.swift */; };
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
@@ -141,6 +144,9 @@
 		0B32C5632950500C00028D5D /* Mulish-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-Medium.ttf"; sourceTree = "<group>"; };
 		0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-BoldItalic.ttf"; sourceTree = "<group>"; };
+		0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionViewController.swift; sourceTree = "<group>"; };
+		0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APTranscriptionViewController.xib; sourceTree = "<group>"; };
+		0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionDIContainer.swift; sourceTree = "<group>"; };
 		0B76DE802950590D00976E55 /* APError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APError.swift; sourceTree = "<group>"; };
 		0B76DE822950590D00976E55 /* APDynamicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDynamicType.swift; sourceTree = "<group>"; };
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+				0B54FC452971C071003D1B80 /* TranscriptionDIContainer */,
 				0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */,
 				0BCD379A295614E10006FF9E /* SettingsContainer */,
 				0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */,
@@ -386,6 +393,7 @@
 		0B32C53E295048D800028D5D /* PresentationModules */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FC3F2971B916003D1B80 /* TranscriptionModule */,
 				0B7B6DF02966EA8E00EAE309 /* PreviewMedModule */,
 				0B32C53F295048E800028D5D /* HomeModule */,
 				0BBABBEA2955F89E007CABEB /* SettingsModule */,
@@ -487,6 +495,31 @@
 				0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */,
 			);
 			path = mulish;
+			sourceTree = "<group>";
+		};
+		0B54FC3F2971B916003D1B80 /* TranscriptionModule */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC402971B995003D1B80 /* ViewController */,
+			);
+			path = TranscriptionModule;
+			sourceTree = "<group>";
+		};
+		0B54FC402971B995003D1B80 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */,
+				0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B54FC452971C071003D1B80 /* TranscriptionDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */,
+			);
+			path = TranscriptionDIContainer;
 			sourceTree = "<group>";
 		};
 		0B76DE7E295058FD00976E55 /* CutomType */ = {
@@ -775,6 +808,7 @@
 				0B32C56B2950500D00028D5D /* ArimaMadurai-Medium.ttf in Resources */,
 				0B32C5772950500D00028D5D /* Mulish-Medium.ttf in Resources */,
 				0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */,
+				0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */,
 				0B32C5702950500D00028D5D /* Mulish-Black.ttf in Resources */,
 				0B32C56F2950500D00028D5D /* Mulish-Regular.ttf in Resources */,
 				0B7B6DF42966EABC00EAE309 /* APVisualizeViewController.xib in Resources */,
@@ -918,6 +952,7 @@
 				0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */,
 				0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */,
 				0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */,
+				0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */,
 				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
 				0B32C54829504EFE00028D5D /* HomeDIContainer.swift in Sources */,
 				0B76DE8D2950633700976E55 /* APButton.swift in Sources */,
@@ -934,6 +969,7 @@
 				0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
 				0B76DE832950590D00976E55 /* APError.swift in Sources */,
+				0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */,
 				0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */,
 				0B32C54C29504F4E00028D5D /* APHomeViewController.swift in Sources */,
 				0B7B6DEF2965DEA500EAE309 /* APTranscriptionModel.swift in Sources */,

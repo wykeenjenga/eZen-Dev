@@ -38,4 +38,10 @@ extension APDIContainer {
         let dependencies = APVisualizeDIContainer.Dependencies()
         return APVisualizeDIContainer(dependencies: dependencies)
     }
+    
+    /// Creates VIsualize DIContainer.
+    func makeTranscriptDIContainer() -> APTranscriptionDIContainer {
+        let dependencies = APTranscriptionDIContainer.Dependencies()
+        return APTranscriptionDIContainer(dependencies: dependencies)
+    }
 }
