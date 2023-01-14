@@ -60,7 +60,9 @@ class APTranscriptionViewController: UIViewController {
             if modified_word != "" {
                 finalArray.append(modified_word)
                 for oldWords in words{
-                    let newObj = Utterance.init(start: oldWords.start, end: oldWords.end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: modified_word, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
+                    let start = oldWords.start
+                    let end = oldWords.end
+                    let newObj = Utterance.init(start: start, end: end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: modified_word, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
                     newWords.append(newObj)
                     break
                 }
@@ -70,17 +72,21 @@ class APTranscriptionViewController: UIViewController {
         print("New Array is....\(new_ArrayOfwords)")
         print("Final Array is....\(finalArray)")
         
-    
         for wordd in newWords {
             let dd = wordd.transcript
-            print("........\(dd).......")
+            print("........\(dd).....\(wordd.start)..")
         }
         
-        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-        visualizeVC.words = newWords
-        visualizeVC.modalPresentationStyle = .fullScreen
-        visualizeVC.modalTransitionStyle = .coverVertical
-        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
+        for worddd in words {
+            let ddd = worddd.transcript
+            print(".....2222...\(ddd).....\(worddd.start)..")
+        }
+        
+//        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+//        visualizeVC.words = newWords
+//        visualizeVC.modalPresentationStyle = .fullScreen
+//        visualizeVC.modalTransitionStyle = .coverVertical
+//        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
     }
     
 }
