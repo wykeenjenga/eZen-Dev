@@ -36,12 +36,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-Yu-iEB">
-                    <rect key="frame" x="45" y="113" width="305" height="94.333333333333314"/>
+                    <rect key="frame" x="45" y="113" width="305" height="117.66666666666669"/>
                     <attributedString key="attributedText">
                         <fragment content="Preview Your Voiceover">
                             <attributes>
                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="36" name="ArimaMadurai-Bold"/>
+                                <font key="NSFont" size="45" name="ArimaMadurai-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -140,7 +140,7 @@
                                 <constraint firstAttribute="height" constant="72" id="bKE-IJ-AL0"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Apply Bell Curve EQ" cornerStyle="large">
+                            <buttonConfiguration key="configuration" style="filled" title="Apply Bell Curve EQ" cornerStyle="large" titleAlignment="center">
                                 <backgroundConfiguration key="background" image="create_video"/>
                                 <fontDescription key="titleFontDescription" name="Mulish-Bold" family="Mulish" pointSize="18"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

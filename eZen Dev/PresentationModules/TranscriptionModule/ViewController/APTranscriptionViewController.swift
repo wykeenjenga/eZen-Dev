@@ -28,7 +28,8 @@ class APTranscriptionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         for word in words {
-            self.transcriptionText.text += "\n \(word)"
+            let sentence = word.transcript
+            self.transcriptionText.text += "\n\n\(sentence)"
         }
     }
     
@@ -41,8 +42,27 @@ class APTranscriptionViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     @IBAction func navigateToVideo(_ sender: Any) {
+        self.saveTranscription()
+    }
+    
+    func saveTranscription(){
+        print("Text....\(self.transcriptionText.text!)")
+        
+        let text = self.transcriptionText.text ?? ""
+        let characters = CharacterSet(charactersIn: "\n\n")
+        let new_ArrayOfwords = text.components(separatedBy: characters)
+        
+        var finalArray = [String]()
+        
+        for new_ArrayOfword in new_ArrayOfwords {
+            if new_ArrayOfword != "" {
+                finalArray.append(new_ArrayOfword)
+            }
+        }
+        
+        print("New Array is....\(new_ArrayOfwords)")
+        print("Final Array is....\(finalArray)")
         
     }
     

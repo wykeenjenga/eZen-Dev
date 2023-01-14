@@ -118,19 +118,18 @@ class APPreviewAudioViewController: BaseViewController {
         playerProgressBar.isContinuous = true
         
         if isEnhance{
-            //self.applyBellBtn.isHidden = true
             self.titleLbl.text = "Preview Final Mix"
             self.applyBellBtn.setTitle("Create Video", for: .normal)
         }else{
             self.visualizeBtn.isHidden = true
-            self.titleLbl.text = "Preview Your Voiceover After Enhancement"
+            self.titleLbl.text = "Preview Your Voiceover"
+            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         }
         
 //        if !AppSettings.isBellCurveEQAtcive{
 //            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
 //        }
         
-        self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         self.bindViewModel()
     }
     
