@@ -56,14 +56,13 @@ class APTranscriptionViewController: UIViewController {
         var finalArray = [String]()
         var newWords = [Utterance]()
         
-        let group = DispatchGroup()
-        
         for modified_word in new_ArrayOfwords {
             if modified_word != "" {
                 finalArray.append(modified_word)
                 for oldWords in words{
                     let newObj = Utterance.init(start: oldWords.start, end: oldWords.end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: modified_word, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
                     newWords.append(newObj)
+                    break
                 }
             }
         }
@@ -74,7 +73,7 @@ class APTranscriptionViewController: UIViewController {
     
         for wordd in newWords {
             let dd = wordd.transcript
-            print("........\(dd)...")
+            print("........\(dd).......")
         }
         
 //        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
