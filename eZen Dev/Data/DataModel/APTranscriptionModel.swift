@@ -86,10 +86,10 @@ struct Word: Codable {
 
 // MARK: - Utterance
 struct Utterance: Codable {
-    let start, end, confidence: Double
-    let channel: Int
-    let transcript: String
-    let words: [Word]
-    let speaker: Int
-    let id: String
+    var start, end, confidence: Double
+    var channel: Int
+    var transcript: String
+    var words: [Word]
+    var speaker: Int
+    var id: String
 }

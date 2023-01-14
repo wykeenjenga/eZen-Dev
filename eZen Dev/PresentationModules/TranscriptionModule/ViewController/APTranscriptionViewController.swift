@@ -54,19 +54,31 @@ class APTranscriptionViewController: UIViewController {
         let new_ArrayOfwords = text.components(separatedBy: characters)
         
         var finalArray = [String]()
+        var newWords = [Utterance]()
         
-        for new_ArrayOfword in new_ArrayOfwords {
-            if new_ArrayOfword != "" {
-                finalArray.append(new_ArrayOfword)
-                for word in words {
-                    word.transcript = new_ArrayOfword
+        let group = DispatchGroup()
+        
+        for modified_word in new_ArrayOfwords {
+            if modified_word != "" {
+                finalArray.append(modified_word)
+                for oldWords in words{
+                    let newObj = Utterance.init(start: oldWords.start, end: oldWords.end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: modified_word, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
+                    newWords.append(newObj)
                 }
             }
+            
         }
         
         print("New Array is....\(new_ArrayOfwords)")
         print("Final Array is....\(finalArray)")
         
+        print("...\(newWords.count)")
+        
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+        visualizeVC.words = newWords
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
     }
     
 }
