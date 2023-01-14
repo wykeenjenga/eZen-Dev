@@ -76,11 +76,11 @@ class APTranscriptionViewController: UIViewController {
             print("........\(dd).......")
         }
         
-//        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-//        visualizeVC.words = newWords
-//        visualizeVC.modalPresentationStyle = .fullScreen
-//        visualizeVC.modalTransitionStyle = .coverVertical
-//        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+        visualizeVC.words = newWords
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
     }
     
 }
