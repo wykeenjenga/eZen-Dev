@@ -58,6 +58,9 @@ class APTranscriptionViewController: UIViewController {
         for new_ArrayOfword in new_ArrayOfwords {
             if new_ArrayOfword != "" {
                 finalArray.append(new_ArrayOfword)
+                for word in words {
+                    word.transcript = new_ArrayOfword
+                }
             }
         }
         

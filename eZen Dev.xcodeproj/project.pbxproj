@@ -163,6 +163,7 @@
 		0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDeviceOrientation.swift; sourceTree = "<group>"; };
 		0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingsViewController.swift; sourceTree = "<group>"; };
 		0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSettingsViewController.xib; sourceTree = "<group>"; };
+		0BBD950029729EC9007FE519 /* SF-Compact-Rounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Regular.ttf"; sourceTree = "<group>"; };
 		0BCD379B295615000006FF9E /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,6 +458,7 @@
 		0B32C54F2950500C00028D5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0BBD950029729EC9007FE519 /* SF-Compact-Rounded-Regular.ttf */,
 				0B32C5502950500C00028D5D /* arims */,
 				0B32C5592950500C00028D5D /* mulish */,
 			);
