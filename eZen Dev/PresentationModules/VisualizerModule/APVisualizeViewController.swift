@@ -33,11 +33,11 @@ class APVisualizeViewController: BaseViewController {
     
     
     @IBOutlet weak var menuView: CustomView!
-    @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var videoBtn: UIButton!
-    @IBOutlet weak var transcriptionBtn: UIButton!
-    @IBOutlet weak var musicBtn: UIButton!
-    @IBOutlet weak var transcriptionLbl: UILabel!
+    @IBOutlet weak var menuBtn: APBindingButton!
+    @IBOutlet weak var videoBtn: APBindingButton!
+    @IBOutlet weak var transcriptionBtn: APBindingButton!
+    @IBOutlet weak var musicBtn: APBindingButton!
+    @IBOutlet weak var transcriptionLbl: APBindingButton!
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
@@ -119,16 +119,20 @@ class APVisualizeViewController: BaseViewController {
             isMenu = false
             self.menuView.isHidden = true
             //slide uiview down
-            UIView.animate(withDuration: 1, animations: {
-                self.menuView.frame.origin.y += 20
+            UIView.animate(withDuration: 0.4, animations: {
+                self.menuView.frame.origin.y += 10
             }, completion: nil)
+            self.menuBtn.setImage(UIImage(named: "menu")?.resizableImage(withCapInsets: .init(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .), for: .normal)
+            //self.menuBtn.setBackgroundImage(UIImage(named: "menu.png"), for: .normal)
         }else{
             isMenu = true
             self.menuView.isHidden = false
             //slide uiview up
-            UIView.animate(withDuration: 1, animations: {
-                self.menuView.frame.origin.y -= 20
+            UIView.animate(withDuration: 0.4, animations: {
+                self.menuView.frame.origin.y -= 10
             }, completion: nil)
+            //self.menuBtn.setBackgroundImage(UIImage(named: "cancel.png"), for: .normal)
+            self.menuBtn.setImage(UIImage(named: "cancel")?.resizableImage(withCapInsets: .zero), for: .normal)
         }
     }
     
@@ -152,7 +156,6 @@ class APVisualizeViewController: BaseViewController {
             isRotation = true
             self.rotateLandscape()
         }
-        
     }
     
     @IBAction func playMusic(_ sender: Any) {
@@ -160,11 +163,11 @@ class APVisualizeViewController: BaseViewController {
         if isMuted{
             self.player?.isMuted = false
             isMuted = false
-            self.musicBtn.setBackgroundImage(UIImage(named: "music_on"), for: .normal)
+            self.musicBtn.setBackgroundImage(UIImage(named: "music_on.png"), for: .normal)
         }else{
             self.player?.isMuted = true
             isMuted = true
-            self.musicBtn.setBackgroundImage(UIImage(named: "music_off"), for: .normal)
+            self.musicBtn.setBackgroundImage(UIImage(named: "music_off.png"), for: .normal)
         }
         self.viewWillAppear(true)
     }
@@ -174,11 +177,11 @@ class APVisualizeViewController: BaseViewController {
         if isTranscription{
             isTranscription = false
             self.transcriptionLbl.isHidden = false
-            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_off"), for: .normal)
+            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_off.png"), for: .normal)
         }else{
             isTranscription = true
             self.transcriptionLbl.isHidden = true
-            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_on"), for: .normal)
+            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_on.png"), for: .normal)
         }
         self.viewWillAppear(true)
     }
