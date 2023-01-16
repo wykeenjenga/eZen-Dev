@@ -22,6 +22,7 @@
                 <outlet property="transcriptionBtn" destination="D1W-Rb-SxV" id="PJ5-Jn-YgA"/>
                 <outlet property="transcriptionLbl" destination="xzq-GY-QHT" id="4oq-sO-Fbc"/>
                 <outlet property="videoBtn" destination="TYt-lJ-yub" id="hTH-Do-VUw"/>
+                <outlet property="videoView" destination="kIo-su-qGU" id="VGX-Rb-LuA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

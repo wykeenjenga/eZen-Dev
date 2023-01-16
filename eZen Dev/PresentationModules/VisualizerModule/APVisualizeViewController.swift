@@ -32,6 +32,7 @@ class APVisualizeViewController: BaseViewController {
     var words = [Utterance]()
     
     
+    @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var menuView: CustomView!
     @IBOutlet weak var menuBtn: APBindingButton!
     @IBOutlet weak var videoBtn: APBindingButton!
