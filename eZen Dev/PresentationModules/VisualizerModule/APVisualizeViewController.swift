@@ -37,7 +37,7 @@ class APVisualizeViewController: BaseViewController {
     @IBOutlet weak var videoBtn: APBindingButton!
     @IBOutlet weak var transcriptionBtn: APBindingButton!
     @IBOutlet weak var musicBtn: APBindingButton!
-    @IBOutlet weak var transcriptionLbl: APBindingButton!
+    @IBOutlet weak var transcriptionLbl: UILabel!
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
@@ -56,6 +56,12 @@ class APVisualizeViewController: BaseViewController {
         self.invalidateTimer()
         self.playVoice()
         self.menuView.isHidden = true
+        
+        isMuted = false
+        isTranscription = false
+        isVideo = false
+        isRotation = false
+        isMenu = false
     }
     
     final class func create() -> APVisualizeViewController {
@@ -103,9 +109,7 @@ class APVisualizeViewController: BaseViewController {
                 windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { error in
                     print("error",error)
                     print(windowScene?.effectiveGeometry ?? "")
-                    
                 }
-                
             }
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
@@ -114,7 +118,6 @@ class APVisualizeViewController: BaseViewController {
     }
     
     @IBAction func onMenuAction(_ sender: Any) {
-        print("MENU is clicked")
         if isMenu{
             isMenu = false
             self.menuView.isHidden = true
@@ -122,8 +125,7 @@ class APVisualizeViewController: BaseViewController {
             UIView.animate(withDuration: 0.4, animations: {
                 self.menuView.frame.origin.y += 10
             }, completion: nil)
-            self.menuBtn.setImage(UIImage(named: "menu")?.resizableImage(withCapInsets: .init(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .), for: .normal)
-            //self.menuBtn.setBackgroundImage(UIImage(named: "menu.png"), for: .normal)
+            self.menuBtn.setImage(UIImage(named: "menu"), for: .normal)
         }else{
             isMenu = true
             self.menuView.isHidden = false
@@ -131,8 +133,7 @@ class APVisualizeViewController: BaseViewController {
             UIView.animate(withDuration: 0.4, animations: {
                 self.menuView.frame.origin.y -= 10
             }, completion: nil)
-            //self.menuBtn.setBackgroundImage(UIImage(named: "cancel.png"), for: .normal)
-            self.menuBtn.setImage(UIImage(named: "cancel")?.resizableImage(withCapInsets: .zero), for: .normal)
+            self.menuBtn.setImage(UIImage(named: "cancel"), for: .normal)
         }
     }
     
@@ -163,13 +164,12 @@ class APVisualizeViewController: BaseViewController {
         if isMuted{
             self.player?.isMuted = false
             isMuted = false
-            self.musicBtn.setBackgroundImage(UIImage(named: "music_on.png"), for: .normal)
+            self.musicBtn.setImage(UIImage(named: "music_on"), for: .normal)
         }else{
             self.player?.isMuted = true
             isMuted = true
-            self.musicBtn.setBackgroundImage(UIImage(named: "music_off.png"), for: .normal)
+            self.musicBtn.setImage(UIImage(named: "music_off"), for: .normal)
         }
-        self.viewWillAppear(true)
     }
     
     @IBAction func showTranscription(_ sender: Any) {
@@ -177,13 +177,12 @@ class APVisualizeViewController: BaseViewController {
         if isTranscription{
             isTranscription = false
             self.transcriptionLbl.isHidden = false
-            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_off.png"), for: .normal)
+            self.transcriptionBtn.setImage(UIImage(named: "text_on"), for: .normal)
         }else{
             isTranscription = true
             self.transcriptionLbl.isHidden = true
-            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_on.png"), for: .normal)
+            self.transcriptionBtn.setImage(UIImage(named: "text_off"), for: .normal)
         }
-        self.viewWillAppear(true)
     }
     
     @IBAction func showVideo(_ sender: Any) {

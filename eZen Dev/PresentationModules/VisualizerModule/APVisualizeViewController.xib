@@ -57,58 +57,50 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keu-in-jOu" customClass="CustomView" customModule="eZen_Dev" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="1" width="45" height="204"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-Tf-kS4" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-Tf-kS4" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="159" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="70i-CW-Oy2"/>
                                                 <constraint firstAttribute="width" constant="45" id="7x9-fv-lLI"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" image="music_on"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="music_on"/>
                                             <connections>
                                                 <action selector="playMusic:" destination="-1" eventType="touchUpInside" id="SXt-a9-lIh"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1W-Rb-SxV" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1W-Rb-SxV" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="106" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="3Rd-GD-VJQ"/>
                                                 <constraint firstAttribute="width" constant="45" id="Y1A-PV-rRN"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" image="text_on"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Button" image="text_on"/>
                                             <connections>
                                                 <action selector="showTranscription:" destination="-1" eventType="touchUpInside" id="dra-HM-ls1"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYt-lJ-yub" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYt-lJ-yub" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="53" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="2cs-QK-Dup"/>
                                                 <constraint firstAttribute="width" constant="45" id="xNB-ZI-maH"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" image="video_on"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Button" image="video_on"/>
                                             <connections>
                                                 <action selector="showVideo:" destination="-1" eventType="touchUpInside" id="VUw-Gd-vNi"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fk-qu-SVJ" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fk-qu-SVJ" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="Rk8-RG-6Nn"/>
                                                 <constraint firstAttribute="width" constant="45" id="mXb-FF-mWr"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" image="back_btn"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Button" image="back_btn"/>
                                             <connections>
                                                 <action selector="closePage:" destination="-1" eventType="touchUpInside" id="sUZ-sp-J5T"/>
                                             </connections>
@@ -131,16 +123,14 @@
                                         <constraint firstItem="6fk-qu-SVJ" firstAttribute="top" secondItem="keu-in-jOu" secondAttribute="top" id="uEo-ql-OU2"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-vJ-eqK" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-vJ-eqK" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="213" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="BGX-nX-UY9"/>
                                         <constraint firstAttribute="width" constant="45" id="mZC-0g-hai"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <backgroundConfiguration key="background" image="menu"/>
-                                    </buttonConfiguration>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Button" image="menu"/>
                                     <connections>
                                         <action selector="onMenuAction:" destination="-1" eventType="touchUpInside" id="hVK-3J-O0p"/>
                                     </connections>
