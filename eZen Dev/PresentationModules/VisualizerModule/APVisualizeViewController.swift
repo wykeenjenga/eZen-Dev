@@ -19,6 +19,7 @@ class APVisualizeViewController: BaseViewController {
     var isTranscription = false
     var isVideo = false
     var isRotation = false
+    var isMenu = false
     
     var duration = 0.0
     var currentDuration = 0.0
@@ -43,12 +44,18 @@ class APVisualizeViewController: BaseViewController {
     var sentence = ""
     var stringArray = [String]()
     
+    var sentencesArray = [String]()
+    var timeStampStart = [Double]()
+    var timeStampEnd = [Double]()
+    var counter = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         self.invalidateTimer()
         self.playVoice()
+        self.menuView.isHidden = true
     }
     
     final class func create() -> APVisualizeViewController {
@@ -108,6 +115,21 @@ class APVisualizeViewController: BaseViewController {
     
     @IBAction func onMenuAction(_ sender: Any) {
         print("MENU is clicked")
+        if isMenu{
+            isMenu = false
+            self.menuView.isHidden = true
+            //slide uiview down
+            UIView.animate(withDuration: 1, animations: {
+                self.menuView.frame.origin.y += 20
+            }, completion: nil)
+        }else{
+            isMenu = true
+            self.menuView.isHidden = false
+            //slide uiview up
+            UIView.animate(withDuration: 1, animations: {
+                self.menuView.frame.origin.y -= 20
+            }, completion: nil)
+        }
     }
     
     @IBAction func closePage(_ sender: Any) {
@@ -126,11 +148,11 @@ class APVisualizeViewController: BaseViewController {
         if isRotation{
             isRotation = false
             self.rotatePotrait()
-
         }else{
             isRotation = true
             self.rotateLandscape()
         }
+        
     }
     
     @IBAction func playMusic(_ sender: Any) {
@@ -144,6 +166,7 @@ class APVisualizeViewController: BaseViewController {
             isMuted = true
             self.musicBtn.setBackgroundImage(UIImage(named: "music_off"), for: .normal)
         }
+        self.viewWillAppear(true)
     }
     
     @IBAction func showTranscription(_ sender: Any) {
@@ -157,24 +180,12 @@ class APVisualizeViewController: BaseViewController {
             self.transcriptionLbl.isHidden = true
             self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_on"), for: .normal)
         }
+        self.viewWillAppear(true)
     }
-    
-    var isAnimation = false
     
     @IBAction func showVideo(_ sender: Any) {
-        //show or hide video
-        if isAnimation{
-            isAnimation = false
-        }else{
-            isAnimation = true
-        }
+        
     }
-    
-    var sentencesArray = [String]()
-    var timeStampStart = [Double]()
-    var timeStampEnd = [Double]()
-    
-    var counter = 0
     
     func playVoice(){
         do {
