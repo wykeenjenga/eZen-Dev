@@ -41,6 +41,7 @@ class APVisualizeViewController: BaseViewController {
     @IBOutlet weak var transcriptionLbl: UILabel!
     
     var player: AVPlayer?
+    var videoPlayer: AVPlayer?
     var playerItem: AVPlayerItem?
     var sentence = ""
     var stringArray = [String]()
@@ -56,6 +57,7 @@ class APVisualizeViewController: BaseViewController {
         
         self.invalidateTimer()
         self.playVoice()
+        self.initializeVideoPlayerWithVideo()
         self.menuView.isHidden = true
         
         isMuted = false
@@ -74,6 +76,31 @@ class APVisualizeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Sentences count....\(self.self.sentencesArray)")
+    }
+    
+    func initializeVideoPlayerWithVideo() {
+        // get the path string for the video from assets
+        let videoString:String? = Bundle.main.path(forResource: "03V", ofType: "mp4")
+        guard let unwrappedVideoPath = videoString else {return}
+
+        // convert the path string to a url
+        let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
+
+        // initialize the video player with the url
+        self.videoPlayer = AVPlayer(url: videoUrl)
+
+        // create a video layer for the player
+        let layer: AVPlayerLayer = AVPlayerLayer(player: videoPlayer)
+
+        // make the layer the same size as the container view
+        layer.frame = videoView.bounds
+
+        // make the video fill the layer as much as possible while keeping its aspect size
+        layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+
+        // add the layer to the container view
+        videoView.layer.addSublayer(layer)
+        videoPlayer?.play()
     }
     
     public func rotatePotrait(){
@@ -198,6 +225,7 @@ class APVisualizeViewController: BaseViewController {
                 playerItem = AVPlayerItem(url: self.url!)
                 player = AVPlayer(playerItem: playerItem)
                 player?.play()
+                
 
                 player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.0001, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {

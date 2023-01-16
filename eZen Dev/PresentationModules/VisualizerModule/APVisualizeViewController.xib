@@ -32,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-su-qGU">
-                    <rect key="frame" x="-10" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="-10" y="0.0" width="412" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
                             <rect key="frame" x="16" y="143" width="361" height="145"/>
@@ -154,8 +154,8 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="leading" secondItem="kIo-su-qGU" secondAttribute="leading" constant="16" id="HS6-bl-T8k"/>
-                        <constraint firstAttribute="trailing" secondItem="Sks-YB-uxo" secondAttribute="trailing" constant="16" id="OlO-We-pg3"/>
-                        <constraint firstAttribute="trailing" secondItem="rch-ba-0W8" secondAttribute="trailing" constant="16" id="T6E-QZ-Yr2"/>
+                        <constraint firstAttribute="trailing" secondItem="Sks-YB-uxo" secondAttribute="trailing" constant="35" id="OlO-We-pg3"/>
+                        <constraint firstAttribute="trailing" secondItem="rch-ba-0W8" secondAttribute="trailing" constant="35" id="T6E-QZ-Yr2"/>
                         <constraint firstAttribute="bottom" secondItem="Sks-YB-uxo" secondAttribute="bottom" constant="42" id="mQQ-Xp-Um6"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" constant="143" id="miT-Ve-Lch"/>
                     </constraints>
@@ -167,7 +167,7 @@
                 <constraint firstItem="kIo-su-qGU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="-10" id="Vlo-QP-FXw"/>
                 <constraint firstAttribute="bottom" secondItem="kIo-su-qGU" secondAttribute="bottom" id="gB7-sa-eLM"/>
                 <constraint firstItem="kIo-su-qGU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i4s-fV-yRR"/>
-                <constraint firstItem="kIo-su-qGU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-10" id="oeP-oB-Qc0"/>
+                <constraint firstItem="kIo-su-qGU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="9" id="oeP-oB-Qc0"/>
             </constraints>
             <point key="canvasLocation" x="-144.27480916030532" y="10.563380281690142"/>
         </view>
