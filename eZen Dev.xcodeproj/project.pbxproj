@@ -395,7 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				0B54FC3F2971B916003D1B80 /* TranscriptionModule */,
-				0B7B6DF02966EA8E00EAE309 /* PreviewMedModule */,
+				0B7B6DF02966EA8E00EAE309 /* VisualizerModule */,
 				0B32C53F295048E800028D5D /* HomeModule */,
 				0BBABBEA2955F89E007CABEB /* SettingsModule */,
 				0B76DE8E2952490F00976E55 /* PreviewAudio */,
@@ -608,13 +608,13 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
-		0B7B6DF02966EA8E00EAE309 /* PreviewMedModule */ = {
+		0B7B6DF02966EA8E00EAE309 /* VisualizerModule */ = {
 			isa = PBXGroup;
 			children = (
 				0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */,
 				0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */,
 			);
-			path = PreviewMedModule;
+			path = VisualizerModule;
 			sourceTree = "<group>";
 		};
 		0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */ = {

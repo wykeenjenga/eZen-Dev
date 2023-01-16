@@ -31,6 +31,10 @@ class APVisualizeViewController: BaseViewController {
     var words = [Utterance]()
     
     
+    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var videoBtn: UIButton!
+    @IBOutlet weak var transcriptionBtn: UIButton!
+    @IBOutlet weak var musicBtn: UIButton!
     @IBOutlet weak var transcriptionLbl: UILabel!
     
     var player: AVPlayer?
@@ -99,6 +103,10 @@ class APVisualizeViewController: BaseViewController {
             UIDevice.current.setValue(value, forKey: "orientation")
             self.viewWillAppear(true)
         }
+    }
+    
+    @IBAction func onMenuAction(_ sender: Any) {
+        print("MENU is clicked")
     }
     
     @IBAction func closePage(_ sender: Any) {
