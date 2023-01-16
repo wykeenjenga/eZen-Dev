@@ -57,7 +57,7 @@ class APVisualizeViewController: BaseViewController {
         
         self.invalidateTimer()
         self.playVoice()
-        self.initializeVideoPlayerWithVideo()
+        self.playVideo()
         self.menuView.isHidden = true
         
         isMuted = false
@@ -78,13 +78,19 @@ class APVisualizeViewController: BaseViewController {
         print("Sentences count....\(self.self.sentencesArray)")
     }
     
-    func initializeVideoPlayerWithVideo() {
-        // get the path string for the video from assets
-        let videoString:String? = Bundle.main.path(forResource: "03V", ofType: "mp4")
-        guard let unwrappedVideoPath = videoString else {return}
+    func playVideo() {
+//         get the path string for the video from assets
+        let videoString: String? = Bundle.main.path(forResource: "vidaa", ofType: "mp4")
+        print("......\(videoString)")
+        guard let unwrappedVideoPath = videoString else {
+            debugPrint("vidaa.mp4 not found")
+            return
+        }
 
         // convert the path string to a url
         let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
+        
+        print("Video URl.....\(videoUrl)")
 
         // initialize the video player with the url
         self.videoPlayer = AVPlayer(url: videoUrl)
@@ -93,13 +99,13 @@ class APVisualizeViewController: BaseViewController {
         let layer: AVPlayerLayer = AVPlayerLayer(player: videoPlayer)
 
         // make the layer the same size as the container view
-        layer.frame = videoView.bounds
+        layer.frame = self.videoView.bounds
 
         // make the video fill the layer as much as possible while keeping its aspect size
         layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
 
         // add the layer to the container view
-        videoView.layer.addSublayer(layer)
+        self.videoView.layer.addSublayer(layer)
         videoPlayer?.play()
     }
     

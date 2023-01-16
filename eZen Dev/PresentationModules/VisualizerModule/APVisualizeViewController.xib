@@ -22,7 +22,7 @@
                 <outlet property="transcriptionBtn" destination="D1W-Rb-SxV" id="PJ5-Jn-YgA"/>
                 <outlet property="transcriptionLbl" destination="xzq-GY-QHT" id="4oq-sO-Fbc"/>
                 <outlet property="videoBtn" destination="TYt-lJ-yub" id="hTH-Do-VUw"/>
-                <outlet property="videoView" destination="kIo-su-qGU" id="VGX-Rb-LuA"/>
+                <outlet property="videoView" destination="INi-Kh-TGp" id="ExM-Ue-g1G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,6 +34,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-su-qGU">
                     <rect key="frame" x="-10" y="0.0" width="412" height="852"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INi-Kh-TGp">
+                            <rect key="frame" x="0.0" y="0.0" width="412" height="852"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
                             <rect key="frame" x="16" y="143" width="361" height="145"/>
                             <subviews>
@@ -153,16 +157,20 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="INi-Kh-TGp" firstAttribute="leading" secondItem="kIo-su-qGU" secondAttribute="leading" id="B9r-hG-0BH"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="leading" secondItem="kIo-su-qGU" secondAttribute="leading" constant="16" id="HS6-bl-T8k"/>
                         <constraint firstAttribute="trailing" secondItem="Sks-YB-uxo" secondAttribute="trailing" constant="35" id="OlO-We-pg3"/>
                         <constraint firstAttribute="trailing" secondItem="rch-ba-0W8" secondAttribute="trailing" constant="35" id="T6E-QZ-Yr2"/>
+                        <constraint firstItem="INi-Kh-TGp" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" id="UrT-A3-FYT"/>
+                        <constraint firstAttribute="bottom" secondItem="INi-Kh-TGp" secondAttribute="bottom" id="lLs-oP-eoi"/>
                         <constraint firstAttribute="bottom" secondItem="Sks-YB-uxo" secondAttribute="bottom" constant="42" id="mQQ-Xp-Um6"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" constant="143" id="miT-Ve-Lch"/>
+                        <constraint firstAttribute="trailing" secondItem="INi-Kh-TGp" secondAttribute="trailing" id="ub0-5s-N0f"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.14791139959999999" green="0.1095593497" blue="0.34555751089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="kIo-su-qGU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="-10" id="Vlo-QP-FXw"/>
                 <constraint firstAttribute="bottom" secondItem="kIo-su-qGU" secondAttribute="bottom" id="gB7-sa-eLM"/>
