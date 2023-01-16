@@ -31,6 +31,7 @@ class APVisualizeViewController: BaseViewController {
     var words = [Utterance]()
     
     
+    @IBOutlet weak var menuView: CustomView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var videoBtn: UIButton!
     @IBOutlet weak var transcriptionBtn: UIButton!
@@ -137,11 +138,13 @@ class APVisualizeViewController: BaseViewController {
         if isMuted{
             self.player?.isMuted = false
             isMuted = false
+            self.musicBtn.setBackgroundImage(UIImage(named: "music_on"), for: .normal)
 //            Loaf("Audio is Unmuted",
 //                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }else{
             self.player?.isMuted = true
             isMuted = true
+            self.musicBtn.setBackgroundImage(UIImage(named: "music_off"), for: .normal)
 //            Loaf("Audio is Muted",
 //                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
@@ -152,11 +155,13 @@ class APVisualizeViewController: BaseViewController {
         if isTranscription{
             isTranscription = false
             self.transcriptionLbl.isHidden = false
+            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_off"), for: .normal)
 //            Loaf("Transcription is Live",
 //                 state: .success, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }else{
             isTranscription = true
             self.transcriptionLbl.isHidden = true
+            self.transcriptionBtn.setBackgroundImage(UIImage(named: "text_on"), for: .normal)
 //            Loaf("Transcription is Hidden",
 //                 state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
@@ -207,8 +212,8 @@ class APVisualizeViewController: BaseViewController {
                             
                             if range.contains(time){
                                 self.transcriptionLbl.text = punctuatedWord
-                                print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
-                                print("")
+//                                print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
+//                                print("")
                             }else{
                                 if time > end{
                                     self.transcriptionLbl.text = ""
@@ -247,4 +252,16 @@ class APVisualizeViewController: BaseViewController {
     }
     
     
+}
+
+
+class CustomView: UIView{
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for subview in subviews {
+            if subview.frame.contains(point) {
+                return true
+            }
+        }
+        return false
+    }
 }
