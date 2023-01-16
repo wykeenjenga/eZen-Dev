@@ -50,7 +50,7 @@ class APTranscriptionViewController: UIViewController {
         print("Text....\(self.transcriptionText.text!)")
         
         let text = self.transcriptionText.text ?? ""
-        let characters = CharacterSet(charactersIn: "\n\n")
+        let characters = CharacterSet(charactersIn: "\n")
         let new_ArrayOfwords = text.components(separatedBy: characters)
         
         var finalArray = [String]()
@@ -59,14 +59,18 @@ class APTranscriptionViewController: UIViewController {
         for modified_word in new_ArrayOfwords {
             if modified_word != "" {
                 finalArray.append(modified_word)
-                for oldWords in words{
-                    let start = oldWords.start
-                    let end = oldWords.end
-                    let newObj = Utterance.init(start: start, end: end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: modified_word, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
-                    newWords.append(newObj)
-                    break
-                }
             }
+        }
+        
+        var count = 0
+        
+        for oldWords in words{
+            let start = oldWords.start
+            let end = oldWords.end
+            let new_sentence = finalArray[count]
+            let newObj = Utterance.init(start: start, end: end, confidence: oldWords.confidence, channel: oldWords.channel, transcript: new_sentence, words: oldWords.words, speaker: oldWords.speaker, id: oldWords.id)
+            newWords.append(newObj)
+            count += 1
         }
         
         print("New Array is....\(new_ArrayOfwords)")
