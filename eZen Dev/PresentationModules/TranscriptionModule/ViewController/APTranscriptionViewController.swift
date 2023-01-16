@@ -76,21 +76,11 @@ class APTranscriptionViewController: UIViewController {
         print("New Array is....\(new_ArrayOfwords)")
         print("Final Array is....\(finalArray)")
         
-        for wordd in newWords {
-            let dd = wordd.transcript
-            print("........\(dd).....\(wordd.start)..")
-        }
-        
-        for worddd in words {
-            let ddd = worddd.transcript
-            print(".....2222...\(ddd).....\(worddd.start)..")
-        }
-        
-//        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
-//        visualizeVC.words = newWords
-//        visualizeVC.modalPresentationStyle = .fullScreen
-//        visualizeVC.modalTransitionStyle = .coverVertical
-//        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+        visualizeVC.words = newWords
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
     }
     
 }
