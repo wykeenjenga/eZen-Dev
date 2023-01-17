@@ -258,11 +258,15 @@ class APVisualizeViewController: BaseViewController {
         if isVideo{
             isVideo = false
             self.videoBtn.setImage(UIImage(named: "video_on"), for: .normal)
-            self.videoView.isHidden = false
+            self.transcriptionLbl.fadeIn(completion: {_ in
+                self.videoView.isHidden = false
+            })
         }else{
             isVideo = true
             self.videoBtn.setImage(UIImage(named: "video_off"), for: .normal)
-            self.videoView.isHidden = true
+            self.transcriptionLbl.fadeIn(completion: {_ in
+                self.videoView.isHidden = true
+            })
         }
     }
     
