@@ -195,6 +195,7 @@ class APVisualizeViewController: BaseViewController {
             self.menuView.isHidden = false
             //slide uiview up
             UIView.animate(withDuration: 0.4, animations: {
+                self.menuView.frame.origin.y = +10
                 self.menuView.frame.origin.y -= 10
             }, completion: nil)
             self.menuBtn.setImage(UIImage(named: "cancel"), for: .normal)
@@ -205,8 +206,8 @@ class APVisualizeViewController: BaseViewController {
         self.invalidateTimer()
         self.rotatePotrait()
         
-        let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
-        previewVC.isEnhance = true
+        let previewVC = Accessors.AppDelegate.delegate.appDiContainer.makeTranscriptDIContainer().makeTranscriptViewController()
+        //previewVC.isEnhance = true
         previewVC.words = self.words
         previewVC.modalPresentationStyle = .fullScreen
         previewVC.modalTransitionStyle = .coverVertical
@@ -290,8 +291,6 @@ class APVisualizeViewController: BaseViewController {
                             
                             if range.contains(time){
                                 self.transcriptionLbl.text = punctuatedWord
-//                                print(">>>>>>>>>.\(punctuatedWord)....\(start)......\(end)")
-//                                print("")
                             }else{
                                 if time > end{
                                     self.transcriptionLbl.text = ""
@@ -344,4 +343,18 @@ class CustomView: UIView{
         }
         return false
     }
+}
+
+extension UIView {
+
+    func fadeIn(_ duration: TimeInterval = 0.1, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 1.0
+    }, completion: completion)  }
+
+    func fadeOut(_ duration: TimeInterval = 0.1, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 0.8
+    }, completion: completion)
+   }
 }

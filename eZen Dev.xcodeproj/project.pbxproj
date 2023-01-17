@@ -55,7 +55,6 @@
 		0B35CDE8297599F00074F9D2 /* Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE7297599F00074F9D2 /* Music.mp3 */; };
 		0B35CDEB2975A1E40074F9D2 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35CDEA2975A1E40074F9D2 /* VideoPlayer.swift */; };
 		0B35CDEC2975A64C0074F9D2 /* vidaa.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */; };
-		0B35CDEE2975EAE70074F9D2 /* vidaaa.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDED2975EAE70074F9D2 /* vidaaa.mp4 */; };
 		0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */; };
 		0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */; };
 		0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */; };
@@ -151,7 +150,6 @@
 		0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vidaa.mp4; sourceTree = "<group>"; };
 		0B35CDE7297599F00074F9D2 /* Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Music.mp3; sourceTree = "<group>"; };
 		0B35CDEA2975A1E40074F9D2 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
-		0B35CDED2975EAE70074F9D2 /* vidaaa.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vidaaa.mp4; sourceTree = "<group>"; };
 		0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionViewController.swift; sourceTree = "<group>"; };
 		0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APTranscriptionViewController.xib; sourceTree = "<group>"; };
 		0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionDIContainer.swift; sourceTree = "<group>"; };
@@ -512,7 +510,6 @@
 		0B35CDE4297599CA0074F9D2 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				0B35CDED2975EAE70074F9D2 /* vidaaa.mp4 */,
 				0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */,
 			);
 			path = Video;
@@ -858,7 +855,6 @@
 				0B32C4E9294D934000028D5D /* Assets.xcassets in Resources */,
 				0B32C54D29504F4E00028D5D /* APHomeViewController.xib in Resources */,
 				0B32C4E7294D933E00028D5D /* Main.storyboard in Resources */,
-				0B35CDEE2975EAE70074F9D2 /* vidaaa.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

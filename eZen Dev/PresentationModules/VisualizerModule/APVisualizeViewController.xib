@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -154,12 +155,27 @@
                                 <constraint firstAttribute="trailing" secondItem="Xrr-vJ-eqK" secondAttribute="trailing" id="q79-8p-CJj"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xch-Bk-rvZ">
+                            <rect key="frame" x="332" y="0.0" width="72" height="86"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="PBl-WZ-3e9"/>
+                                <constraint firstAttribute="width" constant="72" id="sKQ-AB-i4p"/>
+                            </constraints>
+                            <color key="tintColor" name="yellow"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain"/>
+                            <connections>
+                                <action selector="changeOrientation:" destination="-1" eventType="touchUpInside" id="85d-3x-CkG"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="xch-Bk-rvZ" secondAttribute="trailing" constant="8" id="EJm-Yw-OAZ"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="centerY" secondItem="kIo-su-qGU" secondAttribute="centerY" id="FC9-cj-bcm"/>
                         <constraint firstItem="INi-Kh-TGp" firstAttribute="leading" secondItem="kIo-su-qGU" secondAttribute="leading" id="K1T-vx-3bu"/>
                         <constraint firstAttribute="trailing" secondItem="Sks-YB-uxo" secondAttribute="trailing" constant="35" id="OlO-We-pg3"/>
+                        <constraint firstItem="xch-Bk-rvZ" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" id="WSS-lJ-n2c"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="centerX" secondItem="kIo-su-qGU" secondAttribute="centerX" id="XrC-JS-Jk8"/>
                         <constraint firstItem="INi-Kh-TGp" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" id="fgE-nb-Xds"/>
                         <constraint firstAttribute="bottom" secondItem="INi-Kh-TGp" secondAttribute="bottom" id="kd0-zT-UYk"/>
@@ -185,5 +201,8 @@
         <image name="music_on" width="60" height="60"/>
         <image name="text_on" width="170.66667175292969" height="170.66667175292969"/>
         <image name="video_on" width="170.66667175292969" height="170.66667175292969"/>
+        <namedColor name="yellow">
+            <color red="1" green="0.93725490196078431" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -198,7 +198,7 @@
                     <color key="textColor" name="red"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
                     <rect key="frame" x="347" y="60" width="30" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Puz-mI-4fe"/>
