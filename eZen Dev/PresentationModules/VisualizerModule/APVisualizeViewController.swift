@@ -258,13 +258,13 @@ class APVisualizeViewController: BaseViewController {
         if isVideo{
             isVideo = false
             self.videoBtn.setImage(UIImage(named: "video_on"), for: .normal)
-            self.transcriptionLbl.fadeIn(completion: {_ in
+            self.videoView.fadeIn(completion: {_ in
                 self.videoView.isHidden = false
             })
         }else{
             isVideo = true
             self.videoBtn.setImage(UIImage(named: "video_off"), for: .normal)
-            self.transcriptionLbl.fadeIn(completion: {_ in
+            self.videoView.fadeOut(completion: {_ in
                 self.videoView.isHidden = true
             })
         }
@@ -352,15 +352,15 @@ class CustomView: UIView{
 }
 
 extension UIView {
-
-    func fadeIn(_ duration: TimeInterval = 0.1, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+    func fadeIn(_ duration: TimeInterval = 0.3, delay: TimeInterval = 1.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = 1.0
     }, completion: completion)  }
 
-    func fadeOut(_ duration: TimeInterval = 0.1, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+    func fadeOut(_ duration: TimeInterval = 0.3, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.alpha = 0.8
+            self.alpha = 0.0
     }, completion: completion)
    }
+    
 }
