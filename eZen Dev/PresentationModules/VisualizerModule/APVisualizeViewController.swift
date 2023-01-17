@@ -241,11 +241,15 @@ class APVisualizeViewController: BaseViewController {
         //show or hide transcription
         if isTranscription{
             isTranscription = false
-            self.transcriptionLbl.isHidden = false
+            self.transcriptionLbl.fadeIn(completion: {_ in
+                self.transcriptionLbl.isHidden = false
+            })
             self.transcriptionBtn.setImage(UIImage(named: "text_on"), for: .normal)
         }else{
             isTranscription = true
-            self.transcriptionLbl.isHidden = true
+            self.transcriptionLbl.fadeOut(completion: {_ in
+                self.transcriptionLbl.isHidden = true
+            })
             self.transcriptionBtn.setImage(UIImage(named: "text_off"), for: .normal)
         }
     }
@@ -310,8 +314,6 @@ class APVisualizeViewController: BaseViewController {
         } catch _ as NSError {
             print("")
         }
-     
-        
     }
 
     @objc func playerDidFinishPlaying(note: NSNotification) {
