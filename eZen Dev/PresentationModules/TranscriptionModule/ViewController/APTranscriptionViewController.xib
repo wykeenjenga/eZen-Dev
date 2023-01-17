@@ -91,19 +91,14 @@
                     <color key="textColor" name="gray"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bll-Vk-nMj">
-                    <rect key="frame" x="47" y="746" width="300" height="72"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bll-Vk-nMj">
+                    <rect key="frame" x="46.666666666666657" y="746" width="300" height="72"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="Xjw-6Z-pNM"/>
                         <constraint firstAttribute="height" constant="72" id="vup-2r-uYV"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Create" cornerStyle="large">
-                        <backgroundConfiguration key="background" image="create"/>
-                        <fontDescription key="titleFontDescription" name="Mulish-Bold" family="Mulish" pointSize="18"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="create"/>
                     <connections>
                         <action selector="navigateToVideo:" destination="-1" eventType="touchUpInside" id="0N4-2v-2aD"/>
                     </connections>

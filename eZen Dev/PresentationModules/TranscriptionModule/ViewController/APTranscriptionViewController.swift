@@ -13,6 +13,7 @@ class APTranscriptionViewController: UIViewController {
     @IBOutlet weak var transcriptionText: UITextView!
     
     var words = [Utterance]()
+    var newWords = [Utterance]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,13 @@ class APTranscriptionViewController: UIViewController {
     
     
     @IBAction func onDismissPage(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+        visualizeVC.words = words
+        visualizeVC.isEnhance = true
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromLeft)
     }
     
     @IBAction func navigateToVideo(_ sender: Any) {
@@ -54,7 +61,6 @@ class APTranscriptionViewController: UIViewController {
         let new_ArrayOfwords = text.components(separatedBy: characters)
         
         var finalArray = [String]()
-        var newWords = [Utterance]()
         
         for modified_word in new_ArrayOfwords {
             if modified_word != "" {

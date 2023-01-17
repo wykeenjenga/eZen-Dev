@@ -146,8 +146,8 @@ class APPreviewAudioViewController: BaseViewController {
             transcriptVC.modalTransitionStyle = .coverVertical
             self.customPresent(vc: transcriptVC, duration: 0.2, type: .fromRight)
         }else{
-            //self.viewModel.equalizeAudio()
-            self.viewModel.applyNoiseGate()
+            self.viewModel.equalizeAudio()
+            //self.viewModel.applyNoiseGate()
         }
         
         self.invalidateTimer()
