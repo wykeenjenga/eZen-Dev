@@ -12,6 +12,7 @@ import SwiftyJSON
 import AVFoundation
 import Speech
 import Loaf
+import AVKit
 
 class APVisualizeViewController: BaseViewController {
     
@@ -41,8 +42,12 @@ class APVisualizeViewController: BaseViewController {
     @IBOutlet weak var transcriptionLbl: UILabel!
     
     var player: AVPlayer?
-    var videoPlayer: AVPlayer?
     var playerItem: AVPlayerItem?
+    var player2: AVAudioPlayer?
+    var playerItem2: AVPlayerItem?
+    
+    var videoPlayer: AVPlayer?
+    
     var sentence = ""
     var stringArray = [String]()
     
@@ -56,8 +61,10 @@ class APVisualizeViewController: BaseViewController {
         // Do any additional setup after loading the view.
         
         self.invalidateTimer()
+        
         self.playVoice()
-        self.playVideo()
+        self.playBackgroundMusic()
+        
         self.menuView.isHidden = true
         
         isMuted = false
@@ -72,10 +79,14 @@ class APVisualizeViewController: BaseViewController {
         return view
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Sentences count....\(self.self.sentencesArray)")
+        self.playVideo()
     }
     
     func playVideo() {
@@ -86,17 +97,16 @@ class APVisualizeViewController: BaseViewController {
             debugPrint("vidaa.mp4 not found")
             return
         }
-
         // convert the path string to a url
         let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
         
         print("Video URl.....\(videoUrl)")
 
         // initialize the video player with the url
-        self.videoPlayer = AVPlayer(url: videoUrl)
+        videoPlayer = AVPlayer(url: videoUrl)
 
         // create a video layer for the player
-        let layer: AVPlayerLayer = AVPlayerLayer(player: videoPlayer)
+        let layer = AVPlayerLayer(player: videoPlayer)
 
         // make the layer the same size as the container view
         layer.frame = self.videoView.bounds
@@ -106,7 +116,27 @@ class APVisualizeViewController: BaseViewController {
 
         // add the layer to the container view
         self.videoView.layer.addSublayer(layer)
+
         videoPlayer?.play()
+        
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
+//            self.videoPlayer?.seek(to: CMTime.zero)
+//            self.videoPlayer?.play()
+//        }
+    }
+    
+    func playBackgroundMusic(){
+        guard let url = Bundle.main.url(forResource: "Music", withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player2 = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player2 else { return }
+            player.play()
+            player.volume = 0.6
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     public func rotatePotrait(){
@@ -220,7 +250,15 @@ class APVisualizeViewController: BaseViewController {
     }
     
     @IBAction func showVideo(_ sender: Any) {
-        
+        if isVideo{
+            isVideo = false
+            self.videoBtn.setImage(UIImage(named: "video_on"), for: .normal)
+            self.videoView.isHidden = false
+        }else{
+            isVideo = true
+            self.videoBtn.setImage(UIImage(named: "video_off"), for: .normal)
+            self.videoView.isHidden = true
+        }
     }
     
     func playVoice(){
@@ -289,6 +327,8 @@ class APVisualizeViewController: BaseViewController {
     
     func invalidateTimer(){
         self.player?.pause()
+        self.videoPlayer?.pause()
+        self.player2?.pause()
     }
     
     
