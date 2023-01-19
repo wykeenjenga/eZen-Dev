@@ -302,9 +302,12 @@ class APVisualizeViewController: BaseViewController {
                             
                             if range.contains(time){
                                 self.transcriptionLbl.text = punctuatedWord
+                                self.transcriptionLbl.showAnimating()
                             }else{
                                 if time > end{
+                                    self.transcriptionLbl.hideAnimating()
                                     self.transcriptionLbl.text = ""
+                                    
                                 }
                             }
                             
@@ -357,10 +360,6 @@ class CustomView: UIView{
 
 extension UIView {
     func fadeIn(_ duration: TimeInterval = 0.2, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
-//        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseOut, animations: {
-//            self.alpha = 1.0
-//        }, completion: completion)
-        
         UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 1
         }, completion: completion)
@@ -368,13 +367,20 @@ extension UIView {
     }
 
     func fadeOut(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
-//        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
-//            self.alpha = 0.0
-//        }, completion: completion)
-        
         UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 0
         }, completion: completion)
    }
+    
+    func hideAnimating(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}){
+        UIView.animate(withDuration: 0.001, animations: {
+            self.alpha = 0
+        }, completion: completion)
+    }
+    func showAnimating(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}){
+        UIView.animate(withDuration: 0.001, animations: {
+            self.alpha = 1
+        }, completion: completion)
+    }
     
 }
