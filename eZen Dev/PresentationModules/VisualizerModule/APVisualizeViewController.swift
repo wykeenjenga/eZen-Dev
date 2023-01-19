@@ -45,7 +45,6 @@ class APVisualizeViewController: BaseViewController {
     var playerItem: AVPlayerItem?
     var musicPlayer: AVAudioPlayer?
     var timer: Timer?
-    var loopTimer: Timer?
     var videoPlayer: AVPlayer?
     var currentVolume: Float = 0.6
     
@@ -127,11 +126,8 @@ class APVisualizeViewController: BaseViewController {
         videoPlayer?.play()
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
-            loopTimer = Timer.scheduledTimer(withTimeInterval: loopDuration.seconds, repeats: true) { [weak self] timer in
-                self.videoPlayer?.seek(to: .zero)
-                self.videoPlayer?.play()
-            }
-            
+            self.videoPlayer?.seek(to: CMTime.zero)
+            self.videoPlayer?.play()
         }
     }
     
