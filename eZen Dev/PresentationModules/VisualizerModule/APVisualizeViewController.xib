@@ -60,7 +60,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sks-YB-uxo">
                             <rect key="frame" x="337" y="552" width="45" height="258"/>
                             <subviews>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keu-in-jOu" customClass="CustomView" customModule="eZen_Dev" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keu-in-jOu" customClass="CustomView" customModule="eZen_Dev" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="1" width="45" height="204"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-Tf-kS4" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
@@ -129,11 +129,11 @@
                                         <constraint firstItem="6fk-qu-SVJ" firstAttribute="top" secondItem="keu-in-jOu" secondAttribute="top" id="uEo-ql-OU2"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-vJ-eqK" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-vJ-eqK" customClass="APBindingButton" customModule="eZen_Dev" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="213" width="45" height="45"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="BGX-nX-UY9"/>
-                                        <constraint firstAttribute="width" constant="45" id="mZC-0g-hai"/>
+                                        <constraint firstAttribute="width" constant="45" id="OoF-tJ-Rqp"/>
+                                        <constraint firstAttribute="height" constant="45" id="WRt-8p-meP"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button" image="menu"/>
@@ -144,9 +144,15 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="keu-in-jOu" firstAttribute="leading" secondItem="Sks-YB-uxo" secondAttribute="leading" id="21x-cN-QQL"/>
+                                <constraint firstItem="Xrr-vJ-eqK" firstAttribute="leading" secondItem="Sks-YB-uxo" secondAttribute="leading" id="C4e-ON-R1d"/>
+                                <constraint firstItem="Xrr-vJ-eqK" firstAttribute="top" secondItem="keu-in-jOu" secondAttribute="bottom" constant="8" symbolic="YES" id="KPj-Gg-8Qz"/>
                                 <constraint firstAttribute="height" constant="258" id="TXo-cQ-1Tw"/>
                                 <constraint firstAttribute="width" constant="45" id="V48-ow-soY"/>
-                                <constraint firstItem="Xrr-vJ-eqK" firstAttribute="top" secondItem="keu-in-jOu" secondAttribute="bottom" constant="8" symbolic="YES" id="c7y-sc-HkL"/>
+                                <constraint firstItem="keu-in-jOu" firstAttribute="top" secondItem="Sks-YB-uxo" secondAttribute="top" constant="1" id="Vgi-gI-Rhs"/>
+                                <constraint firstAttribute="trailing" secondItem="keu-in-jOu" secondAttribute="trailing" id="eQ6-qB-wbn"/>
+                                <constraint firstAttribute="bottom" secondItem="Xrr-vJ-eqK" secondAttribute="bottom" id="gAw-k8-IaF"/>
+                                <constraint firstAttribute="trailing" secondItem="Xrr-vJ-eqK" secondAttribute="trailing" id="kLs-22-zjJ"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xch-Bk-rvZ">
