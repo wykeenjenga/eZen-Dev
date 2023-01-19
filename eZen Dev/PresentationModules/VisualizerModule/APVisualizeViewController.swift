@@ -65,6 +65,7 @@ class APVisualizeViewController: BaseViewController {
         
         self.playVoice()
         self.playBackgroundMusic()
+        self.playVideo(video: "potraitVideo")
         
         self.menuView.isHidden = true
         
@@ -73,6 +74,7 @@ class APVisualizeViewController: BaseViewController {
         isVideo = false
         isRotation = false
         isMenu = false
+        
         
     }
     
@@ -88,8 +90,10 @@ class APVisualizeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Sentences count....\(self.self.sentencesArray)")
-        self.playVideo(video: "potraitVideo")
+        
     }
+    
+    var layer: AVPlayerLayer?
     
     func playVideo(video: String) {
 //         get the path string for the video from assets
@@ -108,16 +112,16 @@ class APVisualizeViewController: BaseViewController {
         videoPlayer = AVPlayer(url: videoUrl)
 
         // create a video layer for the player
-        let layer = AVPlayerLayer(player: videoPlayer)
+        layer = AVPlayerLayer(player: videoPlayer)
 
         // make the layer the same size as the container view
-        layer.frame = self.videoView.bounds
+        layer?.frame = self.videoView.bounds
 
         // make the video fill the layer as much as possible while keeping its aspect size
-        layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        layer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
 
         // add the layer to the container view
-        self.videoView.layer.addSublayer(layer)
+        self.videoView.layer.addSublayer(layer!)
 
         videoPlayer?.play()
         
@@ -125,6 +129,10 @@ class APVisualizeViewController: BaseViewController {
             self.videoPlayer?.seek(to: CMTime.zero)
             self.videoPlayer?.play()
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        layer?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
     
     func playBackgroundMusic(){
@@ -302,10 +310,10 @@ class APVisualizeViewController: BaseViewController {
                             
                             if range.contains(time){
                                 self.transcriptionLbl.text = punctuatedWord
-                                self.transcriptionLbl.showAnimating()
+                                //self.transcriptionLbl.showAnimating()
                             }else{
                                 if time > end{
-                                    self.transcriptionLbl.hideAnimating()
+                                    //self.transcriptionLbl.hideAnimating()
                                     self.transcriptionLbl.text = ""
                                     
                                 }
@@ -373,12 +381,12 @@ extension UIView {
    }
     
     func hideAnimating(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}){
-        UIView.animate(withDuration: 0.001, animations: {
+        UIView.animate(withDuration: 0.01, animations: {
             self.alpha = 0
         }, completion: completion)
     }
     func showAnimating(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}){
-        UIView.animate(withDuration: 0.001, animations: {
+        UIView.animate(withDuration: 0.01, animations: {
             self.alpha = 1
         }, completion: completion)
     }
