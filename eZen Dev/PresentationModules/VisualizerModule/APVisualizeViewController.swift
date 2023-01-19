@@ -43,10 +43,11 @@ class APVisualizeViewController: BaseViewController {
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
-    var player2: AVAudioPlayer?
+    var musicPlayer: AVAudioPlayer?
     var playerItem2: AVPlayerItem?
-    
+    var timer: Timer?
     var videoPlayer: AVPlayer?
+    var currentVolume: Float = 0.6
     
     var sentence = ""
     var stringArray = [String]()
@@ -74,8 +75,6 @@ class APVisualizeViewController: BaseViewController {
         isVideo = false
         isRotation = false
         isMenu = false
-        
-        
     }
     
     final class func create() -> APVisualizeViewController {
@@ -83,6 +82,8 @@ class APVisualizeViewController: BaseViewController {
         return view
     }
 
+    @IBOutlet weak var leftMenuContsraints: NSLayoutConstraint!
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -140,10 +141,10 @@ class APVisualizeViewController: BaseViewController {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            player2 = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = player2 else { return }
+            musicPlayer = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = musicPlayer else { return }
             player.play()
-            player.volume = 0.6
+            player.volume = self.currentVolume
             player.numberOfLoops = -1 // infinite loop
         } catch let error {
             print(error.localizedDescription)
@@ -151,6 +152,7 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotatePotrait(){
+        self.leftMenuContsraints.constant = 30
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .portrait
         let value = UIInterfaceOrientation.portrait.rawValue
@@ -172,6 +174,7 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotateLandscape(){
+        self.leftMenuContsraints.constant = 0
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .landscapeRight
         let value = UIInterfaceOrientation.landscapeRight.rawValue
@@ -238,11 +241,13 @@ class APVisualizeViewController: BaseViewController {
     @IBAction func playMusic(_ sender: Any) {
         //mute and unmute audio
         if isMuted{
-            self.player2?.volume = 0.6
+            //self.musicPlayer?.volume = 0.6
+            self.increaseVolume()
             isMuted = false
             self.musicBtn.setImage(UIImage(named: "music_on"), for: .normal)
         }else{
-            self.player2?.volume = 0.0
+            //self.musicPlayer?.volume = 0.0
+            self.reduceVolume()
             isMuted = true
             self.musicBtn.setImage(UIImage(named: "music_off"), for: .normal)
         }
@@ -348,7 +353,35 @@ class APVisualizeViewController: BaseViewController {
     func invalidateTimer(){
         self.player?.pause()
         self.videoPlayer?.pause()
-        self.player2?.pause()
+        self.musicPlayer?.pause()
+    }
+    
+    
+    
+    func reduceVolume() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            if self.currentVolume > 0.0 {
+                self.currentVolume -= 0.01
+                print("Volume:   \(self.currentVolume)")
+                self.musicPlayer?.volume = self.currentVolume
+            } else {
+                timer.invalidate()
+            }
+        }
+    }
+
+    func increaseVolume() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            if self.currentVolume < 0.6 {
+                self.currentVolume += 0.01
+                print("Volume:   \(self.currentVolume)")
+                self.musicPlayer?.volume = self.currentVolume
+            } else {
+                timer.invalidate()
+            }
+        }
     }
     
     

@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APVisualizeViewController" customModule="eZen_Dev" customModuleProvider="target">
             <connections>
+                <outlet property="leftMenuContsraints" destination="6Of-ws-oVm" id="Ec4-Qd-GUF"/>
                 <outlet property="menuBtn" destination="Xrr-vJ-eqK" id="EWW-6k-YJ1"/>
                 <outlet property="menuView" destination="keu-in-jOu" id="qUt-Oo-GeP"/>
                 <outlet property="musicBtn" destination="WwX-Tf-kS4" id="Q37-yp-gJU"/>
