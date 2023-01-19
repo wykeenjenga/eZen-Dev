@@ -149,7 +149,6 @@ class APPreviewAudioViewController: BaseViewController {
             //self.viewModel.equalizeAudio()
             self.viewModel.applyNoiseGate()
         }
-        
         self.invalidateTimer()
     }
     

@@ -55,6 +55,7 @@ class APVisualizeViewController: BaseViewController {
     var timeStampStart = [Double]()
     var timeStampEnd = [Double]()
     var counter = 0
+    var videoName = "potraitVideo"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,7 @@ class APVisualizeViewController: BaseViewController {
         isVideo = false
         isRotation = false
         isMenu = false
+        
     }
     
     final class func create() -> APVisualizeViewController {
@@ -86,12 +88,12 @@ class APVisualizeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Sentences count....\(self.self.sentencesArray)")
-        self.playVideo()
+        self.playVideo(video: "potraitVideo")
     }
     
-    func playVideo() {
+    func playVideo(video: String) {
 //         get the path string for the video from assets
-        let videoString: String? = Bundle.main.path(forResource: "vidaa", ofType: "mp4")
+        let videoString: String? = Bundle.main.path(forResource: video, ofType: "mp4")
         print("......\(videoString)")
         guard let unwrappedVideoPath = videoString else {
             debugPrint("vidaa.mp4 not found")
@@ -156,8 +158,8 @@ class APVisualizeViewController: BaseViewController {
             }
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
-            self.viewWillAppear(true)
         }
+        self.playVideo(video: "potraitVideo")
     }
     
     public func rotateLandscape(){
@@ -177,8 +179,8 @@ class APVisualizeViewController: BaseViewController {
             }
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
-            self.viewWillAppear(true)
         }
+        self.playVideo(video: "landscapeVideo")
     }
     
     @IBAction func onMenuAction(_ sender: Any) {
@@ -227,11 +229,11 @@ class APVisualizeViewController: BaseViewController {
     @IBAction func playMusic(_ sender: Any) {
         //mute and unmute audio
         if isMuted{
-            self.player?.isMuted = false
+            self.player2?.volume = 0.6
             isMuted = false
             self.musicBtn.setImage(UIImage(named: "music_on"), for: .normal)
         }else{
-            self.player?.isMuted = true
+            self.player2?.volume = 0.0
             isMuted = true
             self.musicBtn.setImage(UIImage(named: "music_off"), for: .normal)
         }

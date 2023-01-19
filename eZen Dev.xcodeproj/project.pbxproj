@@ -53,8 +53,9 @@
 		0B32C5782950500D00028D5D /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */; };
 		0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */; };
 		0B35CDE8297599F00074F9D2 /* Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE7297599F00074F9D2 /* Music.mp3 */; };
-		0B35CDEB2975A1E40074F9D2 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35CDEA2975A1E40074F9D2 /* VideoPlayer.swift */; };
-		0B35CDEC2975A64C0074F9D2 /* vidaa.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */; };
+		0B35CDEC2975A64C0074F9D2 /* potraitVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */; };
+		0B35CDF42979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */; };
+		0B35CDF629792B9D0074F9D2 /* landscapeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */; };
 		0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */; };
 		0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */; };
 		0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */; };
@@ -147,9 +148,10 @@
 		0B32C5632950500C00028D5D /* Mulish-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-Medium.ttf"; sourceTree = "<group>"; };
 		0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-BoldItalic.ttf"; sourceTree = "<group>"; };
-		0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vidaa.mp4; sourceTree = "<group>"; };
+		0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = potraitVideo.mp4; sourceTree = "<group>"; };
 		0B35CDE7297599F00074F9D2 /* Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Music.mp3; sourceTree = "<group>"; };
-		0B35CDEA2975A1E40074F9D2 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Medium.ttf"; sourceTree = "<group>"; };
+		0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landscapeVideo.mp4; sourceTree = "<group>"; };
 		0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionViewController.swift; sourceTree = "<group>"; };
 		0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APTranscriptionViewController.xib; sourceTree = "<group>"; };
 		0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionDIContainer.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		0B32C54F2950500C00028D5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */,
 				0BBD950029729EC9007FE519 /* SF-Compact-Rounded-Regular.ttf */,
 				0B32C5502950500C00028D5D /* arims */,
 				0B32C5592950500C00028D5D /* mulish */,
@@ -510,7 +513,8 @@
 		0B35CDE4297599CA0074F9D2 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				0B35CDE6297599EB0074F9D2 /* vidaa.mp4 */,
+				0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */,
+				0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -526,7 +530,6 @@
 		0B35CDE92975A1D20074F9D2 /* VideoPlaye */ = {
 			isa = PBXGroup;
 			children = (
-				0B35CDEA2975A1E40074F9D2 /* VideoPlayer.swift */,
 			);
 			path = VideoPlaye;
 			sourceTree = "<group>";
@@ -825,7 +828,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B35CDEC2975A64C0074F9D2 /* vidaa.mp4 in Resources */,
+				0B35CDF42979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf in Resources */,
+				0B35CDEC2975A64C0074F9D2 /* potraitVideo.mp4 in Resources */,
 				0B32C5762950500D00028D5D /* Mulish-ExtraLight.ttf in Resources */,
 				0B32C5752950500D00028D5D /* Mulish-ExtraBold.ttf in Resources */,
 				0B32C5682950500D00028D5D /* ArimaMadurai-Regular.ttf in Resources */,
@@ -842,6 +846,7 @@
 				0B32C5782950500D00028D5D /* Mulish-SemiBold.ttf in Resources */,
 				0B32C5662950500D00028D5D /* ArimaMadurai-Bold.ttf in Resources */,
 				0B32C5672950500D00028D5D /* ArimaMadurai-ExtraLight.ttf in Resources */,
+				0B35CDF629792B9D0074F9D2 /* landscapeVideo.mp4 in Resources */,
 				0B32C56B2950500D00028D5D /* ArimaMadurai-Medium.ttf in Resources */,
 				0B32C5772950500D00028D5D /* Mulish-Medium.ttf in Resources */,
 				0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */,
@@ -1003,7 +1008,6 @@
 				0B32C5392950466400028D5D /* Accessors.swift in Sources */,
 				0B32C51A295044C800028D5D /* APIEndPoints.swift in Sources */,
 				0B32C52C2950459100028D5D /* APExtension+UITableViewCell.swift in Sources */,
-				0B35CDEB2975A1E40074F9D2 /* VideoPlayer.swift in Sources */,
 				0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
 				0B76DE832950590D00976E55 /* APError.swift in Sources */,
