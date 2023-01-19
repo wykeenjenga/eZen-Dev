@@ -256,15 +256,15 @@ class APVisualizeViewController: BaseViewController {
         //show or hide transcription
         if isTranscription{
             isTranscription = false
-            self.transcriptionLbl.fadeIn(completion: {_ in
-                self.transcriptionLbl.isHidden = false
-            })
+            UIView.animate(withDuration: 1.0) {
+                self.transcriptionLbl.alpha = 1.0
+            }
             self.transcriptionBtn.setImage(UIImage(named: "text_on"), for: .normal)
         }else{
             isTranscription = true
-            self.transcriptionLbl.fadeOut(completion: {_ in
-                self.transcriptionLbl.isHidden = true
-            })
+            UIView.animate(withDuration: 1.0) {
+                self.transcriptionLbl.alpha = 0.0
+            }
             self.transcriptionBtn.setImage(UIImage(named: "text_off"), for: .normal)
         }
     }
@@ -273,15 +273,15 @@ class APVisualizeViewController: BaseViewController {
         if isVideo{
             isVideo = false
             self.videoBtn.setImage(UIImage(named: "video_on"), for: .normal)
-            self.videoView.fadeIn(completion: {_ in
-                self.videoView.isHidden = false
-            })
+            UIView.animate(withDuration: 2.0) {
+                self.videoView.alpha = 1.0
+            }
         }else{
             isVideo = true
             self.videoBtn.setImage(UIImage(named: "video_off"), for: .normal)
-            self.videoView.fadeOut(completion: {_ in
-                self.videoView.isHidden = true
-            })
+            UIView.animate(withDuration: 2.0) {
+                self.videoView.alpha = 0.0
+            }
         }
     }
     
@@ -361,7 +361,7 @@ class APVisualizeViewController: BaseViewController {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if self.currentVolume > 0.0 {
-                self.currentVolume -= 0.01
+                self.currentVolume -= 0.05
                 print("Volume:   \(self.currentVolume)")
                 self.musicPlayer?.volume = self.currentVolume
             } else {
@@ -374,7 +374,7 @@ class APVisualizeViewController: BaseViewController {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if self.currentVolume < 0.6 {
-                self.currentVolume += 0.01
+                self.currentVolume += 0.05
                 print("Volume:   \(self.currentVolume)")
                 self.musicPlayer?.volume = self.currentVolume
             } else {
@@ -399,19 +399,6 @@ class CustomView: UIView{
 }
 
 extension UIView {
-    func fadeIn(_ duration: TimeInterval = 0.2, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.alpha = 1
-        }, completion: completion)
-        
-    }
-
-    func fadeOut(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.alpha = 0
-        }, completion: completion)
-   }
-    
     func hideAnimating(_ duration: TimeInterval = 0.2, delay: TimeInterval = 1.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}){
         UIView.animate(withDuration: 0.01, animations: {
             self.alpha = 0
