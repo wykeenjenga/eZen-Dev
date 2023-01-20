@@ -131,18 +131,10 @@ class APVisualizeViewController: BaseViewController {
         super.viewWillTransition(to: size, with: coordinator)
             coordinator.animate(alongsideTransition: { (context) in
             }) { (context) in
-                //self.videoView.frame.size = size
-//                self.layer?.frame.size = size
                 self.layer?.layoutIfNeeded()
                 UIView.animate(
                     withDuration: context.transitionDuration,
                     animations: {
-//                        if self.isLandscape{
-//                            self.videoView.bounds = CGRect(x: 0, y: 0, width: self.height, height: self.width + 200)
-//                        }else{
-//                            self.videoView.bounds = CGRect(x: 0, y: 0, width: self.width, height: self.height)
-//                        }
-                        
                         self.layer?.frame = self.videoView.bounds
                     }
                 )
@@ -332,15 +324,22 @@ class APVisualizeViewController: BaseViewController {
                             let punctuatedWord = sentence.transcript
 
                             let range = start...end
-                            
+
                             if range.contains(time){
-                                self.transcriptionLbl.text = punctuatedWord
-                                UIView.animate(withDuration: 0.5) {
-                                    self.transcriptionLbl.alpha = 1.0
+                                if self.transcriptionLbl.text != punctuatedWord{
+                                    
+                                    self.transcriptionLbl.text = punctuatedWord
+                                    UIView.animate(withDuration: 1.0) {
+                                        self.transcriptionLbl.alpha = 1.0
+                                    }
                                 }
                             }else{
                                 if time > end{
-                                    self.transcriptionLbl.text = ""
+                                    UIView.animate(withDuration: 1.0) {
+                                        //self.transcriptionLbl.alpha = 0.0
+                                        self.transcriptionLbl.text = ""
+                                    }
+                                    
                                 }
                             }
                         }
