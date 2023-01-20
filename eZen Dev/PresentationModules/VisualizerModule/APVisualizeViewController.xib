@@ -35,9 +35,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-su-qGU">
                     <rect key="frame" x="-10" y="0.0" width="412" height="852"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INi-Kh-TGp" customClass="AVPlayerView" customModule="eZen_Dev" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INi-Kh-TGp">
                             <rect key="frame" x="0.0" y="0.0" width="412" height="852"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="INi-Kh-TGp" secondAttribute="height" multiplier="103:213" id="K22-XG-hhD"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
                             <rect key="frame" x="50" y="326" width="312" height="200"/>

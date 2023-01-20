@@ -33,7 +33,7 @@ class APVisualizeViewController: BaseViewController {
     var words = [Utterance]()
     
     
-    @IBOutlet weak var videoView: AVPlayerView!
+    @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var menuView: CustomView!
     @IBOutlet weak var menuBtn: APBindingButton!
     @IBOutlet weak var videoBtn: APBindingButton!
@@ -130,7 +130,19 @@ class APVisualizeViewController: BaseViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        layer?.frame =  CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        super.viewWillTransition(to: size, with: coordinator)
+            coordinator.animate(alongsideTransition: { (context) in
+            }) { (context) in
+//                self.videoView.frame.size = size
+//                self.layer?.frame.size = size
+                ///self.layer?.frame =  CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                if size.height <= self.view.bounds.height || size.width <= self.view.bounds.width {
+                    layer?.videoGravity = .resizeAspect
+                }
+                else {
+                    layer?.videoGravity = .resizeAspectFill
+                }
+            }
     }
     
     func playBackgroundMusic(){
@@ -149,7 +161,7 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotatePotrait(){
-        
+        self.videoPlayer?.pause()
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .portrait
         let value = UIInterfaceOrientation.portrait.rawValue
@@ -168,11 +180,11 @@ class APVisualizeViewController: BaseViewController {
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
         }
-        ///self.playVideo(video: "potraitVideo")
+        self.playVideo(video: "potraitVideo")
     }
     
     public func rotateLandscape(){
-        
+        self.videoPlayer?.pause()
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .landscapeRight
         let value = UIInterfaceOrientation.landscapeRight.rawValue
@@ -191,7 +203,7 @@ class APVisualizeViewController: BaseViewController {
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
         }
-        ///self.playVideo(video: "landscapeVideo")
+        self.playVideo(video: "landscapeVideo")
     }
     
     @IBAction func onMenuAction(_ sender: Any) {
