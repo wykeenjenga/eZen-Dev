@@ -35,7 +35,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-su-qGU">
                     <rect key="frame" x="-10" y="0.0" width="412" height="852"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INi-Kh-TGp">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INi-Kh-TGp" customClass="AVPlayerView" customModule="eZen_Dev" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="412" height="852"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>

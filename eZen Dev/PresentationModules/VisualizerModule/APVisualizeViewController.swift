@@ -33,7 +33,7 @@ class APVisualizeViewController: BaseViewController {
     var words = [Utterance]()
     
     
-    @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var videoView: AVPlayerView!
     @IBOutlet weak var menuView: CustomView!
     @IBOutlet weak var menuBtn: APBindingButton!
     @IBOutlet weak var videoBtn: APBindingButton!
@@ -89,24 +89,22 @@ class APVisualizeViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Sentences count....\(self.self.sentencesArray)")
+        let screenSize = self.view.bounds.size
+        print(".....\(screenSize)....Sentences count.........\(self.self.sentencesArray)")
         
     }
     
     var layer: AVPlayerLayer?
     
     func playVideo(video: String) {
-//         get the path string for the video from assets
+        //get the path string for the video from assets
         let videoString: String? = Bundle.main.path(forResource: video, ofType: "mp4")
-        print("......\(videoString)")
         guard let unwrappedVideoPath = videoString else {
             debugPrint("vidaa.mp4 not found")
             return
         }
         // convert the path string to a url
         let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
-        
-        print("Video URl.....\(videoUrl)")
 
         // initialize the video player with the url
         videoPlayer = AVPlayer(url: videoUrl)
@@ -132,7 +130,7 @@ class APVisualizeViewController: BaseViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        layer?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        layer?.frame =  CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
     
     func playBackgroundMusic(){
@@ -170,7 +168,7 @@ class APVisualizeViewController: BaseViewController {
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
         }
-        self.playVideo(video: "potraitVideo")
+        ///self.playVideo(video: "potraitVideo")
     }
     
     public func rotateLandscape(){
@@ -193,7 +191,7 @@ class APVisualizeViewController: BaseViewController {
         }else{
             UIDevice.current.setValue(value, forKey: "orientation")
         }
-        self.playVideo(video: "landscapeVideo")
+        ///self.playVideo(video: "landscapeVideo")
     }
     
     @IBAction func onMenuAction(_ sender: Any) {
