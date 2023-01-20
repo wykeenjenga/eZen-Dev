@@ -89,9 +89,7 @@ class APVisualizeViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let screenSize = self.view.bounds.size
-        print(".....\(screenSize)....Sentences count.........\(self.self.sentencesArray)")
-        
+        self.videoView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     var layer: AVPlayerLayer?
@@ -133,15 +131,21 @@ class APVisualizeViewController: BaseViewController {
         super.viewWillTransition(to: size, with: coordinator)
             coordinator.animate(alongsideTransition: { (context) in
             }) { (context) in
-//                self.videoView.frame.size = size
+                //self.videoView.frame.size = size
 //                self.layer?.frame.size = size
-                ///self.layer?.frame =  CGRect(x: 0, y: 0, width: size.width, height: size.height)
-                if size.height <= self.view.bounds.height || size.width <= self.view.bounds.width {
-                    layer?.videoGravity = .resizeAspect
-                }
-                else {
-                    layer?.videoGravity = .resizeAspectFill
-                }
+                self.layer?.layoutIfNeeded()
+                UIView.animate(
+                    withDuration: context.transitionDuration,
+                    animations: {
+//                        if self.isLandscape{
+//                            self.videoView.bounds = CGRect(x: 0, y: 0, width: self.height, height: self.width + 200)
+//                        }else{
+//                            self.videoView.bounds = CGRect(x: 0, y: 0, width: self.width, height: self.height)
+//                        }
+                        
+                        self.layer?.frame = self.videoView.bounds
+                    }
+                )
             }
     }
     
@@ -184,6 +188,11 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotateLandscape(){
+        self.videoView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        self.videoView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        self.videoView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.videoView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
         self.videoPlayer?.pause()
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .landscapeRight
