@@ -334,16 +334,13 @@ class APVisualizeViewController: BaseViewController {
                             let range = start...end
                             
                             if range.contains(time){
+                                self.transcriptionLbl.text = punctuatedWord
                                 UIView.animate(withDuration: 0.5) {
                                     self.transcriptionLbl.alpha = 1.0
-                                    self.transcriptionLbl.text = punctuatedWord
                                 }
                             }else{
                                 if time > end{
-                                    UIView.animate(withDuration: 0.5) {
-                                        self.transcriptionLbl.alpha = 1.0
-                                        self.transcriptionLbl.text = ""
-                                    }
+                                    self.transcriptionLbl.text = ""
                                 }
                             }
                         }
