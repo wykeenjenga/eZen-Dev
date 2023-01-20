@@ -151,12 +151,13 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotatePotrait(){
-        self.leftMenuContsraints.constant = 30
+        
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .portrait
         let value = UIInterfaceOrientation.portrait.rawValue
         
         if #available(iOS 16.0, *) {
+            self.leftMenuContsraints.constant = 30
             DispatchQueue.main.async {
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
@@ -173,12 +174,13 @@ class APVisualizeViewController: BaseViewController {
     }
     
     public func rotateLandscape(){
-        self.leftMenuContsraints.constant = 0
+        
         let delegate = UIApplication.shared.delegate as! APAppDelegate
         delegate.orientation = .landscapeRight
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         
         if #available(iOS 16.0, *) {
+            self.leftMenuContsraints.constant = 0
             DispatchQueue.main.async {
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
