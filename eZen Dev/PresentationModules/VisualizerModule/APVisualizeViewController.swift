@@ -336,7 +336,7 @@ class APVisualizeViewController: BaseViewController {
                             }else{
                                 let timee = Double(round(1 * time) / 1)
                                 let endd = Double(round(1 * end) / 1)
-                                if timee >= end{
+                                if timee == endd{
                                     print(".........\(endd).........\(timee)")
                                     let duration = (end - start)
                                     UIView.animate(withDuration: duration) {
