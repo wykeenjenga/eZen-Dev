@@ -23,7 +23,7 @@ class APVisualizeViewController: BaseViewController {
     var isMenu = false
     
     var duration = 0.0
-    var currentDuration = 0.0
+    var currentDuration: Double = 0.0
     
     var timeIntvl: TimeInterval = Double(0.0)
     var cmTime = CMTime()
@@ -311,22 +311,23 @@ class APVisualizeViewController: BaseViewController {
 
                 player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1.0, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
-                        var time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
+                        let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
                         let duration : CMTime = self.playerItem!.asset.duration
                         let _ : Float64 = CMTimeGetSeconds(duration)
                         
                         self.currentDuration = time
                         
+                        
                         for sentence in self.words{
                             
                             let start = sentence.start
-                            var end = sentence.end
+                            let end = sentence.end
                             let punctuatedWord = sentence.transcript
 
                             let range = start...end
 
-                            if range.contains(time){
+                            if range.contains(self.currentDuration){
                                 if self.transcriptionLbl.text != punctuatedWord{
                                     self.transcriptionLbl.text = punctuatedWord
                                     UIView.animate(withDuration: 1.0) {
@@ -334,10 +335,11 @@ class APVisualizeViewController: BaseViewController {
                                     }
                                 }
                             }else{
-                                let timee = Double(round(1 * time) / 1)
-                                let endd = Double(round(1 * end) / 1)
-                                if timee == endd{
-                                    print(".........\(end).........\(time)")
+                                let timee = Double(round(1 * self.currentDuration) / 1)
+                                let endd = Double(round(1 * end) / 1) + 2
+                                
+                                if timee > endd{
+                                    print(".\(punctuatedWord)........\(endd).........\(timee)")
                                     //let duration = (end - start)
                                     UIView.animate(withDuration: 1.0) {
                                         self.transcriptionLbl.alpha = 0.0
@@ -345,7 +347,6 @@ class APVisualizeViewController: BaseViewController {
                                 }
                             }
                         }
-                        
                     }
                 }
                 
