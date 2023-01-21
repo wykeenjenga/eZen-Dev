@@ -299,6 +299,8 @@ class APVisualizeViewController: BaseViewController {
         }
     }
     
+    var endPosition = 0.0
+    
     func playVoice(){
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
@@ -327,22 +329,19 @@ class APVisualizeViewController: BaseViewController {
 
                             let range = start...end
 
-                            if range.contains(self.currentDuration){
+                            if range.contains(time){
                                 if self.transcriptionLbl.text != punctuatedWord{
                                     self.transcriptionLbl.text = punctuatedWord
+                                    self.endPosition = end
                                     UIView.animate(withDuration: 1.0) {
                                         self.transcriptionLbl.alpha = 1.0
                                     }
                                 }
                             }else{
-                                let timee = Double(round(100 * self.currentDuration) / 100)
-                                let endd = Double(round(100 * end) / 100)
-                                
-                                if timee == endd{
+                                if time > self.endPosition{
+                                    print(".........\(end).........\(time)")
                                     if self.transcriptionLbl.text != punctuatedWord{
-                                        print(".........\(endd).........\(timee)")
-                                        let duration = (end - start)
-                                        UIView.animate(withDuration: duration) {
+                                        UIView.animate(withDuration: 1.0) {
                                             self.transcriptionLbl.alpha = 0.0
                                         }
                                     }
