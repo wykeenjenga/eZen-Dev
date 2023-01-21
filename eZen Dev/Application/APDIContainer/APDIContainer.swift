@@ -32,4 +32,16 @@ extension APDIContainer {
         let dependencies = APSettingsDIContainer.Dependencies()
         return APSettingsDIContainer(dependencies: dependencies)
     }
+    
+    /// Creates VIsualize DIContainer.
+    func makeVisualizeDIContainer() -> APVisualizeDIContainer {
+        let dependencies = APVisualizeDIContainer.Dependencies()
+        return APVisualizeDIContainer(dependencies: dependencies)
+    }
+    
+    /// Creates VIsualize DIContainer.
+    func makeTranscriptDIContainer() -> APTranscriptionDIContainer {
+        let dependencies = APTranscriptionDIContainer.Dependencies()
+        return APTranscriptionDIContainer(dependencies: dependencies)
+    }
 }

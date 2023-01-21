@@ -6,7 +6,7 @@
 //  Copyright © 2022 Music of Wisdom. All rights reserved.
 //
 
-struct file_url {
+struct curr_file_url {
     static var address : URL?
 }
 
@@ -14,6 +14,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AVFoundation
+import Speech
 
 class APPreviewAudioViewController: BaseViewController {
     
@@ -29,17 +30,21 @@ class APPreviewAudioViewController: BaseViewController {
     var timeIntvl: TimeInterval = Double(0.0)
     var cmTime = CMTime()
     
-    var url = file_url.address
+    var url = curr_file_url.address
+    var words = [Utterance]()
     
+    @IBOutlet weak var transcriptionLbl: UILabel!
     
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var start_at: UILabel!
     @IBOutlet weak var end_at: UILabel!
     @IBOutlet var playerIcon: UIImageView!
 
+    @IBOutlet weak var visualizeBtn: UIButton!
     @IBOutlet var playerProgressBar: UISlider!
     
     var start1 : Double = 0
-    var end1 : Double = 10
+    var end1 : Double = 0
     
     var isEnhance = true
     var viewModel: APHomeViewModel!
@@ -52,12 +57,31 @@ class APPreviewAudioViewController: BaseViewController {
         }
     }
     
+    @IBAction func onClickVisualize(_ sender: Any) {
+        //navigate to visualization
+        self.invalidateTimer()
+        let visualizeVC = Accessors.AppDelegate.delegate.appDiContainer.makeVisualizeDIContainer().makeVisualViewController()
+        visualizeVC.words = self.words
+        visualizeVC.modalPresentationStyle = .fullScreen
+        visualizeVC.modalTransitionStyle = .coverVertical
+        self.customPresent(vc: visualizeVC, duration: 0.2, type: .fromRight)
+    }
+    
     @IBAction func exit(_ sender: Any) {
         self.invalidateTimer()
-        let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
-        homeVC.modalPresentationStyle = .fullScreen
-        homeVC.modalTransitionStyle = .coverVertical
-        self.present(homeVC, animated: true, completion: nil)
+        if !isEnhance{
+            let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makeHomeDIContainer().makeHomeViewController()
+            homeVC.modalPresentationStyle = .fullScreen
+            homeVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
+        }else{
+            //self.dismiss(animated: true, completion: nil)
+            let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
+            homeVC.isEnhance = false
+            homeVC.modalPresentationStyle = .fullScreen
+            homeVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: homeVC, duration: 0.2, type: .fromLeft)
+        }
     }
     
     @IBAction func saveAndContinue(_ sender: Any) {
@@ -93,19 +117,39 @@ class APPreviewAudioViewController: BaseViewController {
 
         playerProgressBar.isContinuous = true
         
-        if !isEnhance{
-            applyBellBtn.isHidden = true
-        }
-        
-        if !AppSettings.isBellCurveEQAtcive{
+        if isEnhance{
+            self.titleLbl.text = "Preview Final Mix"
+            self.applyBellBtn.setTitle("Create Video", for: .normal)
+        }else{
+            self.visualizeBtn.isHidden = true
+            self.titleLbl.text = "Preview Your Voiceover"
             self.applyBellBtn.setTitle("Apply Gate", for: .normal)
         }
+        
+//        if !AppSettings.isBellCurveEQAtcive{
+//            self.applyBellBtn.setTitle("Apply Gate", for: .normal)
+//        }
+        
         self.bindViewModel()
     }
     
     @IBOutlet weak var applyBellBtn: UIButton!
+    
     @IBAction func applyBellEQ(_ sender: Any) {
-        self.viewModel.equalizeAudio()
+        if isEnhance{
+            //continue to review transcription
+            print("Continue to .......")
+            self.invalidateTimer()
+            let transcriptVC = Accessors.AppDelegate.delegate.appDiContainer.makeTranscriptDIContainer().makeTranscriptViewController()
+            transcriptVC.words = self.words
+            transcriptVC.modalPresentationStyle = .fullScreen
+            transcriptVC.modalTransitionStyle = .coverVertical
+            self.customPresent(vc: transcriptVC, duration: 0.2, type: .fromRight)
+        }else{
+            //self.viewModel.equalizeAudio()
+            self.viewModel.applyNoiseGate()
+        }
+        
         self.invalidateTimer()
     }
     
@@ -125,10 +169,11 @@ class APPreviewAudioViewController: BaseViewController {
                     break
                 case .isPreview:
                     let homeVC = Accessors.AppDelegate.delegate.appDiContainer.makePreviewDIContainer().makePreviewViewController()
-                    homeVC.isEnhance = false
+                    homeVC.isEnhance = true
+                    homeVC.words = (self?.viewModel.words.value)!
                     homeVC.modalPresentationStyle = .fullScreen
                     homeVC.modalTransitionStyle = .coverVertical
-                    self?.present(homeVC, animated: true, completion: nil)
+                    self?.customPresent(vc: homeVC, duration: 0.2, type: .fromRight)
                     break
                 default:
                     break
@@ -151,18 +196,49 @@ class APPreviewAudioViewController: BaseViewController {
             player?.seek(to: toTime, toleranceBefore: .zero, toleranceAfter: .zero)
         }
         playerIcon.image = UIImage(systemName: "pause.fill")
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
-    
+    func showTC(){
+        let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        let request = SFSpeechURLRecognitionRequest(url: curr_file_url.address!)
+
+        request.shouldReportPartialResults = true
+        request.taskHint = .dictation
+        
+
+        if (recognizer?.isAvailable)! {
+
+            recognizer?.recognitionTask(with: request) { result, error in
+                guard error == nil else { print("Error: \(error!)"); return }
+                guard let result = result else { print("No result!"); return }
+                
+                print(result.bestTranscription.formattedString)
+                
+            }
+        } else {
+            print("Device doesn't support speech recognition")
+        }
+
+    }
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
+    var sentence = ""
+    var stringArray = [String]()
+    var sentencesArray = [String]()
+    var timeStampStart = [Double]()
+    var timeStampEnd = [Double]()
+    
+    var counter = 0
     
     func playVoice(){
+        
+        print("SCount...\(sentencesArray.count)....start...\(timeStampStart.count)....end...\(timeStampEnd.count)")
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             do {
@@ -188,6 +264,57 @@ class APPreviewAudioViewController: BaseViewController {
                         self.currentDuration = time
                         
                         self.playerProgressBar.setValue(Float(time), animated: true)
+                        
+//                        for sentence in self.sentencesArray{
+//                            if sentence != ""{
+//                                if self.counter <= 5{
+//                                    let start = self.timeStampStart[self.counter]
+//                                    let end = self.timeStampEnd[self.counter]
+//
+//                                    let range = start...end
+//
+//                                    if range.contains(time){
+//                                        print("NNNN.....\(self.sentencesArray[self.counter])......\(self.counter)")
+//                                        self.transcriptionLbl.text = self.sentencesArray[self.counter]
+//                                        self.counter += 1
+//                                    }
+//                                }
+//                            }
+//                        }
+                        
+                        
+//                        for word in self.words{
+//                            let start = word.start
+//                            let end = word.end
+//                            let punctuatedWord = word.punctuatedWord
+//
+//                            let range = start...end
+//
+//                            if range.contains(time){
+//
+//                                if let lastString = self.stringArray.last, lastString == punctuatedWord{
+//                                    print("Word is contained......\(self.stringArray)")
+//                                    //self.stringArray.remove(at: 0)
+//                                }else{
+//
+//                                    if self.stringArray.count > 3 {
+//                                        self.stringArray.remove(at: 0)
+//                                        self.sentence = self.stringArray.joined(separator: " ")
+//                                        print("Updated sentence: \(self.sentence)")
+//                                    } else {
+//                                        print("Number of words is not greater than 4.")
+//                                    }
+//
+//                                    self.stringArray.append(punctuatedWord)
+//                                    self.sentence = self.stringArray.joined(separator: " ")
+//
+//                                    self.transcriptionLbl.text = self.sentence
+//                                    //self.transcriptionLbl.animate(newText: self.sentence ?? "", characterDelay: 0.1)
+//                                }
+//
+//                            }
+//                        }
+                        
                     }
                 }
                 
@@ -201,11 +328,16 @@ class APPreviewAudioViewController: BaseViewController {
         } catch _ as NSError {
             print("")
         }
+     
+        
     }
 
     @objc func playerDidFinishPlaying(note: NSNotification) {
         self.currentDuration = 0.0
         self.invalidateTimer()
+        self.transcriptionLbl.text = ""
+        self.stringArray.removeAll()
+        self.sentence = ""
     }
 
     
@@ -255,3 +387,13 @@ class APPreviewAudioViewController: BaseViewController {
     
 }
 
+
+extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
+    var byWords: [SubSequence] {
+        var byWords: [SubSequence] = []
+        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
+            byWords.append(self[range])
+        }
+        return byWords
+    }
+}

@@ -6,7 +6,7 @@
 //  Copyright © 2022 Music of Wisdom. All rights reserved.
 //
 
-import Foundation
+import AVFoundation
 import Alamofire
 import SwiftyJSON
 
@@ -455,14 +455,9 @@ class APAPIGateway {
                 UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
                 self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
             }
-            var fileName = ""
-            if AppSettings.isBellCurveEQAtcive{
-                fileName = "ezenAdmin.mp3"
-            }else{
-                fileName = "ezenAdminFiltered.mp3"
-            }
+            
             self.AlamofireManager!.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: fileName, mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
+            multipartFormData.append(voiceOverUrl, withName: "file" , fileName: "ezenAdmin.mp3", mimeType: "Audio")}, to: endPoint, method: .post, headers: params).uploadProgress(closure: { (progress) in
                 print("Progress...\(progress.fractionCompleted * 100)% uploaded to eZen")
             }).response { response in
                     switch(response.result) {
@@ -470,27 +465,30 @@ class APAPIGateway {
                         if response.value != nil{
                             let json = JSON(response.value! as Any)
                             let play_file = json["play_file"]
-                            print(".........RESPONSE AFTER BELL FILTER EQ silence.....\(play_file)......\(json)")
+                            print(".........RESPONSE AFTER UPLOADING TO EZEN.....\(play_file)......\(json)")
+                            completion(voiceOverUrl, nil)
                             
-                            if AppSettings.isBellCurveEQAtcive{
-                                self.setFilter { file_dir, error in
-                                    if error == nil{
-                                        //download file
-                                        print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
-                                        self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
-                                            if error == nil{
-                                                completion(url, nil)
-                                            }else{
-                                                completion(nil, error)
-                                            }
-                                        }
-                                    }else{
-                                        completion(voiceOverUrl, error)
-                                    }
-                                }
-                            }else{
-                                print("*******IS NOT BELL CURVE GO DIRECT TO DOLBY DIRECT******************")
-                                completion(voiceOverUrl, nil)
+//                            self.setFilter { file_dir, error in
+//                                if error == nil{
+//                                    //download file
+//                                    print("AM ABOUT TO DOWNLOAD THIS GUY......\(file_dir)")
+//                                    self.downloadFile(downldURL: "http://45.61.56.80/\(file_dir)", isAnalyze: false) { url, error in
+//                                        if error == nil{
+//                                            completion(url, nil)
+//                                        }else{
+//                                            completion(nil, error)
+//                                        }
+//                                    }
+//                                }else{
+//                                    completion(nil, error)
+//                                }
+//                            }
+                            
+//                            if AppSettings.isBellCurveEQAtcive{
+//
+//                            }else{
+//                                print("*******IS NOT BELL CURVE GO DIRECT TO DOLBY DIRECT******************")
+//                                completion(voiceOverUrl, nil)
 //                                self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdminFiltered.mp3", isAnalyze: false) { url, error in
 //                                    if error == nil{
 //                                        completion(url, nil)
@@ -498,8 +496,8 @@ class APAPIGateway {
 //                                        completion(nil, error)
 //                                    }
 //                                }
-                            }
-                            
+//                            }
+//
                         }else{
                             completion(nil, nil)
                         }
@@ -552,7 +550,40 @@ class APAPIGateway {
     }
     
     
-    func applyNoiseGate(parts: [[Double]], completion: @escaping(URL?, Error?) -> Void){
+    func getTranscription(completion: @escaping(JSON?, Error?) -> Void){
+//        let audioFile =  try? AVAudioFile(forReading: curr_file_url.address!)
+//        let sampleRate = audioFile!.fileFormat.sampleRate
+   
+        let url =  "http://45.61.56.80/api/getTranscription"
+        let parameters = ["fileName": "ezenAdmin", "sample_rate": "sampleRate"] as [String : Any]
+        
+        DispatchQueue.global().async {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "FNT") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+                self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+            }
+            
+            self.AlamofireManager!.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON{response in
+                switch(response.result) {
+                case .success(_):
+                    if response.value != nil{
+                        let json = JSON(response.value!)
+                        print("Request response for audio transcription==>\(response)")
+                        let data = json["response"]
+                        completion(data, nil)
+                    }
+                    break
+                case .failure(let error):
+                    completion(nil, error.asAFError)
+                    break
+                }
+                self.endBGTask()
+            }
+        }
+    }
+    
+    func applyNoiseGate(parts: [[Double]], completion: @escaping(JSON?, URL?, Error?) -> Void){
         let url =  "http://45.61.56.80/api/ApplyNoiseGate"
         let parameters = ["parts": parts, "fileName": "ezenAdmin"] as [String : Any]
         
@@ -570,19 +601,23 @@ class APAPIGateway {
                         let json = JSON(response.value!)
                         print("Request response for set Friter=>", json)
                         if json["IsSucces"].boolValue {
-                            self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
+                            self.getTranscription { transcription, error in
                                 if error == nil{
-                                    file_url.address = url
-                                    completion(url, nil)
-                                }else{
-                                    completion(nil, error)
+                                    self.downloadFile(downldURL: "http://45.61.56.80/media/ezenAdmingated.mp3", isAnalyze: false) { url, error in
+                                        if error == nil{
+                                            curr_file_url.address = url
+                                            completion(transcription, url, nil)
+                                        }else{
+                                            completion(nil, nil, error)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                     break
                 case .failure(let error):
-                    completion(nil, error.asAFError)
+                    completion(nil, nil, error.asAFError)
                     break
                 }
                 self.endBGTask()

@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="ArimaMadurai-Bold.ttf">
+            <string>ArimaMadurai-Bold</string>
+        </array>
         <array key="Mulish-Regular.ttf">
             <string>Mulish-Regular</string>
         </array>
@@ -21,7 +24,10 @@
                 <outlet property="playerIcon" destination="SRs-kg-s5y" id="o0U-NN-iQO"/>
                 <outlet property="playerProgressBar" destination="UfK-vN-sGo" id="a4I-Sc-e6H"/>
                 <outlet property="start_at" destination="FE2-vY-rQe" id="PPt-br-a7w"/>
+                <outlet property="titleLbl" destination="oxU-Yu-iEB" id="1b5-u3-08z"/>
+                <outlet property="transcriptionLbl" destination="fir-EP-SeF" id="950-35-JTo"/>
                 <outlet property="view" destination="JxS-CR-pEr" id="Un5-QF-u7w"/>
+                <outlet property="visualizeBtn" destination="UTV-ea-eRP" id="15P-Hc-pZp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -29,7 +35,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-Yu-iEB">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-Yu-iEB">
                     <rect key="frame" x="45" y="113" width="305" height="117.66666666666669"/>
                     <attributedString key="attributedText">
                         <fragment content="Preview Your Voiceover">
@@ -128,32 +134,34 @@
                     <rect key="frame" x="20" y="636" width="353" height="154"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbf-Ag-hHD">
-                            <rect key="frame" x="67" y="8" width="219" height="49"/>
+                            <rect key="frame" x="26.666666666666657" y="0.0" width="300" height="72"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="219" id="LYz-bH-vwh"/>
-                                <constraint firstAttribute="height" constant="49" id="M0C-DI-CUn"/>
+                                <constraint firstAttribute="width" constant="300" id="Ny6-SH-2GU"/>
+                                <constraint firstAttribute="height" constant="72" id="bKE-IJ-AL0"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Apply Bell Curve EQ" cornerStyle="large">
+                            <buttonConfiguration key="configuration" style="filled" title="Apply Bell Curve EQ" cornerStyle="large" titleAlignment="center">
+                                <backgroundConfiguration key="background" image="create_video"/>
+                                <fontDescription key="titleFontDescription" name="Mulish-Bold" family="Mulish" pointSize="18"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="baseBackgroundColor" name="blue"/>
+                                <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="applyBellEQ:" destination="-1" eventType="touchUpInside" id="nnu-o0-mQJ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaB-eD-ItF">
-                            <rect key="frame" x="67" y="71" width="219" height="49"/>
+                            <rect key="frame" x="26.666666666666657" y="84" width="300" height="72"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="49" id="Oz9-Nl-z8G"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="eLm-b2-3Jr"/>
-                                <constraint firstAttribute="width" constant="219" id="jQT-0M-Abs"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="qIB-wt-SbM"/>
+                                <constraint firstAttribute="width" constant="300" id="0M1-ww-llJ"/>
+                                <constraint firstAttribute="height" constant="72" id="EKs-Pv-qBJ"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Export Audio" cornerStyle="large">
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="baseBackgroundColor" name="red"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Save Audio" cornerStyle="large">
+                                <backgroundConfiguration key="background" image="save_audio"/>
+                                <fontDescription key="titleFontDescription" name="Mulish-Bold" family="Mulish" pointSize="18"/>
+                                <color key="baseForegroundColor" name="blue"/>
+                                <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="saveAndContinue:" destination="-1" eventType="touchUpInside" id="1xh-cl-xqX"/>
@@ -162,27 +170,47 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Hbf-Ag-hHD" firstAttribute="centerX" secondItem="IxB-iw-xgJ" secondAttribute="centerX" id="0js-mV-R8F"/>
-                        <constraint firstItem="PaB-eD-ItF" firstAttribute="top" secondItem="Hbf-Ag-hHD" secondAttribute="bottom" constant="14" id="8Ar-aR-7Fx"/>
-                        <constraint firstItem="Hbf-Ag-hHD" firstAttribute="top" secondItem="IxB-iw-xgJ" secondAttribute="top" constant="8" id="SgP-ra-19O"/>
-                        <constraint firstItem="PaB-eD-ItF" firstAttribute="centerX" secondItem="IxB-iw-xgJ" secondAttribute="centerX" id="fKl-Aq-8ll"/>
+                        <constraint firstItem="PaB-eD-ItF" firstAttribute="centerX" secondItem="IxB-iw-xgJ" secondAttribute="centerX" id="0tt-Al-IJW"/>
+                        <constraint firstItem="PaB-eD-ItF" firstAttribute="top" secondItem="Hbf-Ag-hHD" secondAttribute="bottom" constant="12" id="Cub-E5-dKn"/>
+                        <constraint firstItem="Hbf-Ag-hHD" firstAttribute="centerX" secondItem="IxB-iw-xgJ" secondAttribute="centerX" id="deb-1L-D3i"/>
+                        <constraint firstItem="Hbf-Ag-hHD" firstAttribute="top" secondItem="IxB-iw-xgJ" secondAttribute="top" id="nFn-Mj-G1e"/>
                         <constraint firstAttribute="height" constant="154" id="nPd-z4-Wmn"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVM-pm-Cu8">
-                    <rect key="frame" x="-9" y="59" width="105" height="35"/>
+                    <rect key="frame" x="0.0" y="59" width="44" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="IbP-AE-iui"/>
-                        <constraint firstAttribute="width" constant="105" id="Rzd-im-eRo"/>
+                        <constraint firstAttribute="width" constant="44" id="Rzd-im-eRo"/>
                     </constraints>
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" imagePlacement="leading" title="Home">
-                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
-                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="medium" weight="regular"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="exit:" destination="-1" eventType="touchUpInside" id="7F8-Zz-j3y"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fir-EP-SeF">
+                    <rect key="frame" x="16" y="513" width="361" height="0.0"/>
+                    <fontDescription key="fontDescription" name="ArimaMadurai-Bold" family="Arima Madurai" pointSize="24"/>
+                    <color key="textColor" name="red"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
+                    <rect key="frame" x="347" y="60" width="30" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="Puz-mI-4fe"/>
+                        <constraint firstAttribute="width" constant="30" id="a2i-XV-ztG"/>
+                    </constraints>
+                    <color key="tintColor" name="gray"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <backgroundConfiguration key="background" image="Un-removebg-preview"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="onClickVisualize:" destination="-1" eventType="touchUpInside" id="T2N-91-yDf"/>
                     </connections>
                 </button>
             </subviews>
@@ -194,21 +222,29 @@
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="EfK-l6-qQU" secondAttribute="trailing" constant="44" id="ICM-Dy-S4y"/>
                 <constraint firstItem="EfK-l6-qQU" firstAttribute="centerY" secondItem="JxS-CR-pEr" secondAttribute="centerY" constant="-6" id="Mpz-fg-B7U"/>
                 <constraint firstItem="EfK-l6-qQU" firstAttribute="centerX" secondItem="JxS-CR-pEr" secondAttribute="centerX" id="Nin-db-Ofk"/>
+                <constraint firstItem="fir-EP-SeF" firstAttribute="top" secondItem="EfK-l6-qQU" secondAttribute="bottom" constant="14" id="Pau-lz-eql"/>
+                <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="fir-EP-SeF" secondAttribute="trailing" constant="16" id="SW1-gw-GHT"/>
                 <constraint firstItem="oxU-Yu-iEB" firstAttribute="top" secondItem="bPT-gn-NOQ" secondAttribute="top" constant="54" id="Tql-hf-kVk"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="IxB-iw-xgJ" secondAttribute="trailing" constant="20" id="VAm-Og-BFd"/>
                 <constraint firstItem="oxU-Yu-iEB" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="45" id="Vhn-7z-dEn"/>
                 <constraint firstItem="IxB-iw-xgJ" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="20" id="W1C-pJ-dLB"/>
+                <constraint firstItem="fir-EP-SeF" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="16" id="coc-2m-v5l"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="bottom" secondItem="IxB-iw-xgJ" secondAttribute="bottom" constant="28" id="oUb-LL-NeB"/>
                 <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="oxU-Yu-iEB" secondAttribute="trailing" constant="43" id="pct-xD-8DD"/>
-                <constraint firstItem="OVM-pm-Cu8" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" constant="-9" id="y2i-fu-Gkk"/>
+                <constraint firstItem="UTV-ea-eRP" firstAttribute="top" secondItem="bPT-gn-NOQ" secondAttribute="top" constant="1" id="q5y-ft-ZyT"/>
+                <constraint firstItem="bPT-gn-NOQ" firstAttribute="trailing" secondItem="UTV-ea-eRP" secondAttribute="trailing" constant="16" id="qvP-Le-azy"/>
+                <constraint firstItem="OVM-pm-Cu8" firstAttribute="leading" secondItem="bPT-gn-NOQ" secondAttribute="leading" id="y2i-fu-Gkk"/>
             </constraints>
             <point key="canvasLocation" x="90.839694656488547" y="634.50704225352115"/>
         </view>
     </objects>
     <resources>
         <image name="Ellipse" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="Un-removebg-preview" width="157.66667175292969" height="176"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <image name="create_video" width="170.66667175292969" height="39"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
+        <image name="save_audio" width="170.66667175292969" height="39"/>
         <namedColor name="blue">
             <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

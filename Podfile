@@ -11,6 +11,7 @@ target 'eZen Dev' do
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Loaf'
 
   target 'eZen DevTests' do
     inherit! :search_paths

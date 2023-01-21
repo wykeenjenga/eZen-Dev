@@ -22,10 +22,10 @@ class APSettingsViewController: UIViewController {
     @IBOutlet weak var eHubReduction: UISwitch!
     @IBOutlet weak var eQHighPassTF: UITextField!
     
-    @IBOutlet weak var bellAmplitude: UITextField!
-    @IBOutlet weak var bellFrequency: UITextField!
-    @IBOutlet weak var bellOrder: UITextField!
-    @IBOutlet weak var bandWidth: UITextField!
+//    @IBOutlet weak var bellAmplitude: UITextField!
+//    @IBOutlet weak var bellFrequency: UITextField!
+//    @IBOutlet weak var bellOrder: UITextField!
+//    @IBOutlet weak var bandWidth: UITextField!
     
     @IBOutlet weak var analysisThreshold: UITextField!
     @IBOutlet weak var analysisDuration: UITextField!
@@ -54,7 +54,7 @@ class APSettingsViewController: UIViewController {
     @IBOutlet weak var audioType: UITextField!
     @IBOutlet weak var peakReferenceTF: UITextField!
     
-    @IBOutlet weak var isBellCurveEQ: UISwitch!
+//    @IBOutlet weak var isBellCurveEQ: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,15 +89,16 @@ class APSettingsViewController: UIViewController {
         self.isDolbyGating.isOn = EnhanceValues.edialog_intelligence_enabled
         self.audioType.text = EnhanceValues.econtent_type
         
-        self.bellAmplitude.text = String(BellCurveFilter.amplitude)
-        self.bellFrequency.text = String(BellCurveFilter.center_frequency)
-        self.bellOrder.text = String(BellCurveFilter.order)
-        self.bandWidth.text = String(BellCurveFilter.bandWidth)
+//        self.bellAmplitude.text = String(BellCurveFilter.amplitude)
+//        self.bellFrequency.text = String(BellCurveFilter.center_frequency)
+//        self.bellOrder.text = String(BellCurveFilter.order)
+//        self.bandWidth.text = String(BellCurveFilter.bandWidth)
+//        self.isBellCurveEQ.isOn = AppSettings.isBellCurveEQAtcive
         
         self.analysisDuration.text = String(AnalysisValues.duration)
         self.analysisThreshold.text = String(AnalysisValues.threshold)
         
-        self.isBellCurveEQ.isOn = AppSettings.isBellCurveEQAtcive
+        
     }
     
     final class func create() -> APSettingsViewController {
@@ -144,12 +145,12 @@ class APSettingsViewController: UIViewController {
         AnalysisValues.threshold = Int(analysisThreshold.text!) ?? -60
         AnalysisValues.duration = Double(analysisDuration.text!) ?? 2.0
         
-        BellCurveFilter.amplitude = Int(bellAmplitude.text!) ?? -10
-        BellCurveFilter.center_frequency = Int(bellFrequency.text!) ?? 500
-        BellCurveFilter.order = Int(self.bellOrder.text!) ?? 2
-        BellCurveFilter.bandWidth = Int(self.bandWidth.text!) ?? 100
-        
-        AppSettings.isBellCurveEQAtcive = self.isBellCurveEQ.isOn
+//        BellCurveFilter.amplitude = Int(bellAmplitude.text!) ?? -10
+//        BellCurveFilter.center_frequency = Int(bellFrequency.text!) ?? 500
+//        BellCurveFilter.order = Int(self.bellOrder.text!) ?? 2
+//        BellCurveFilter.bandWidth = Int(self.bandWidth.text!) ?? 100
+//
+//        AppSettings.isBellCurveEQAtcive = self.isBellCurveEQ.isOn
         
         self.dismiss(animated: true)
         

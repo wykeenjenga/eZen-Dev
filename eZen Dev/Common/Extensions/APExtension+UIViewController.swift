@@ -45,3 +45,34 @@ extension UIViewController {
         present(customVcTransition, animated: false, completion: nil)
     }
 }
+
+extension UIApplication {
+    /**
+     Method to get the key window as keyWindow property of the UIAplication is depricated in iOS 13
+     */
+    func getKeyWindow() -> UIWindow? {
+       return self.windows.first { $0.isKeyWindow }
+    }
+    
+    class func topViewController(controller: UIViewController? = UIApplication.shared.getKeyWindow()?.rootViewController) -> UIViewController {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller ?? UIViewController()
+    }
+}
+
+extension UIApplication {
+    class func navigationTopViewController() -> UIViewController? {
+        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
+        return  nav?.topViewController
+    }
+}

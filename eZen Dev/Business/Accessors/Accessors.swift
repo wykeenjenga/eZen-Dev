@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 struct Accessors {
     
@@ -23,5 +24,12 @@ struct Accessors {
     
     struct AppDelegate {
         static let delegate: APAppDelegate = UIApplication.shared.delegate as! APAppDelegate
+    }
+}
+
+
+class AVPlayerView: UIView {
+    override class var layerClass: AnyClass {
+        return AVPlayerLayer.self
     }
 }

@@ -52,6 +52,13 @@
 		0B32C5772950500D00028D5D /* Mulish-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5632950500C00028D5D /* Mulish-Medium.ttf */; };
 		0B32C5782950500D00028D5D /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */; };
 		0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */; };
+		0B35CDE8297599F00074F9D2 /* Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE7297599F00074F9D2 /* Music.mp3 */; };
+		0B35CDEC2975A64C0074F9D2 /* potraitVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */; };
+		0B35CDF42979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */; };
+		0B35CDF629792B9D0074F9D2 /* landscapeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */; };
+		0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */; };
+		0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */; };
+		0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */; };
 		0B76DE832950590D00976E55 /* APError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE802950590D00976E55 /* APError.swift */; };
 		0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE822950590D00976E55 /* APDynamicType.swift */; };
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
@@ -61,6 +68,11 @@
 		0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */; };
 		0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */; };
 		0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE982954AA1100976E55 /* SilentParts.swift */; };
+		0B7B6DEF2965DEA500EAE309 /* APTranscriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DEE2965DEA500EAE309 /* APTranscriptionModel.swift */; };
+		0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */; };
+		0B7B6DF42966EABC00EAE309 /* APVisualizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */; };
+		0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */; };
+		0B7B6DF92969ADED00EAE309 /* APDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */; };
 		0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */; };
 		0BBABBF02955F8D4007CABEB /* APSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */; };
 		0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD379B295615000006FF9E /* SettingsDIContainer.swift */; };
@@ -136,6 +148,13 @@
 		0B32C5632950500C00028D5D /* Mulish-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-Medium.ttf"; sourceTree = "<group>"; };
 		0B32C5642950500C00028D5D /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-BoldItalic.ttf"; sourceTree = "<group>"; };
+		0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = potraitVideo.mp4; sourceTree = "<group>"; };
+		0B35CDE7297599F00074F9D2 /* Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Music.mp3; sourceTree = "<group>"; };
+		0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Medium.ttf"; sourceTree = "<group>"; };
+		0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landscapeVideo.mp4; sourceTree = "<group>"; };
+		0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionViewController.swift; sourceTree = "<group>"; };
+		0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APTranscriptionViewController.xib; sourceTree = "<group>"; };
+		0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionDIContainer.swift; sourceTree = "<group>"; };
 		0B76DE802950590D00976E55 /* APError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APError.swift; sourceTree = "<group>"; };
 		0B76DE822950590D00976E55 /* APDynamicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDynamicType.swift; sourceTree = "<group>"; };
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
@@ -145,8 +164,14 @@
 		0B76DE912952495200976E55 /* APPreviewAudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APPreviewAudioViewController.xib; sourceTree = "<group>"; };
 		0B76DE9529524BD600976E55 /* PreviewVoiceOverDIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewVoiceOverDIContainer.swift; sourceTree = "<group>"; };
 		0B76DE982954AA1100976E55 /* SilentParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentParts.swift; sourceTree = "<group>"; };
+		0B7B6DEE2965DEA500EAE309 /* APTranscriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionModel.swift; sourceTree = "<group>"; };
+		0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeViewController.swift; sourceTree = "<group>"; };
+		0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APVisualizeViewController.xib; sourceTree = "<group>"; };
+		0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVisualizeDIContainer.swift; sourceTree = "<group>"; };
+		0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDeviceOrientation.swift; sourceTree = "<group>"; };
 		0BBABBED2955F8D4007CABEB /* APSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingsViewController.swift; sourceTree = "<group>"; };
 		0BBABBEE2955F8D4007CABEB /* APSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSettingsViewController.xib; sourceTree = "<group>"; };
+		0BBD950029729EC9007FE519 /* SF-Compact-Rounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Regular.ttf"; sourceTree = "<group>"; };
 		0BCD379B295615000006FF9E /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
 		1A31BF24D6D212F720E05EC4 /* Pods-eZen DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eZen DevTests.release.xcconfig"; path = "Target Support Files/Pods-eZen DevTests/Pods-eZen DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A390C91BF3684D06BBFFAAF /* Pods_eZen_Dev_eZen_DevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eZen_Dev_eZen_DevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				0B32C512294D956F00028D5D /* APDIContainer.swift */,
+				0B54FC452971C071003D1B80 /* TranscriptionDIContainer */,
+				0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */,
 				0BCD379A295614E10006FF9E /* SettingsContainer */,
 				0B76DE9429524BD600976E55 /* PreviewVoiceOverDIContainer */,
 				0B32C54629504EFE00028D5D /* HomeDIContainer */,
@@ -313,6 +340,7 @@
 				0B32C51D2950454F00028D5D /* APProtocols.swift */,
 				0B32C51E2950454F00028D5D /* HUDLoaderProtocol.swift */,
 				0B32C51F2950454F00028D5D /* StoryboardInstantiable.swift */,
+				0B7B6DF82969ADED00EAE309 /* APDeviceOrientation.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -374,6 +402,8 @@
 		0B32C53E295048D800028D5D /* PresentationModules */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FC3F2971B916003D1B80 /* TranscriptionModule */,
+				0B7B6DF02966EA8E00EAE309 /* VisualizerModule */,
 				0B32C53F295048E800028D5D /* HomeModule */,
 				0BBABBEA2955F89E007CABEB /* SettingsModule */,
 				0B76DE8E2952490F00976E55 /* PreviewAudio */,
@@ -428,6 +458,8 @@
 		0B32C54E29504FEC00028D5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0B35CDE5297599D20074F9D2 /* Music */,
+				0B35CDE4297599CA0074F9D2 /* Video */,
 				0B32C54F2950500C00028D5D /* Fonts */,
 			);
 			path = Resources;
@@ -436,6 +468,8 @@
 		0B32C54F2950500C00028D5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0B35CDF32979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf */,
+				0BBD950029729EC9007FE519 /* SF-Compact-Rounded-Regular.ttf */,
 				0B32C5502950500C00028D5D /* arims */,
 				0B32C5592950500C00028D5D /* mulish */,
 			);
@@ -474,6 +508,55 @@
 				0B32C5652950500C00028D5D /* Mulish-BoldItalic.ttf */,
 			);
 			path = mulish;
+			sourceTree = "<group>";
+		};
+		0B35CDE4297599CA0074F9D2 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				0B35CDF529792B9D0074F9D2 /* landscapeVideo.mp4 */,
+				0B35CDE6297599EB0074F9D2 /* potraitVideo.mp4 */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		0B35CDE5297599D20074F9D2 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				0B35CDE7297599F00074F9D2 /* Music.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		0B35CDE92975A1D20074F9D2 /* VideoPlaye */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VideoPlaye;
+			sourceTree = "<group>";
+		};
+		0B54FC3F2971B916003D1B80 /* TranscriptionModule */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC402971B995003D1B80 /* ViewController */,
+			);
+			path = TranscriptionModule;
+			sourceTree = "<group>";
+		};
+		0B54FC402971B995003D1B80 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */,
+				0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B54FC452971C071003D1B80 /* TranscriptionDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */,
+			);
+			path = TranscriptionDIContainer;
 			sourceTree = "<group>";
 		};
 		0B76DE7E295058FD00976E55 /* CutomType */ = {
@@ -555,8 +638,27 @@
 			isa = PBXGroup;
 			children = (
 				0B76DE982954AA1100976E55 /* SilentParts.swift */,
+				0B7B6DEE2965DEA500EAE309 /* APTranscriptionModel.swift */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		0B7B6DF02966EA8E00EAE309 /* VisualizerModule */ = {
+			isa = PBXGroup;
+			children = (
+				0B35CDE92975A1D20074F9D2 /* VideoPlaye */,
+				0B7B6DF12966EABC00EAE309 /* APVisualizeViewController.swift */,
+				0B7B6DF22966EABC00EAE309 /* APVisualizeViewController.xib */,
+			);
+			path = VisualizerModule;
+			sourceTree = "<group>";
+		};
+		0B7B6DF529686ADD00EAE309 /* VisualizeDIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B7B6DF629686B0A00EAE309 /* APVisualizeDIContainer.swift */,
+			);
+			path = VisualizeDIContainer;
 			sourceTree = "<group>";
 		};
 		0BBABBEA2955F89E007CABEB /* SettingsModule */ = {
@@ -726,6 +828,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B35CDF42979277D0074F9D2 /* SF-Compact-Rounded-Medium.ttf in Resources */,
+				0B35CDEC2975A64C0074F9D2 /* potraitVideo.mp4 in Resources */,
 				0B32C5762950500D00028D5D /* Mulish-ExtraLight.ttf in Resources */,
 				0B32C5752950500D00028D5D /* Mulish-ExtraBold.ttf in Resources */,
 				0B32C5682950500D00028D5D /* ArimaMadurai-Regular.ttf in Resources */,
@@ -736,16 +840,20 @@
 				0B32C5742950500D00028D5D /* Mulish-Bold.ttf in Resources */,
 				0B76DE932952495200976E55 /* APPreviewAudioViewController.xib in Resources */,
 				0B32C5732950500D00028D5D /* Mulish-ExtraLightItalic.ttf in Resources */,
+				0B35CDE8297599F00074F9D2 /* Music.mp3 in Resources */,
 				0B32C56A2950500D00028D5D /* ArimaMadurai-Thin.ttf in Resources */,
 				0B32C5712950500D00028D5D /* Mulish-BlackItalic.ttf in Resources */,
 				0B32C5782950500D00028D5D /* Mulish-SemiBold.ttf in Resources */,
 				0B32C5662950500D00028D5D /* ArimaMadurai-Bold.ttf in Resources */,
 				0B32C5672950500D00028D5D /* ArimaMadurai-ExtraLight.ttf in Resources */,
+				0B35CDF629792B9D0074F9D2 /* landscapeVideo.mp4 in Resources */,
 				0B32C56B2950500D00028D5D /* ArimaMadurai-Medium.ttf in Resources */,
 				0B32C5772950500D00028D5D /* Mulish-Medium.ttf in Resources */,
 				0B32C5792950500D00028D5D /* Mulish-BoldItalic.ttf in Resources */,
+				0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */,
 				0B32C5702950500D00028D5D /* Mulish-Black.ttf in Resources */,
 				0B32C56F2950500D00028D5D /* Mulish-Regular.ttf in Resources */,
+				0B7B6DF42966EABC00EAE309 /* APVisualizeViewController.xib in Resources */,
 				0B32C4EC294D934000028D5D /* LaunchScreen.storyboard in Resources */,
 				0B32C56C2950500D00028D5D /* ArimaMadurai-Black.ttf in Resources */,
 				0B32C5692950500D00028D5D /* ArimaMadurai-Light.ttf in Resources */,
@@ -880,17 +988,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B76DE9629524BD600976E55 /* PreviewVoiceOverDIContainer.swift in Sources */,
+				0B7B6DF92969ADED00EAE309 /* APDeviceOrientation.swift in Sources */,
 				0B32C52E2950459100028D5D /* APExtension+Window.swift in Sources */,
 				0B32C52F2950459100028D5D /* APExtension+UIImage.swift in Sources */,
 				0B32C513294D956F00028D5D /* APDIContainer.swift in Sources */,
 				0B32C52D2950459100028D5D /* APExtension+UIViewController.swift in Sources */,
 				0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */,
+				0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */,
 				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
 				0B32C54829504EFE00028D5D /* HomeDIContainer.swift in Sources */,
 				0B76DE8D2950633700976E55 /* APButton.swift in Sources */,
 				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
 				0B32C53C2950466400028D5D /* APAPIGateway.swift in Sources */,
 				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,
+				0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */,
+				0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */,
 				0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */,
 				0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */,
 				0B32C5392950466400028D5D /* Accessors.swift in Sources */,
@@ -899,8 +1011,10 @@
 				0BCD379C295615000006FF9E /* SettingsDIContainer.swift in Sources */,
 				0B32C5212950454F00028D5D /* APProtocols.swift in Sources */,
 				0B76DE832950590D00976E55 /* APError.swift in Sources */,
+				0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */,
 				0B76DE8A29505C7200976E55 /* APHomeViewModel.swift in Sources */,
 				0B32C54C29504F4E00028D5D /* APHomeViewController.swift in Sources */,
+				0B7B6DEF2965DEA500EAE309 /* APTranscriptionModel.swift in Sources */,
 				0B32C54529504DF800028D5D /* APHardWallViewController.swift in Sources */,
 				0B32C5232950454F00028D5D /* StoryboardInstantiable.swift in Sources */,
 				0BBABBEF2955F8D4007CABEB /* APSettingsViewController.swift in Sources */,
@@ -1084,12 +1198,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 7RR73CT43V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Your speech will be detected after tapping the start button";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your speech will be detected after tapping the start button";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1119,12 +1235,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 7RR73CT43V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eZen Dev/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "eZen-Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Your speech will be detected after tapping the start button";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your speech will be detected after tapping the start button";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
