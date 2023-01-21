@@ -337,9 +337,9 @@ class APVisualizeViewController: BaseViewController {
                                 let timee = Double(round(1 * time) / 1)
                                 let endd = Double(round(1 * end) / 1)
                                 if timee == endd{
-                                    print(".........\(endd).........\(timee)")
-                                    let duration = (end - start)
-                                    UIView.animate(withDuration: duration) {
+                                    print(".........\(end).........\(time)")
+                                    //let duration = (end - start)
+                                    UIView.animate(withDuration: 1.0) {
                                         self.transcriptionLbl.alpha = 0.0
                                     }
                                 }
