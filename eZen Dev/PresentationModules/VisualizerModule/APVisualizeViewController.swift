@@ -311,7 +311,7 @@ class APVisualizeViewController: BaseViewController {
 
                 player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1.0, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
-                        let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
+                        var time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
                         let duration : CMTime = self.playerItem!.asset.duration
                         let _ : Float64 = CMTimeGetSeconds(duration)
@@ -321,7 +321,7 @@ class APVisualizeViewController: BaseViewController {
                         for sentence in self.words{
                             
                             let start = sentence.start
-                            let end = sentence.end
+                            var end = sentence.end
                             let punctuatedWord = sentence.transcript
 
                             let range = start...end
@@ -334,7 +334,9 @@ class APVisualizeViewController: BaseViewController {
                                     }
                                 }
                             }else{
-                                print(".......\(start)....\(end).........\(time)")
+                                let timee = time.round(.toNearestOrAwayFromZero)
+                                let endd = end.round(.toNearestOrAwayFromZero)
+                                print(".........\(endd).........\(timee)")
                                 if time > end{
                                     let duration = (end - start)
                                     
