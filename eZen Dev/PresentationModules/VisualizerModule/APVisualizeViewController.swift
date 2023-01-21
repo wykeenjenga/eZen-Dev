@@ -23,7 +23,7 @@ class APVisualizeViewController: BaseViewController {
     var isMenu = false
     
     var duration = 0.0
-    var currentDuration = 0.0
+    var currentDuration: Double = 0.0
     
     var timeIntvl: TimeInterval = Double(0.0)
     var cmTime = CMTime()
@@ -299,6 +299,8 @@ class APVisualizeViewController: BaseViewController {
         }
     }
     
+    var endPosition = 0.0
+    
     func playVoice(){
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
@@ -318,6 +320,7 @@ class APVisualizeViewController: BaseViewController {
                         
                         self.currentDuration = time
                         
+                        
                         for sentence in self.words{
                             
                             let start = sentence.start
@@ -329,21 +332,22 @@ class APVisualizeViewController: BaseViewController {
                             if range.contains(time){
                                 if self.transcriptionLbl.text != punctuatedWord{
                                     self.transcriptionLbl.text = punctuatedWord
-                                    UIView.animate(withDuration: 1.0) {
+                                    self.endPosition = end
+                                    UIView.animate(withDuration: 0.3) {
                                         self.transcriptionLbl.alpha = 1.0
                                     }
                                 }
                             }else{
-                                if time > end{
-                                    let duration = (end - start)
-                                    print("time,..........\(duration)")
-                                    UIView.animate(withDuration: duration) {
-                                        self.transcriptionLbl.alpha = 0.0
+                                if time > self.endPosition{
+                                    print(".........\(end).........\(time)")
+                                    if self.transcriptionLbl.text != punctuatedWord{
+                                        UIView.animate(withDuration: 0.3) {
+                                            self.transcriptionLbl.alpha = 0.0
+                                        }
                                     }
                                 }
                             }
                         }
-                        
                     }
                 }
                 
@@ -373,7 +377,6 @@ class APVisualizeViewController: BaseViewController {
         self.videoPlayer?.pause()
         self.musicPlayer?.pause()
     }
-    
     
     
     func reduceVolume() {
