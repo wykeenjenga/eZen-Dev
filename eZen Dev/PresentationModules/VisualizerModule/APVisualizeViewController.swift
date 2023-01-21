@@ -335,14 +335,16 @@ class APVisualizeViewController: BaseViewController {
                                     }
                                 }
                             }else{
-                                let timee = Double(round(1 * self.currentDuration) / 1)
-                                let endd = Double(round(1 * end) / 1) + 2
+                                let timee = Double(round(100 * self.currentDuration) / 100)
+                                let endd = Double(round(100 * end) / 100)
                                 
-                                if timee > endd{
-                                    print(".\(punctuatedWord)........\(endd).........\(timee)")
-                                    //let duration = (end - start)
-                                    UIView.animate(withDuration: 1.0) {
-                                        self.transcriptionLbl.alpha = 0.0
+                                if timee == endd{
+                                    if self.transcriptionLbl.text != punctuatedWord{
+                                        print(".........\(endd).........\(timee)")
+                                        let duration = (end - start)
+                                        UIView.animate(withDuration: duration) {
+                                            self.transcriptionLbl.alpha = 0.0
+                                        }
                                     }
                                 }
                             }
