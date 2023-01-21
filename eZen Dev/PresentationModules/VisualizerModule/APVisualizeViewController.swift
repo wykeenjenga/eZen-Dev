@@ -39,6 +39,7 @@ class APVisualizeViewController: BaseViewController {
     @IBOutlet weak var videoBtn: APBindingButton!
     @IBOutlet weak var transcriptionBtn: APBindingButton!
     @IBOutlet weak var musicBtn: APBindingButton!
+    @IBOutlet weak var transcriptionView: UIView!
     @IBOutlet weak var transcriptionLbl: UILabel!
     
     var player: AVPlayer?
@@ -270,13 +271,13 @@ class APVisualizeViewController: BaseViewController {
         if isTranscription{
             isTranscription = false
             UIView.animate(withDuration: 1.0) {
-                self.transcriptionLbl.alpha = 1.0
+                self.transcriptionView.alpha = 1.0
             }
             self.transcriptionBtn.setImage(UIImage(named: "text_on"), for: .normal)
         }else{
             isTranscription = true
             UIView.animate(withDuration: 1.0) {
-                self.transcriptionLbl.alpha = 0.0
+                self.transcriptionView.alpha = 0.0
             }
             self.transcriptionBtn.setImage(UIImage(named: "text_off"), for: .normal)
         }
@@ -308,7 +309,7 @@ class APVisualizeViewController: BaseViewController {
                 player?.play()
                 
 
-                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.0001, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
+                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1.0, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
@@ -327,17 +328,18 @@ class APVisualizeViewController: BaseViewController {
 
                             if range.contains(time){
                                 if self.transcriptionLbl.text != punctuatedWord{
-                                    
-                                    self.transcriptionLbl.text = punctuatedWord
                                     UIView.animate(withDuration: 1.0) {
+                                        self.transcriptionLbl.text = punctuatedWord
                                         self.transcriptionLbl.alpha = 1.0
                                     }
                                 }
                             }else{
                                 if time > end{
-                                    UIView.animate(withDuration: 1.0) {
-                                        //self.transcriptionLbl.alpha = 0.0
-                                        self.transcriptionLbl.text = ""
+                                    let duration = (end - start) + 5
+                                    print("time,....\(time)......\(duration)")
+                                    UIView.animate(withDuration: duration) {
+                                        self.transcriptionLbl.alpha = 0.0
+                                        //self.transcriptionLbl.text = ""
                                     }
                                     
                                 }

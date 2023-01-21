@@ -22,6 +22,7 @@
                 <outlet property="musicBtn" destination="WwX-Tf-kS4" id="Q37-yp-gJU"/>
                 <outlet property="transcriptionBtn" destination="D1W-Rb-SxV" id="PJ5-Jn-YgA"/>
                 <outlet property="transcriptionLbl" destination="xzq-GY-QHT" id="4oq-sO-Fbc"/>
+                <outlet property="transcriptionView" destination="rch-ba-0W8" id="ARE-Zs-uAR"/>
                 <outlet property="videoBtn" destination="TYt-lJ-yub" id="hTH-Do-VUw"/>
                 <outlet property="videoView" destination="INi-Kh-TGp" id="ExM-Ue-g1G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,10 +44,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rch-ba-0W8">
-                            <rect key="frame" x="50" y="326" width="312" height="200"/>
+                            <rect key="frame" x="50" y="267" width="312" height="343"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzq-GY-QHT">
-                                    <rect key="frame" x="8" y="8" width="296" height="184"/>
+                                    <rect key="frame" x="8" y="8" width="296" height="327"/>
                                     <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="25"/>
                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.80115807135373551" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -55,7 +56,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="xzq-GY-QHT" secondAttribute="bottom" constant="8" id="6vV-ug-ebL"/>
-                                <constraint firstAttribute="height" constant="200" id="Bed-9H-1Yt"/>
+                                <constraint firstAttribute="height" constant="343" id="Bed-9H-1Yt"/>
                                 <constraint firstAttribute="trailing" secondItem="xzq-GY-QHT" secondAttribute="trailing" constant="8" id="Jtt-Zl-T3j"/>
                                 <constraint firstItem="xzq-GY-QHT" firstAttribute="top" secondItem="rch-ba-0W8" secondAttribute="top" constant="8" id="Tg6-KT-eKF"/>
                                 <constraint firstItem="xzq-GY-QHT" firstAttribute="leading" secondItem="rch-ba-0W8" secondAttribute="leading" constant="8" id="Uf1-IO-0zA"/>
@@ -181,7 +182,7 @@
                         <constraint firstAttribute="trailing" secondItem="xch-Bk-rvZ" secondAttribute="trailing" constant="8" id="EJm-Yw-OAZ"/>
                         <constraint firstItem="INi-Kh-TGp" firstAttribute="leading" secondItem="kIo-su-qGU" secondAttribute="leading" id="K1T-vx-3bu"/>
                         <constraint firstItem="xch-Bk-rvZ" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" id="WSS-lJ-n2c"/>
-                        <constraint firstItem="rch-ba-0W8" firstAttribute="centerY" secondItem="kIo-su-qGU" secondAttribute="centerY" id="Zfx-Vc-ydj"/>
+                        <constraint firstItem="rch-ba-0W8" firstAttribute="centerY" secondItem="kIo-su-qGU" secondAttribute="centerY" constant="12.5" id="Zfx-Vc-ydj"/>
                         <constraint firstItem="INi-Kh-TGp" firstAttribute="top" secondItem="kIo-su-qGU" secondAttribute="top" id="fgE-nb-Xds"/>
                         <constraint firstAttribute="bottom" secondItem="INi-Kh-TGp" secondAttribute="bottom" id="kd0-zT-UYk"/>
                         <constraint firstItem="rch-ba-0W8" firstAttribute="centerX" secondItem="kIo-su-qGU" secondAttribute="centerX" id="kz8-ee-Azi"/>
