@@ -335,13 +335,12 @@ class APVisualizeViewController: BaseViewController {
                                 }
                             }else{
                                 if time > end{
-                                    let duration = (end - start) + 5
+                                    let duration = (end - start)
                                     print("time,....\(time)......\(duration)")
                                     UIView.animate(withDuration: duration) {
                                         self.transcriptionLbl.alpha = 0.0
                                         //self.transcriptionLbl.text = ""
                                     }
-                                    
                                 }
                             }
                         }
