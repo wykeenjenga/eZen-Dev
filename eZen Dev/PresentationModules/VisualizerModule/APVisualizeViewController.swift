@@ -334,10 +334,10 @@ class APVisualizeViewController: BaseViewController {
                                     }
                                 }
                             }else{
-                                let timee = time
-                                let endd = end
-                                print(".........\(endd).........\(timee)")
-                                if time > end{
+                                let timee = Double(round(1 * time) / 1)
+                                let endd = Double(round(1 * end) / 1)
+                                if timee == end{
+                                    print(".........\(endd).........\(timee)")
                                     let duration = (end - start)
                                     UIView.animate(withDuration: duration) {
                                         self.transcriptionLbl.alpha = 0.0
