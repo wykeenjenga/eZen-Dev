@@ -59,6 +59,10 @@
 		0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */; };
 		0B54FC442971B9C5003D1B80 /* APTranscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */; };
 		0B54FC472971C0A5003D1B80 /* APTranscriptionDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */; };
+		0B6344DE298308DE00B9BB12 /* APMusicVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6344DC298308DE00B9BB12 /* APMusicVideoViewController.swift */; };
+		0B6344DF298308DE00B9BB12 /* APMusicVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6344DD298308DE00B9BB12 /* APMusicVideoViewController.xib */; };
+		0B6344E329830B8300B9BB12 /* APMVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6344E129830B8300B9BB12 /* APMVTableViewCell.swift */; };
+		0B6344E429830B8300B9BB12 /* APMVTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6344E229830B8300B9BB12 /* APMVTableViewCell.xib */; };
 		0B76DE832950590D00976E55 /* APError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE802950590D00976E55 /* APError.swift */; };
 		0B76DE842950590D00976E55 /* APDynamicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE822950590D00976E55 /* APDynamicType.swift */; };
 		0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76DE862950595000976E55 /* APBaseViewController.swift */; };
@@ -155,6 +159,10 @@
 		0B54FC412971B9C5003D1B80 /* APTranscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionViewController.swift; sourceTree = "<group>"; };
 		0B54FC422971B9C5003D1B80 /* APTranscriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APTranscriptionViewController.xib; sourceTree = "<group>"; };
 		0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTranscriptionDIContainer.swift; sourceTree = "<group>"; };
+		0B6344DC298308DE00B9BB12 /* APMusicVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMusicVideoViewController.swift; sourceTree = "<group>"; };
+		0B6344DD298308DE00B9BB12 /* APMusicVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APMusicVideoViewController.xib; sourceTree = "<group>"; };
+		0B6344E129830B8300B9BB12 /* APMVTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMVTableViewCell.swift; sourceTree = "<group>"; };
+		0B6344E229830B8300B9BB12 /* APMVTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APMVTableViewCell.xib; sourceTree = "<group>"; };
 		0B76DE802950590D00976E55 /* APError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APError.swift; sourceTree = "<group>"; };
 		0B76DE822950590D00976E55 /* APDynamicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDynamicType.swift; sourceTree = "<group>"; };
 		0B76DE862950595000976E55 /* APBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +410,7 @@
 		0B32C53E295048D800028D5D /* PresentationModules */ = {
 			isa = PBXGroup;
 			children = (
+				0B6344D9298308A000B9BB12 /* VideoMusic */,
 				0B54FC3F2971B916003D1B80 /* TranscriptionModule */,
 				0B7B6DF02966EA8E00EAE309 /* VisualizerModule */,
 				0B32C53F295048E800028D5D /* HomeModule */,
@@ -557,6 +566,33 @@
 				0B54FC462971C0A5003D1B80 /* APTranscriptionDIContainer.swift */,
 			);
 			path = TranscriptionDIContainer;
+			sourceTree = "<group>";
+		};
+		0B6344D9298308A000B9BB12 /* VideoMusic */ = {
+			isa = PBXGroup;
+			children = (
+				0B6344E029830B6300B9BB12 /* ViewCells */,
+				0B6344DB298308B900B9BB12 /* ViewController */,
+			);
+			path = VideoMusic;
+			sourceTree = "<group>";
+		};
+		0B6344DB298308B900B9BB12 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B6344DC298308DE00B9BB12 /* APMusicVideoViewController.swift */,
+				0B6344DD298308DE00B9BB12 /* APMusicVideoViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B6344E029830B6300B9BB12 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				0B6344E129830B8300B9BB12 /* APMVTableViewCell.swift */,
+				0B6344E229830B8300B9BB12 /* APMVTableViewCell.xib */,
+			);
+			path = ViewCells;
 			sourceTree = "<group>";
 		};
 		0B76DE7E295058FD00976E55 /* CutomType */ = {
@@ -832,6 +868,7 @@
 				0B35CDEC2975A64C0074F9D2 /* potraitVideo.mp4 in Resources */,
 				0B32C5762950500D00028D5D /* Mulish-ExtraLight.ttf in Resources */,
 				0B32C5752950500D00028D5D /* Mulish-ExtraBold.ttf in Resources */,
+				0B6344DF298308DE00B9BB12 /* APMusicVideoViewController.xib in Resources */,
 				0B32C5682950500D00028D5D /* ArimaMadurai-Regular.ttf in Resources */,
 				0B32C56D2950500D00028D5D /* ArimaMadurai-ExtraBold.ttf in Resources */,
 				0B32C5722950500D00028D5D /* Mulish-SemiBoldItalic.ttf in Resources */,
@@ -854,6 +891,7 @@
 				0B32C5702950500D00028D5D /* Mulish-Black.ttf in Resources */,
 				0B32C56F2950500D00028D5D /* Mulish-Regular.ttf in Resources */,
 				0B7B6DF42966EABC00EAE309 /* APVisualizeViewController.xib in Resources */,
+				0B6344E429830B8300B9BB12 /* APMVTableViewCell.xib in Resources */,
 				0B32C4EC294D934000028D5D /* LaunchScreen.storyboard in Resources */,
 				0B32C56C2950500D00028D5D /* ArimaMadurai-Black.ttf in Resources */,
 				0B32C5692950500D00028D5D /* ArimaMadurai-Light.ttf in Resources */,
@@ -996,6 +1034,7 @@
 				0B76DE992954AA1100976E55 /* SilentParts.swift in Sources */,
 				0B54FC432971B9C5003D1B80 /* APTranscriptionViewController.swift in Sources */,
 				0B32C5302950459100028D5D /* APExtension+UITableView.swift in Sources */,
+				0B6344E329830B8300B9BB12 /* APMVTableViewCell.swift in Sources */,
 				0B32C54829504EFE00028D5D /* HomeDIContainer.swift in Sources */,
 				0B76DE8D2950633700976E55 /* APButton.swift in Sources */,
 				0B32C5242950454F00028D5D /* APConstants.swift in Sources */,
@@ -1003,6 +1042,7 @@
 				0B32C516294D95CE00028D5D /* APAppConfigurations.swift in Sources */,
 				0B7B6DF32966EABC00EAE309 /* APVisualizeViewController.swift in Sources */,
 				0B7B6DF729686B0A00EAE309 /* APVisualizeDIContainer.swift in Sources */,
+				0B6344DE298308DE00B9BB12 /* APMusicVideoViewController.swift in Sources */,
 				0B76DE872950595000976E55 /* APBaseViewController.swift in Sources */,
 				0B32C5222950454F00028D5D /* HUDLoaderProtocol.swift in Sources */,
 				0B32C5392950466400028D5D /* Accessors.swift in Sources */,

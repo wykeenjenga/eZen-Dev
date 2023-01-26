@@ -33,6 +33,7 @@ class APAppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate{
     }
 
     func navigateToOnboarding() {
+    
         if let onboarding = Accessors.Storyboard.main.instantiate(with: "OnBoardingScreen") as? UIViewController {
             if UIApplication.shared.keyWindow == nil {
                 self.window?.rootViewController = onboarding
