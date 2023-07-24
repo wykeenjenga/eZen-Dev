@@ -198,7 +198,7 @@
                     <color key="textColor" name="red"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-ea-eRP">
                     <rect key="frame" x="347" y="60" width="30" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Puz-mI-4fe"/>
@@ -207,10 +207,10 @@
                     <color key="tintColor" name="gray"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
-                        <backgroundConfiguration key="background" image="Un-removebg-preview"/>
+                        <backgroundConfiguration key="background" image="music.note.tv.fill" catalog="system"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="onClickVisualize:" destination="-1" eventType="touchUpInside" id="T2N-91-yDf"/>
+                        <action selector="onChooseVideo:" destination="-1" eventType="touchUpInside" id="WPR-4E-cse"/>
                     </connections>
                 </button>
             </subviews>
@@ -240,9 +240,9 @@
     </objects>
     <resources>
         <image name="Ellipse" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="Un-removebg-preview" width="157.66667175292969" height="176"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="create_video" width="170.66667175292969" height="39"/>
+        <image name="music.note.tv.fill" catalog="system" width="128" height="95"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
         <image name="save_audio" width="170.66667175292969" height="39"/>
         <namedColor name="blue">

@@ -57,6 +57,11 @@ class APPreviewAudioViewController: BaseViewController {
         }
     }
     
+
+    @IBAction func onChooseVideo(_ sender: Any) {
+        
+    }
+    
     @IBAction func onClickVisualize(_ sender: Any) {
         //navigate to visualization
         self.invalidateTimer()

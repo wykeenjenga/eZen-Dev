@@ -311,7 +311,7 @@ class APVisualizeViewController: BaseViewController {
                 player?.play()
                 
 
-                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1.0, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
+                player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.001, preferredTimescale: 60000), queue: DispatchQueue.main) { (CMTime) -> Void in
                     if self.player!.currentItem?.status == .readyToPlay {
                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
 
@@ -339,7 +339,7 @@ class APVisualizeViewController: BaseViewController {
                                 }
                             }else{
                                 if time > self.endPosition{
-                                    print(".........\(end).........\(time)")
+                                    print("\(punctuatedWord).........\(start)........\(end).........\(time)")
                                     if self.transcriptionLbl.text != punctuatedWord{
                                         UIView.animate(withDuration: 0.3) {
                                             self.transcriptionLbl.alpha = 0.0

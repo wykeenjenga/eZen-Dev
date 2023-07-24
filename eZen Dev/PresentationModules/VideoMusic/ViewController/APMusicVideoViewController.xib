@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APMusicVideoViewController" customModule="eZen_Dev" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA9-ha-aJA">
+                    <rect key="frame" x="44" y="102" width="305" height="42"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Video &amp; Music">
+                            <attributes>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="45" name="ArimaMadurai-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lb3-aj-CoX">
+                    <rect key="frame" x="16" y="59" width="44" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Tz1-Wj-tCk"/>
+                        <constraint firstAttribute="width" constant="44" id="f5Q-SC-3AH"/>
+                    </constraints>
+                    <color key="tintColor" name="gray"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system" imagePlacement="leading">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22" scale="medium" weight="regular"/>
+                    </buttonConfiguration>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select music and video to use for your meditation." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZP-va-S1q">
+                    <rect key="frame" x="44" y="152" width="305" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mtf-28-hIT">
+                    <rect key="frame" x="44" y="203" width="305" height="508"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGS-hC-8G7">
+                    <rect key="frame" x="96.666666666666686" y="719" width="200" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="PE3-Qk-5Qk"/>
+                        <constraint firstAttribute="height" constant="59" id="wAu-su-NYp"/>
+                    </constraints>
+                    <color key="tintColor" name="blue"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Use" cornerStyle="large">
+                        <color key="baseForegroundColor" name="yellow"/>
+                        <color key="baseBackgroundColor" name="blue"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="yellow"/>
+            <constraints>
+                <constraint firstItem="SGS-hC-8G7" firstAttribute="top" secondItem="mtf-28-hIT" secondAttribute="bottom" constant="8" symbolic="YES" id="4gc-bu-K9W"/>
+                <constraint firstItem="SGS-hC-8G7" firstAttribute="top" secondItem="mtf-28-hIT" secondAttribute="bottom" constant="8" symbolic="YES" id="Ajp-G0-KWc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mtf-28-hIT" secondAttribute="trailing" constant="44" id="GC1-Io-Cf8"/>
+                <constraint firstItem="mtf-28-hIT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="44" id="JfU-it-Lce"/>
+                <constraint firstItem="SGS-hC-8G7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Olh-dh-056"/>
+                <constraint firstItem="dZP-va-S1q" firstAttribute="top" secondItem="PA9-ha-aJA" secondAttribute="bottom" constant="8" symbolic="YES" id="Phb-q5-VmG"/>
+                <constraint firstItem="Lb3-aj-CoX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T17-9U-Joq"/>
+                <constraint firstItem="dZP-va-S1q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="44" id="aaL-jX-AF4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PA9-ha-aJA" secondAttribute="trailing" constant="44" id="b6e-e5-xaS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dZP-va-S1q" secondAttribute="trailing" constant="44" id="ghO-C0-Nwt"/>
+                <constraint firstItem="PA9-ha-aJA" firstAttribute="top" secondItem="Lb3-aj-CoX" secondAttribute="bottom" constant="8" symbolic="YES" id="k1P-zW-jsd"/>
+                <constraint firstItem="PA9-ha-aJA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="44" id="kTv-b8-X4D"/>
+                <constraint firstItem="mtf-28-hIT" firstAttribute="top" secondItem="dZP-va-S1q" secondAttribute="bottom" constant="8" symbolic="YES" id="kiF-V1-oOL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SGS-hC-8G7" secondAttribute="bottom" constant="40" id="xHM-Fi-fpM"/>
+                <constraint firstItem="Lb3-aj-CoX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="zWY-ql-XcU"/>
+            </constraints>
+            <point key="canvasLocation" x="-37.404580152671755" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <namedColor name="blue">
+            <color red="0.0" green="0.31372549019607843" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray">
+            <color red="0.125" green="0.1289999932050705" blue="0.14100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="yellow">
+            <color red="1" green="0.93725490196078431" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

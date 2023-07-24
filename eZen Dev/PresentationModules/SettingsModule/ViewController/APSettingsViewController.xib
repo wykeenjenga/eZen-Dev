@@ -1038,7 +1038,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Threshold level target to conform to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1f-AF-kds">
-                                                            <rect key="frame" x="0.0" y="19.666666666666657" width="196.66666666666666" height="15.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="19.666666666666686" width="196.66666666666666" height="15.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="12"/>
                                                             <color key="textColor" name="grayB"/>
                                                             <nil key="highlightedColor"/>
@@ -1077,7 +1077,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How long is silence target to conform to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymu-nW-D8U">
-                                                            <rect key="frame" x="0.0" y="19.666666666666657" width="219.66666666666666" height="15.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="19.666666666666686" width="219.66666666666666" height="15.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="12"/>
                                                             <color key="textColor" name="grayB"/>
                                                             <nil key="highlightedColor"/>
